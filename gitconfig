@@ -1,0 +1,28 @@
+[user]
+        name = Tej Chajed
+        email = tchajed@mit.edu
+[credential]
+        helper = osxkeychain
+[alias]
+        wat     = !~/.dotfiles/bin/git-wat
+        rank-contributors = !~/.dotfiles/bin/git-rank-contributors
+        count   = !git shortlog -sn
+[color]
+        ui = true
+[core]
+        excludesfile = ~/.gitignore_global
+        editor = vim
+        pager = diff-so-fancy | less --tabs=4 -RFX
+        hooksPath = /Users/tchajed/.git-hooks
+[mergetool]
+        keepBackup = false
+[difftool]
+        prompt = false
+[push]
+        default = simple
+[github]
+        user = tchajed
+[diff]
+        compactionHeuristic = on
+[commit]
+        gpgsign = true

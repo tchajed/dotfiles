@@ -1,0 +1,9 @@
+# OS X stores folder metadata information in DS_Store files, which become a
+# well-known pain in VCS and ZIP files.
+.DS_Store
+# vim swap files
+*.swp
+# backup files created by other programs
+*~
+# emacs backup files
+.#*

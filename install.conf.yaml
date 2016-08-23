@@ -1,3 +1,6 @@
-- clean: []
-- link: {}
+- clean: ['~']
+- link:
+    ~/.gitconfig: gitconfig
+    ~/.gitignore_global: gitignore_global
+    ~/.git-hooks: git-hooks
 - shell: []
