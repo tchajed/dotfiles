@@ -4,5 +4,6 @@
     ~/.gitignore_global: gitignore_global
     ~/.git-hooks: git-hooks
     ~/.spacemacs: spacemacs
+    ~/.config/fish/config.fish: config.fish
 - shell:
     - ~/.dotfiles/set-osx-options.sh
