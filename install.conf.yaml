@@ -1,6 +1,7 @@
-- clean: ['~']
+- clean: ['~', '~/.config']
 - link:
     ~/.gitconfig: gitconfig
     ~/.gitignore_global: gitignore_global
     ~/.git-hooks: git-hooks
-- shell: []
+- shell:
+    - ~/.dotfiles/set-osx-options.sh
