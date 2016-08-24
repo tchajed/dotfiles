@@ -28,6 +28,7 @@ values."
      ocaml
      javascript
      rust
+     yaml
 
      auto-completion
      git
