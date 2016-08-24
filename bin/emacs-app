@@ -1,0 +1,5 @@
+#!/bin/sh
+
+logfile=$(gdate --rfc-3339=seconds)
+
+emacs 1> ~/.emacs.log/$logfile.log 2> ~/.emacs.log/$logfile.err &

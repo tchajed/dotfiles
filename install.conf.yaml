@@ -3,5 +3,6 @@
     ~/.gitconfig: gitconfig
     ~/.gitignore_global: gitignore_global
     ~/.git-hooks: git-hooks
+    ~/.spacemacs: spacemacs
 - shell:
     - ~/.dotfiles/set-osx-options.sh
