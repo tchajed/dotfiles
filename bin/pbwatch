@@ -1,0 +1,23 @@
+#!/bin/bash
+
+pbfile=$(mktemp -t "pbwatch")
+tmpfile=$(mktemp -t "pbwatch.check")
+
+cleanup() {
+    rm -f "$pbfile"
+    rm -f "$tmpfile"
+}
+
+trap cleanup EXIT
+
+cmd_pattern="$1"
+cmd="${cmd_pattern/\{\}/$pbfile}"
+
+while true; do
+    pbpaste > "$tmpfile"
+    if ! diff -q "$tmpfile" "$pbfile" >/dev/null; then
+        cp "$tmpfile" "$pbfile"
+        bash -c "$cmd"
+    fi
+    sleep 0.5
+done
