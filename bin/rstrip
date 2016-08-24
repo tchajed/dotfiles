@@ -1,0 +1,5 @@
+#!/bin/sh
+
+file="$1"
+
+gsed -i 's/\s\+$//' "$file"
