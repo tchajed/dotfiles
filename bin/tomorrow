@@ -1,0 +1,15 @@
+#!/usr/bin/osascript
+# vim: ft=applescript
+
+# Guide to Things AppleScript interface:
+# http://downloads.culturedcode.com/things/download/ThingsAppleScriptGuide.pdf
+
+on run argv
+	set AppleScript's text item delimiters to " "
+	set todo to argv as text
+	tell application "Things"
+		set newToDo to make new to do ¬
+			with properties { name: todo }
+        schedule newToDo for (current date) + 1 * days
+    end tell
+end run
