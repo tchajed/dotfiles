@@ -1,26 +1,30 @@
+# Core configuration
 [user]
         name = Tej Chajed
         email = tchajed@mit.edu
+[github]
+        user = tchajed
+[init]
+	templatedir = ~/.git_template
+[commit]
+        gpgsign = true
+
+# Better behavior
+[core]
+        excludesfile = ~/.gitignore_global
+        editor = vim
+        pager = diff-so-fancy | less --tabs=4 -RFX
 [credential]
         helper = osxkeychain
+[push]
+        default = simple
+
+# Chrome
 [alias]
         wat     = !~/.dotfiles/bin/git-wat
         rank-contributors = !~/.dotfiles/bin/git-rank-contributors
         count   = !git shortlog -sn
 [color]
         ui = true
-[core]
-        excludesfile = ~/.gitignore_global
-        editor = vim
-        pager = diff-so-fancy | less --tabs=4 -RFX
-        hooksPath = /Users/tchajed/.git-hooks
-[push]
-        default = simple
-[github]
-        user = tchajed
 [diff]
         compactionHeuristic = on
-[commit]
-        gpgsign = true
-[init]
-	templatedir = ~/.git_template
