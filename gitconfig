@@ -14,10 +14,6 @@
         editor = vim
         pager = diff-so-fancy | less --tabs=4 -RFX
         hooksPath = /Users/tchajed/.git-hooks
-[mergetool]
-        keepBackup = false
-[difftool]
-        prompt = false
 [push]
         default = simple
 [github]
@@ -26,3 +22,5 @@
         compactionHeuristic = on
 [commit]
         gpgsign = true
+[init]
+	templatedir = ~/.git_template
