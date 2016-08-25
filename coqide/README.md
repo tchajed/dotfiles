@@ -6,7 +6,7 @@ For OS X:
 
     Note that if you update this file while CoqIDE is running it will overwrite it with the old configuration, so make sure to update when CoqIDE is not running.
 
-    This keymap changes many shortcuts to more common OS X defaults (eg, <kbd>⌘{</kbd> and <kbd>⌘}</kbd> to navigate tabs, <kbd>⌘,</kbd> for preferences). It also makes some common Coq shortcuts more convenient. Some examples include:
+    This keymap changes many shortcuts to more common OS X defaults (eg, <kbd>⌘</kbd><kbd>{</kbd> and <kbd>⌘</kbd><kbd>}</kbd> to navigate tabs, <kbd>⌘</kbd><kbd>,</kbd> for preferences). It also makes some common Coq shortcuts more convenient. Some examples include:
     * <kbd>F1</kbd>: toggle (including re-focusing) the query pane
     * <kbd>F2</kbd>: previous
     * <kbd>F3</kbd>: next
