@@ -8,5 +8,10 @@
     ~/.spacemacs: spacemacs
     ~/.config/fish/config.fish: config.fish
     ~/.hammerspoon: hammerspoon
+    ~/.config/pianobar/config:
+        create: true
+        path: pianobar/config
+    ~/.config/pianobar/pandora-pw.gpg: pianobar/pandora-pw.gpg
 - shell:
     - ~/.dotfiles/set-osx-options.sh
+    - if [ ! -e ~/.config/pianobar/ctl ]; then mkfifo ~/.config/pianobar/ctl; fi
