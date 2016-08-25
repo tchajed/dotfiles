@@ -14,6 +14,9 @@
     ~/.config/pianobar/pandora-pw.gpg:
         create: true
         path: pianobar/pandora-pw.gpg
+    ~/Library/Application Support/Coq/coqide.keys:
+        create: true
+        path: coqide/coqide.keys
 - shell:
     - ~/.dotfiles/set-osx-options.sh
     - if [ ! -e ~/.config/pianobar/ctl ]; then mkfifo ~/.config/pianobar/ctl; fi
