@@ -3,6 +3,8 @@ set -g theme_display_git_ahead_verbose yes
 set -g theme_display_ruby no
 
 ## Configure PATH
+# Override system binaries with Homebrew
+set PATH /usr/local/bin $PATH
 # Go binaries
 set PATH /usr/local/opt/go/libexec/bin $PATH
 # Haskell stack recommended setup
