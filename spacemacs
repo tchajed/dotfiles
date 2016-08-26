@@ -29,6 +29,7 @@ values."
      javascript
      rust
      yaml
+     lua
 
      auto-completion
      git
