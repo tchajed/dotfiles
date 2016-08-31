@@ -10,15 +10,19 @@ end
 hs.pathwatcher.new(os.getenv("HOME") .. "/.hammerspoon/", reloadConfig):start()
 hs.alert.show("Config loaded")
 
+function reversed(l)
+    local reversedList = {}
+    for i=1,#l do
+        reversedList[i] = l[#l+1 - i]
+    end
+    return reversedList
+end
+
 -- Window hints (quick window selection)
 hs.hints.hintChars = {"A","S","D","F","G","H","J","K","L","Q","W","E","R","T","Y","U","I","O","P","C","V","B","N"}
 hs.hotkey.bind("cmd", "escape", function()
                  windows = hs.window.allWindows()
-                 reversedWindows = {}
-                 for i=1,#windows do
-                   reversedWindows[i] = windows[#windows+1 - i]
-                 end
-                 hs.hints.windowHints(reversedWindows)
+                 hs.hints.windowHints(reversed(windows))
 end)
 
 -- Throwing windows between screens (monitors)
