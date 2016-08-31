@@ -26,6 +26,7 @@ hs.hotkey.bind("cmd", "escape", function()
 end)
 
 -- Throwing windows between screens (monitors)
+hs.window.animationDuration = 0 -- default is 0.2
 hs.hotkey.bind("cmd-ctrl", "right", function()
                  hs.window.focusedWindow():moveOneScreenEast()
 end)
