@@ -19,6 +19,14 @@ function reversed(l)
 end
 
 -- Window hints (quick window selection)
+
+function updateTitleThresh()
+    local numScreens = #hs.screen.allScreens()
+    -- above this many windows, titles are shown
+    hs.hints.showTitleThresh = 4 * numScreens
+end
+hs.screen.watcher.new(updateTitleThresh):start()
+updateTitleThresh()
 hs.hints.hintChars = {"A","S","D","F","G","H","J","K","L","Q","W","E","R","T","Y","U","I","O","P","C","V","B","N"}
 hs.hotkey.bind("cmd", "escape", function()
                  windows = hs.window.allWindows()
