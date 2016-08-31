@@ -30,6 +30,7 @@ values."
      rust
      yaml
      lua
+     latex
 
      auto-completion
      git
