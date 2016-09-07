@@ -47,3 +47,28 @@ end)
 hs.hotkey.bind("cmd-ctrl", "down", function()
                  hs.window.focusedWindow():moveOneScreenSouth()
 end)
+
+-- Switching to pianobar
+function getPianobar()
+  local bundleID = "com.googlecode.iterm2"
+  iterm = hs.application.applicationsForBundleID(bundleID)[1]
+  return iterm:findWindow("pianobar:1:pianobar")
+end
+
+oldWindow = nil
+-- toggle pianobar iTerm window
+hs.hotkey.bind("", "f13", function()
+                 local currentWindow = hs.window.focusedWindow()
+                 local pianobar = getPianobar()
+                 if (currentWindow:id() == pianobar:id()) then
+                   if (oldWindow == nil) then
+                     return
+                   end
+                   oldWindow:focus()
+                   oldWindow:focus()
+                 else
+                   oldWindow = currentWindow
+                   pianobar:focus()
+                   pianobar:focus()
+                 end
+end)
