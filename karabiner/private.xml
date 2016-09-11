@@ -1,4 +1,11 @@
 <?xml version="1.0"?>
+<!--
+get keyboard codes from
+https://github.com/tekezo/Karabiner/blob/master/src/bridge/generator/keycode/data/KeyCode.data
+
+and some special codes (eg, media keys) from
+https://github.com/tekezo/Karabiner/blob/master/src/bridge/generator/keycode/data/ConsumerKeyCode.data
+-->
 <root>
     <item>
         <name>Private customizations</name>
