@@ -98,5 +98,24 @@ https://github.com/tekezo/Karabiner/blob/master/src/bridge/generator/keycode/dat
           <identifier>private.media_play_f13</identifier>
           <autogen>__KeyToKey__ ConsumerKeyCode::MUSIC_PLAY, ModifierFlag::COMMAND_L, KeyCode::F13</autogen>
         </item>
+        <item>
+          <name>Happy Hacking Keyboard</name>
+          <appendix>Re-layout the Happy Hacking Keyboard</appendix>
+          <item>
+            <name>Scroll Lock (ScrLk) to media play</name>
+            <identifier>private.hhk.scrlk_to_play</identifier>
+            <autogen>__KeyToKey__ KeyCode::PC_SCROLLLOCK, ModifierFlag::NONE, ConsumerKeyCode::MUSIC_PLAY</autogen>
+          </item>
+          <item>
+            <name>Pause/Break (Pus/Brk) to media forward</name>
+            <identifier>private.hhk.pause_break_forward</identifier>
+            <autogen>__KeyToKey__ KeyCode::PC_PAUSE, ModifierFlag::NONE, ConsumerKeyCode::MUSIC_NEXT</autogen>
+          </item>
+          <item>
+            <name>Cmd-ScrLk to F13 for remapping</name>
+            <identifier>private.hhk.media_play_f13</identifier>
+            <autogen>__KeyToKey__ KeyCode::PC_SCROLLLOCK, ModifierFlag::COMMAND_L, KeyCode::F13</autogen>
+          </item>
+        </item>
     </item>
 </root>
