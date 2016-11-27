@@ -24,9 +24,9 @@ alias sed="gsed"
 alias tar="gtar"
 
 # Emacs aliases
-alias e="/usr/local/bin/emacsclient --no-wait --create-frame"
+alias e="/usr/local/bin/emacsclient -a emacs-app --no-wait --create-frame"
 alias et="/usr/local/bin/emacsclient --tty --create-frame"
-alias es="/usr/local/bin/emacsclient --no-wait --create-frame --eval '(progn (switch-to-buffer \"*scratch*\") (delete-other-windows))'"
+alias es="/usr/local/bin/emacsclient -a emacs-app --no-wait --create-frame --eval '(progn (switch-to-buffer \"*scratch*\") (delete-other-windows))'"
 
 ## mvim setup
 # Fix starting mvim from within tmux
