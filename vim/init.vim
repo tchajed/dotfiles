@@ -3,12 +3,16 @@ call plug#begin()
 Plug 'tpope/vim-sensible'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'altercation/vim-colors-solarized'
 Plug 'wincent/Command-T'
 
 " Git integration
 Plug 'tpope/vim-fugitive'
-call plug#end()
 
 " General Programming
 Plug 'scrooloose/syntastic'
-Plug 'Valloric/YouCompleteMe'
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
+call plug#end()
+
+set background=dark
+colorscheme solarized
