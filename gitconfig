@@ -12,7 +12,7 @@
 # Better behavior
 [core]
   excludesfile = ~/.gitignore_global
-  editor = vim
+  editor = nvim
   pager = diff-so-fancy | less --tabs=4 -RFX
 [credential]
   helper = osxkeychain

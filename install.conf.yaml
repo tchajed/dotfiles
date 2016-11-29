@@ -22,6 +22,12 @@
         path: karabiner/private.xml
     ~/.tmux.conf:
         path: tmux.conf
+    ~/.config/nvim/autoload/plug.vim:
+        create: true
+        path: vim/plug.vim
+    ~/.config/nvim/init.vim:
+        create: true
+        path: vim/init.vim
 - shell:
     - ~/.dotfiles/set-osx-options.sh
     - if [ ! -e ~/.config/pianobar/ctl ]; then mkfifo ~/.config/pianobar/ctl; fi
