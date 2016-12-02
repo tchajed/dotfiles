@@ -16,3 +16,5 @@ call plug#end()
 
 set background=dark
 colorscheme solarized
+
+let g:airline_powerline_fonts = 1
