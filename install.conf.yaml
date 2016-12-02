@@ -28,6 +28,9 @@
     ~/.config/nvim/init.vim:
         create: true
         path: vim/init.vim
+    ~/.config/nvim/plugin:
+        create: true
+        path: vim/plugin
 - shell:
     - ~/.dotfiles/set-osx-options.sh
     - if [ ! -e ~/.config/pianobar/ctl ]; then mkfifo ~/.config/pianobar/ctl; fi
