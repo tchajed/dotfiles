@@ -31,6 +31,7 @@ values."
      yaml
      lua
      latex
+     typescript
 
      auto-completion
      git
