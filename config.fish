@@ -8,7 +8,7 @@ set PATH /usr/local/bin $PATH
 # Go binaries
 set PATH /usr/local/opt/go/libexec/bin $PATH
 # Haskell stack recommended setup
-set PATH ~/.stack/programs/x86_64-osx/ghc-7.10.3/bin $PATH
+set PATH ~/.stack/programs/x86_64-osx/ghc-8.0.1/bin $PATH
 # Coq
 set PATH $COQBIN $PATH
 # Commited scripts in dotfiles
