@@ -46,9 +46,9 @@ autostart_station = 200683291813781274
 #volume = 0
 
 # Format strings
-format_nowplaying_song = [32m%t[0m by [34m%a[0m on %l[31m%r[0m%@%s
+format_nowplaying_song = [34m%t[31m%r[0m by [32m%a[0m on %l[0m%@%s
 format_nowplaying_station = Station [35m%n[0m
-format_list_song = %i) %a - %t%r
+format_list_song = %i) %a - %t[31m%r[0m
 
 # high-quality audio (192k mp3, for Pandora One subscribers only!)
 #audio_quality = high
