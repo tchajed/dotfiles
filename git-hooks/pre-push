@@ -21,11 +21,10 @@ def commit_msgs(start_ref, end_ref):
         # remote commit is invalid, indicating remote has some new commits and
         # the push will likely fail due to a non-fast-forward push anyway.
         sys.exit(0)
-    # pushing to empty remote
-    if start_ref == "0" * 40:
-        commits = end_ref
-    else:
-        commits = start_ref + ".." + end_ref
+    # pushing empty ref to remote; no commits to check
+    if end_ref == "0" * 40:
+        sys.exit(0)
+    commits = start_ref + ".." + end_ref
     messages = run_git("log", "--format=%h|%s", commits)
     for line in messages.split("\n"):
         line = line.strip()
