@@ -63,18 +63,23 @@ function focusWindow(w)
 	hs.itimer.doAfter(0.1, function() w:focus() end)
 end
 
-oldWindow = nil
--- toggle pianobar iTerm window
-hs.hotkey.bind("", "f13", function()
-                 local currentWindow = hs.window.focusedWindow()
-                 local pianobar = getPianobar()
-                 if (currentWindow:id() == pianobar:id()) then
-                   if (oldWindow == nil) then
-                     return
-                   end
-                   focusWindow(oldWindow)
-                 else
-                   oldWindow = currentWindow
-                   focusWindow(pianobar)
-                 end
-end)
+ oldWindow = nil
+ -- toggle pianobar iTerm window
+ hs.hotkey.bind("", "f14", function()
+                  local currentWindow = hs.window.focusedWindow()
+                  local pianobar = getPianobar()
+                  if (currentWindow:id() == pianobar:id()) then
+                    if (oldWindow == nil) then
+                      return
+                    end
+                    focusWindow(oldWindow)
+                  else
+                    oldWindow = currentWindow
+                    focusWindow(pianobar)
+                  end
+ end)
+
+ -- f13 is PrtSc
+ hs.hotkey.bind("ctrl shift", "f13", function ()
+	 hs.caffeinate.systemSleep()
+ end)

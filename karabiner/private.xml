@@ -94,9 +94,9 @@ https://github.com/tekezo/Karabiner/blob/master/src/bridge/generator/keycode/dat
                     KeyCode::CURSOR_LEFT, ModifierFlag::OPTION_L, ModifierFlag::COMMAND_L </autogen>
         </item>
         <item>
-          <name>Cmd-Play to F13 for remapping</name>
-          <identifier>private.media_play_f13</identifier>
-          <autogen>__KeyToKey__ ConsumerKeyCode::MUSIC_PLAY, ModifierFlag::COMMAND_L, KeyCode::F13</autogen>
+          <name>Cmd-Play to F14 for remapping</name>
+          <identifier>private.media_play_f14</identifier>
+          <autogen>__KeyToKey__ ConsumerKeyCode::MUSIC_PLAY, ModifierFlag::COMMAND_L, KeyCode::F14</autogen>
         </item>
         <item>
           <name>Happy Hacking Keyboard</name>
