@@ -12,6 +12,9 @@ Plug 'tpope/vim-fugitive'
 " General Programming
 Plug 'scrooloose/syntastic'
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
+
+" Languages
+Plug 'dag/vim-fish'
 call plug#end()
 
 set background=dark
