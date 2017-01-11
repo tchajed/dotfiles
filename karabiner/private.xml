@@ -99,6 +99,14 @@ https://github.com/tekezo/Karabiner/blob/master/src/bridge/generator/keycode/dat
           <autogen>__KeyToKey__ ConsumerKeyCode::MUSIC_PLAY, ModifierFlag::COMMAND_L, KeyCode::F14</autogen>
         </item>
         <item>
+          <name>Swap modifier keys option and command on left and right</name>
+          <identifier>private.swap_option_command</identifier>
+          <autogen>__KeyToKey__ KeyCode::COMMAND_L, KeyCode::OPTION_L</autogen>
+          <autogen>__KeyToKey__ KeyCode::OPTION_L, KeyCode::COMMAND_L</autogen>
+          <autogen>__KeyToKey__ KeyCode::COMMAND_R, KeyCode::OPTION_R</autogen>
+          <autogen>__KeyToKey__ KeyCode::OPTION_R, KeyCode::COMMAND_R</autogen>
+        </item>
+        <item>
           <name>Happy Hacking Keyboard</name>
           <appendix>Re-layout the Happy Hacking Keyboard</appendix>
           <item>
