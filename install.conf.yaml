@@ -5,7 +5,8 @@
     ~/.git_template/hooks:
         create: true
         path: git-hooks
-    ~/.spacemacs: spacemacs
+    ~/.spacemacs: emacs/spacemacs
+    ~/custom.el: emacs/custom.el
     ~/.config/fish/config.fish: config.fish
     ~/.hammerspoon: hammerspoon
     ~/.config/pianobar/config:
