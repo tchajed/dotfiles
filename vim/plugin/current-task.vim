@@ -10,7 +10,7 @@ function! CurrentTask()
     " mark current task done
     nmap <Leader>d I✓ <Esc>
     " re-align to current date
-    nmap <Leader>c G?\v\d{4}-\d{2}-\d{2}<CR>zt:nohlsearch<CR>i<Esc>
+    nmap <Leader>c G?\v^\d{4}-\d{2}-\d{2}<CR>zt:nohlsearch<CR>i<Esc>
     " insert today's date
     nmap <Leader>t :read !date "+\%Y-\%m-\%d"<CR>i<Esc>
 
