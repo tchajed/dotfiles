@@ -1,3 +1,4 @@
+#!/bin/bash
 # Personalize OS X settings
 #
 # original credits:
