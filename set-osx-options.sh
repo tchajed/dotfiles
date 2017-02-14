@@ -55,3 +55,9 @@ defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
 
 # Prevent Photos from opening automatically when devices are plugged in
 defaults -currentHost write com.apple.ImageCapture disableHotPlug -bool true
+
+# Ask for password after screen lock
+defaults write com.apple.screensaver askForPassword -bool true
+# ... after 5 seconds (note: setting this to a value not in the System
+# Preferences dropdown menu appears to not work)
+defaults write com.apple.screensaver askForPasswordDelay 5
