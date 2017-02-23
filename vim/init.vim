@@ -14,6 +14,12 @@ Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
 
 " Languages
 Plug 'dag/vim-fish'
+
+" Haskell
+Plug 'eagletmt/ghcmod-vim'
+Plug 'eagletmt/neco-ghc'
+Plug 'bitc/vim-hdevtools'
+Plug 'Shougo/vimproc.vim', { 'do': 'make' }
 call plug#end()
 
 set background=dark
