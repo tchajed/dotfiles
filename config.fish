@@ -15,6 +15,9 @@ set PATH ~/.stack/programs/x86_64-osx/ghc-8.0.1/bin $PATH
 set PATH ~/.local/bin $PATH
 # Coq
 set PATH $COQBIN $PATH
+# Go
+set GOPATH ~/go
+set PATH $GOPATH/bin $PATH
 # Commited scripts in dotfiles
 set PATH ~/.dotfiles/bin $PATH
 
