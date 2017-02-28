@@ -31,7 +31,6 @@ values."
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
    '(
-     go
      ;; programming languages
      coq
      emacs-lisp
@@ -46,6 +45,7 @@ values."
      rust
      typescript
      yaml
+     (go :variables go-tab-width 4)
 
      ;; general packages
      auto-completion
