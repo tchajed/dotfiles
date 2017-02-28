@@ -3,6 +3,7 @@ set -g theme_display_git_ahead_verbose yes
 set -g theme_display_ruby no
 set -g theme_title_use_abbreviated_path no
 set -g theme_git_worktree_support
+set -g theme_nerd_fonts yes
 
 ## Configure PATH
 # Override system binaries with Homebrew
