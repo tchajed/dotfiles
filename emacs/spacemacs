@@ -37,7 +37,7 @@ values."
      haskell
      html
      javascript
-     latex
+     (latex :variable latex-enable-folding t)
      lua
      markdown
      ocaml
