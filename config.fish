@@ -6,7 +6,7 @@ set -g theme_nerd_fonts yes
 
 ## Configure PATH
 # Override system binaries with Homebrew
-set PATH /usr/local/bin $PATH
+set PATH /usr/local/bin /usr/local/sbin $PATH
 # Go binaries
 set PATH /usr/local/opt/go/libexec/bin $PATH
 # Haskell stack recommended setup
