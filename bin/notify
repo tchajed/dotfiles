@@ -1,0 +1,5 @@
+#!/bin/bash
+
+message="$1"
+
+osascript -e "display notification \"$message\" with title \"notify\""
