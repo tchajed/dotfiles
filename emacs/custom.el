@@ -3,12 +3,14 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(font-latex-match-type-command-keywords (quote (("todo" "{"))))
+ '(evil-want-abbrev-expand-on-insert-exit nil)
+ '(font-latex-match-type-command-keywords (quote (("todo" "[{"))))
  '(font-latex-user-keyword-classes
    (quote
     (("note"
-      (("note" "{"))
+      (("note" "[{"))
       font-lock-keyword-face command))))
+ '(fstar-executable "/Users/tchajed/.dotfiles/bin/fstar.exe")
  '(gofmt-command "goimports")
  '(package-selected-packages
    (quote
@@ -16,7 +18,13 @@
  '(proof-shrink-windows-tofit t)
  '(safe-local-variable-values
    (quote
-    ((c-file-offsets
+    ((company-coq-local-symbols
+      ("Sigma" . 931)
+      ("sigma" . 963)
+      ("sigma'" 963
+       (Br . Bl)
+       39))
+     (c-file-offsets
       (block-close . 0)
       (brace-list-close . 0)
       (brace-list-entry . 0)
@@ -70,6 +78,7 @@
              (when coq-project-find-file
                (setq default-directory coq-root-directory))))
      (reftex-default-bibliography "n.bib" "p.bib"))))
+ '(search-invisible t)
  '(tab-width 2))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
