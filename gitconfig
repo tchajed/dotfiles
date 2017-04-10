@@ -24,6 +24,9 @@
   wat     = !~/.dotfiles/bin/git-wat
   rank-contributors = !~/.dotfiles/bin/git-rank-contributors
   count   = !git shortlog -sn
+  # from https://blog.scottnonnenberg.com/better-git-configuration
+  # good for one-line messages
+  glog = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
 [color]
   ui = true
 [diff]
