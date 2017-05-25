@@ -201,11 +201,15 @@ def show b
   puts "\n#{red "WARNING"}: local and remote branches have diverged. A merge will occur unless you rebase." if oosync
 end
 
+def last_modified b
+  `git show -s --format=%ct "#{b[:name]}"`
+end
+
 def show_relations b, all_branches
   ibs, fbs = all_branches.partition { |name, br| $config["integration-branches"].include?(br[:local_branch]) || $config["integration-branches"].include?(br[:remote_branch]) }
   if $config["integration-branches"].include? b[:local_branch]
     puts "\nFeature branches:" unless fbs.empty?
-    fbs.each do |name, br|
+    fbs.sort_by { |name, br| last_modified br }.reverse.each do |name, br|
       next if $config["ignore"].member?(br[:local_branch]) || $config["ignore"].member?(br[:remote_branch])
       next if br[:ignore]
       local_only = br[:remote_branch].nil?
@@ -238,7 +242,7 @@ def show_relations b, all_branches
     end
   else
     puts "\nIntegration branches:" unless ibs.empty? # unlikely
-    ibs.sort_by { |v, br| v }.each do |v, br|
+    ibs.sort_by { |v, br| last_modified br }.reverse.each do |v, br|
       next if $config["ignore"].member?(br[:local_branch]) || $config["ignore"].member?(br[:remote_branch])
       next if br[:ignore]
       local_only = br[:remote_branch].nil?
