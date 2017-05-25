@@ -18,6 +18,8 @@ set PATH $COQBIN $PATH
 # Go
 set GOPATH ~/go
 set PATH $GOPATH/bin $PATH
+# latexrun
+set PATH ~/code/sw/latexrun $PATH
 # Commited scripts in dotfiles
 set PATH ~/.dotfiles/bin $PATH
 
