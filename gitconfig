@@ -27,6 +27,11 @@
   # from https://blog.scottnonnenberg.com/better-git-configuration
   # good for one-line messages
   glog = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
+  # today and graph are from
+  # https://csswizardry.com/2017/05/little-things-i-like-to-do-with-git/
+  today = log --since=03:00:00 --all --no-merges --oneline
+  graph = log --graph --all --decorate --stat --date=iso
+  dayswork = diff --stat 'HEAD@{today.3am}'
 [color]
   ui = true
 [diff]
