@@ -1,0 +1,78 @@
+#!/usr/bin/env python3
+
+import subprocess
+import argparse
+
+class Command:
+    def __init__(self, args):
+        self.args = args
+
+    def run(self):
+        return subprocess.call(self.args)
+
+    def shell_command(self):
+        """Render command as input for the shell."""
+        # TODO: fix this naive version by adding quotes where appropriate
+        return " ".join(self.args)
+
+class Cantor:
+    @classmethod
+    def start(cls, _args):
+        return Command(["VBoxManage", "startvm", "Arch new",
+                        "--type", "headless"])
+
+    @classmethod
+    def stop(cls, _args):
+        return Command(["VBoxManage", "controlvm", "Arch new",
+                        "savestate"])
+
+    @classmethod
+    def poweroff(cls, _args):
+        return Command(["VBoxManage", "controlvm", "Arch new",
+                        "poweroff"])
+
+    @classmethod
+    def running(cls, _args):
+        return Command(["VBoxManage", "list", "runningvms"])
+
+    @classmethod
+    def setup_parser(cls, parser: argparse.ArgumentParser):
+        subparsers = parser.add_subparsers()
+        subparsers.add_parser('start').set_defaults(func=cls.start)
+        subparsers.add_parser('stop').set_defaults(func=cls.stop)
+        subparsers.add_parser('poweroff').set_defaults(func=cls.poweroff)
+        subparsers.add_parser('running').set_defaults(func=cls.running)
+
+
+class Book:
+    @classmethod
+    def search(cls, args):
+        url = "https://bpl.bibliocommons.com/search?custom_query=title:({}) formatcode:(EBOOK)&suppress=true&custom_edit=true&search_scope=BPL".format(args.title)
+        return Command(["open", url])
+
+    @classmethod
+    def setup_parser(cls, parser: argparse.ArgumentParser):
+        parser.add_argument("title")
+        parser.set_defaults(func=cls.search)
+
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(
+        formatter_class=argparse.ArgumentDefaultsHelpFormatter)
+    parser.add_argument("-n", "--dry-run",
+                        action='store_true',
+                        help="print commands without executing them")
+    subparsers = parser.add_subparsers(help="sub-commands")
+
+    Cantor.setup_parser(
+        subparsers.add_parser('cantor', help="manage cantor VM"))
+
+    Book.setup_parser(
+        subparsers.add_parser('book', help="search for books at the BPL"))
+
+    args = parser.parse_args()
+    cmd = args.func(args)
+    if args.dry_run:
+        print(cmd.shell_command())
+    else:
+        cmd.run()
