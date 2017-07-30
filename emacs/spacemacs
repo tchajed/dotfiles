@@ -31,6 +31,7 @@ values."
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
    '(
+     ruby
      ;; programming languages
      coq
      fstar
@@ -48,6 +49,7 @@ values."
      typescript
      yaml
      (go :variables go-tab-width 4)
+     purescript
 
      ;; general packages
      auto-completion
@@ -319,6 +321,15 @@ before packages are loaded. If you are unsure, you should try in setting them in
   ;; (this variable can't correctly be set in customize because evil loads it
   ;; before customize sets variables, and then evil never reads it again)
   (setq evil-want-abbrev-expand-on-insert-exit nil)
+  (defun my-fstar-compute-prover-args-using-make ()
+    "Construct arguments to pass to F* by calling make."
+    (with-demoted-errors "Error when constructing arg string: %S"
+      (let* ((fname (file-name-nondirectory buffer-file-name))
+             (target (concat fname "-in"))
+             (argstr (car (process-lines "make" "--quiet" target))))
+        (split-string argstr))))
+
+  (setq fstar-subp-prover-args #'my-fstar-compute-prover-args-using-make)
   )
 
 (defun dotspacemacs/user-config ()

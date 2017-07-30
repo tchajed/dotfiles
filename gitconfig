@@ -13,7 +13,8 @@
 [core]
   excludesfile = ~/.gitignore_global
   editor = nvim
-  pager = diff-so-fancy | less --tabs=4 -RFX
+[pager]
+  diff = diff-so-fancy | less --tabs=4 -RFX
 [credential]
   helper = osxkeychain
 [push]
@@ -34,5 +35,21 @@
   dayswork = diff --stat 'HEAD@{today.3am}'
 [color]
   ui = true
+# color.diff-highlight and color.diff are recommendations from diff-so-fancy
+# configured by eval (diff-so-fancy --colors)
+#[color "diff-highlight"]
+#  oldNormal = red bold
+#  oldHighlight = red bold 52
+#  newNormal = green bold
+#  newHighlight = green bold 22
+#[color "diff"]
+#  meta = 227
+#  frag = magenta bold
+#  commit = 227 bold
+#  old = red bold
+#  new = green bold
+#  whitespace = red reverse
+[diff-so-fancy]
+  first-run = false
 [diff]
   compactionHeuristic = on

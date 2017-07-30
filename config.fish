@@ -18,11 +18,20 @@ set PATH $COQBIN $PATH
 # Go
 set GOPATH ~/go
 set PATH $GOPATH/bin $PATH
+# Rust
+set PATH ~/.cargo/bin $PATH
 # latexrun
 set PATH ~/code/sw/latexrun $PATH
 # Commited scripts in dotfiles
 set PATH ~/.dotfiles/bin $PATH
+# F*
+set PATH ~/code/sw/everest/FStar/bin $PATH
+set PATH ~/code/sw/everest/kremlin $PATH
+set PATH ~/code/sw/everest/z3-4.5.1.1f29cebd4df6-x64-osx-10.11.6/bin $PATH
+set KREMLIN_HOME ~/code/sw/everest/kremlin
+set HACL_HOME ~/code/sw/everest/hacl-star
 
+set -gx RUST_SRC_PATH (rustc --print sysroot)/lib/rustlib/src/rust/src
 
 ## Aliases
 # Use GNU versions
@@ -42,6 +51,7 @@ alias vim="nvim"
 
 ## opam setup
 source ~/.opam/opam-init/init.fish
+eval (opam env --shell=fish)
 # setting MANPATH breaks manpage lookups, which normally use $PATH
 set -e MANPATH
 
@@ -49,6 +59,11 @@ set -e MANPATH
 function jhome
     set -Ux JAVA_HOME (/usr/libexec/java_home $argv)
     java -version
+end
+
+function setupgo
+    set -gx GOPATH $PWD
+    set PATH $GOPATH/bin $PATH
 end
 
 ## iTerm 2 shell integration
