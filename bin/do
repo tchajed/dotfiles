@@ -4,36 +4,51 @@ import subprocess
 import argparse
 
 class Command:
-    def __init__(self, args):
+    def __init__(self, args, post=lambda x: x):
         self.args = args
+        self.post = post
 
     def run(self):
-        return subprocess.call(self.args)
+        self.post(subprocess.call(self.args))
 
     def shell_command(self):
         """Render command as input for the shell."""
         # TODO: fix this naive version by adding quotes where appropriate
         return " ".join(self.args)
 
+class PostprocessCommand(Command):
+    def __init__(self, args, post):
+        super(PostprocessCommand, self).__init__(args)
+        self.post = post
+
+    def run(self):
+        out = subprocess.check_output(self.args)
+        print(self.post(out))
+
 class Cantor:
     @classmethod
     def start(cls, _args):
-        return Command(["VBoxManage", "startvm", "Arch new",
+        return Command(["VBoxManage", "startvm", "Arch",
                         "--type", "headless"])
 
     @classmethod
     def stop(cls, _args):
-        return Command(["VBoxManage", "controlvm", "Arch new",
+        return Command(["VBoxManage", "controlvm", "Arch",
                         "savestate"])
 
     @classmethod
     def poweroff(cls, _args):
-        return Command(["VBoxManage", "controlvm", "Arch new",
+        return Command(["VBoxManage", "controlvm", "Arch",
                         "poweroff"])
 
     @classmethod
     def running(cls, _args):
-        return Command(["VBoxManage", "list", "runningvms"])
+        def find_arch(status):
+            if status.find(b"Arch") > 0:
+                return "cantor is running"
+            else:
+                return "cantor is stopped"
+        return PostprocessCommand(["VBoxManage", "list", "runningvms"], find_arch)
 
     @classmethod
     def setup_parser(cls, parser: argparse.ArgumentParser):
