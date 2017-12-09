@@ -2,6 +2,7 @@
 set -g theme_display_git_ahead_verbose yes
 set -g theme_display_ruby no
 set -g theme_title_use_abbreviated_path no
+set -g theme_git_worktree_support yes
 set -g theme_nerd_fonts yes
 
 ## Configure PATH
@@ -10,11 +11,9 @@ set PATH /usr/local/bin /usr/local/sbin $PATH
 # Go binaries
 set PATH /usr/local/opt/go/libexec/bin $PATH
 # Haskell stack recommended setup
-set PATH ~/.stack/programs/x86_64-osx/ghc-8.0.1/bin $PATH
+set PATH ~/.stack/programs/x86_64-osx/ghc-8.0.2/bin $PATH
 # Stack executables
 set PATH ~/.local/bin $PATH
-# Coq
-set PATH $COQBIN $PATH
 # Go
 set GOPATH ~/go
 set PATH $GOPATH/bin $PATH
@@ -33,6 +32,9 @@ set HACL_HOME ~/code/sw/everest/hacl-star
 
 set -gx RUST_SRC_PATH (rustc --print sysroot)/lib/rustlib/src/rust/src
 
+## Configure Homebrew
+set -x HOMEBREW_AUTO_UPDATE_SECS (math '60*60*25*7')
+
 ## Aliases
 # Use GNU versions
 alias sleep="gsleep"
@@ -40,6 +42,7 @@ alias realpath="grealpath"
 alias readlink="greadlink"
 alias sed="gsed"
 alias tar="gtar"
+alias timeout="gtimeout"
 
 # Emacs aliases
 alias e="/usr/local/bin/emacsclient -a emacs-app --no-wait --create-frame"
@@ -51,9 +54,10 @@ alias vim="nvim"
 
 ## opam setup
 source ~/.opam/opam-init/init.fish
-eval (opam env --shell=fish)
+eval (opam config env --shell=fish)
 # setting MANPATH breaks manpage lookups, which normally use $PATH
-set -e MANPATH
+# (opam HEAD fixed this by not setting MANPATH if not already set)
+#set -e MANPATH
 
 ## changing java version
 function jhome
@@ -69,3 +73,7 @@ end
 ## iTerm 2 shell integration
 # https://iterm2.com/shell_integration.html
 source ~/.iterm2_shell_integration.fish
+
+# Coq
+# (to override opam version)
+set PATH $COQBIN $PATH
