@@ -71,6 +71,39 @@ class Book:
         parser.set_defaults(func=cls.search)
 
 
+class Audiobook:
+    @classmethod
+    def search(cls, args):
+        url = "https://bpl.bibliocommons.com/search?custom_query=title:({}) (formatcode:(AB_ONLINE) OR formatcode:(EBOOK))&suppress=true&custom_edit=true&search_scope=BPL".format(args.title)
+        return Command(["open", url])
+
+    @classmethod
+    def setup_parser(cls, parser: argparse.ArgumentParser):
+        parser.add_argument("title")
+        parser.set_defaults(func=cls.search)
+
+
+class Timer:
+    @classmethod
+    def open_timer(cls, _args):
+        url = "https://jon.thesquareplanet.com/time/"
+        return Command(["open", "-a", "Safari", url])
+
+    @classmethod
+    def setup_parser(cls, parser: argparse.ArgumentParser):
+        parser.set_defaults(func=cls.open_timer)
+
+
+class YoutubeDl:
+    @classmethod
+    def youtube_dl(cls, _args):
+        return Command(["/Users/tchajed/Downloads/youtube-dl/download-song.sh"])
+
+    @classmethod
+    def setup_parser(cls, parser: argparse.ArgumentParser):
+        parser.set_defaults(func=cls.youtube_dl)
+
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
         formatter_class=argparse.ArgumentDefaultsHelpFormatter)
@@ -84,6 +117,15 @@ if __name__ == "__main__":
 
     Book.setup_parser(
         subparsers.add_parser('book', help="search for books at the BPL"))
+
+    Audiobook.setup_parser(
+        subparsers.add_parser('audiobook', help="search for streaming audiobooks at the BPL"))
+
+    Timer.setup_parser(
+        subparsers.add_parser('timer', help="open a Safari timer"))
+
+    YoutubeDl.setup_parser(
+        subparsers.add_parser('youtube-dl', help="download YouTube URL song from clipboard"))
 
     args = parser.parse_args()
     cmd = args.func(args)
