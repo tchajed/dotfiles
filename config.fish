@@ -4,6 +4,7 @@ set -g theme_display_ruby no
 set -g theme_title_use_abbreviated_path no
 set -g theme_git_worktree_support yes
 set -g theme_nerd_fonts yes
+set -g theme_display_git_master_branch no
 
 ## Configure PATH
 # Override system binaries with Homebrew
@@ -11,7 +12,7 @@ set PATH /usr/local/bin /usr/local/sbin $PATH
 # Go binaries
 set PATH /usr/local/opt/go/libexec/bin $PATH
 # Haskell stack recommended setup
-set PATH ~/.stack/programs/x86_64-osx/ghc-8.0.2/bin $PATH
+set PATH ~/.stack/programs/x86_64-osx/ghc-8.2.2/bin $PATH
 # Stack executables
 set PATH ~/.local/bin $PATH
 # Go
@@ -24,11 +25,11 @@ set PATH ~/code/sw/latexrun $PATH
 # Commited scripts in dotfiles
 set PATH ~/.dotfiles/bin $PATH
 # F*
-set PATH ~/code/sw/everest/FStar/bin $PATH
-set PATH ~/code/sw/everest/kremlin $PATH
-set PATH ~/code/sw/everest/z3-4.5.1.1f29cebd4df6-x64-osx-10.11.6/bin $PATH
-set KREMLIN_HOME ~/code/sw/everest/kremlin
-set HACL_HOME ~/code/sw/everest/hacl-star
+#set PATH ~/code/sw/everest/FStar/bin $PATH
+#set PATH ~/code/sw/everest/kremlin $PATH
+#set PATH ~/code/sw/everest/z3-4.5.1.1f29cebd4df6-x64-osx-10.11.6/bin $PATH
+#set KREMLIN_HOME ~/code/sw/everest/kremlin
+#set HACL_HOME ~/code/sw/everest/hacl-star
 
 set -gx RUST_SRC_PATH (rustc --print sysroot)/lib/rustlib/src/rust/src
 
