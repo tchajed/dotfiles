@@ -1,15 +1,18 @@
-#!/usr/bin/osascript
-# vim: ft=applescript
+#!/bin/bash
 
-# Guide to Things AppleScript interface:
-# http://downloads.culturedcode.com/things/download/ThingsAppleScriptGuide.pdf
+urlencode() {
+    # urlencode <string>
 
-on run argv
-	set AppleScript's text item delimiters to " "
-	set todo to argv as text
-	tell application "Things"
-		set newToDo to make new to do ¬
-			with properties { name: todo }
-        schedule newToDo for (current date) + 1 * days
-    end tell
-end run
+    local length="${#1}"
+    for (( i = 0; i < length; i++ )); do
+        local c="${1:i:1}"
+        case $c in
+            [a-zA-Z0-9.~_-]) printf "$c" ;;
+            *) printf '%s' "$c" | xxd -p -c1 |
+                   while read c; do printf '%%%s' "$c"; done ;;
+        esac
+    done
+}
+
+title=$(urlencode "$1")
+open "things:///add?title=$title&when=in%201%20day"
