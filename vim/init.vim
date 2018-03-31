@@ -1,4 +1,4 @@
-call plug#begin()
+call plug#begin('~/.config/nvim/plugged')
 " Basic UI
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -15,6 +15,7 @@ Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
 " Languages
 Plug 'dag/vim-fish'
 Plug 'FStarLang/VimFStar', {'for': 'fstar'}
+Plug 'rust-lang/rust.vim'
 
 " Haskell
 Plug 'eagletmt/ghcmod-vim'
@@ -27,3 +28,4 @@ set background=dark
 colorscheme solarized
 
 let g:airline_powerline_fonts = 1
+let g:syntastic_rust_checkers = ['cargo']
