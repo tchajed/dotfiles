@@ -7,7 +7,8 @@
         path: git-hooks
     ~/.spacemacs: emacs/spacemacs
     ~/custom.el: emacs/custom.el
-    ~/.config/fish/config.fish: config.fish
+    ~/.config/fish/config.fish: fish/config.fish
+    ~/.config/fish/completions/skim.fish: fish/skim.fish
     ~/.hammerspoon: hammerspoon
     ~/.config/pianobar/config:
         create: true
