@@ -1,3 +1,4 @@
+# vim: ts=2:sw=2
 # Core configuration
 [user]
   name = Tej Chajed
@@ -34,7 +35,7 @@
   graph = log --graph --all --decorate --stat --date=iso
   dayswork = diff --stat 'HEAD@{today.3am}'
 [color]
-  ui = true
+	ui = true
 # color.diff-highlight and color.diff are recommendations from diff-so-fancy
 # configured by eval (diff-so-fancy --colors)
 #[color "diff-highlight"]
@@ -53,3 +54,6 @@
   first-run = false
 [diff]
   compactionHeuristic = on
+	# consider zebra (the default when colorMoved is used), which has distinctive
+	# colors but too many
+	colorMoved = dimmed_zebra
