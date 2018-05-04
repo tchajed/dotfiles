@@ -59,27 +59,30 @@ end
 -- on a different screen, and there is another window for that app on the same
 -- screen. Need to focus twice, apparently with a short delay in some cases.
 function focusWindow(w)
-	w:focus()
-	hs.itimer.doAfter(0.1, function() w:focus() end)
+  w:focus()
+  hs.itimer.doAfter(0.1, function() w:focus() end)
 end
 
- oldWindow = nil
+oldWindow = nil
+function togglePianobar()
+  local currentWindow = hs.window.focusedWindow()
+  local pianobar = getPianobar()
+  if (currentWindow:id() == pianobar:id()) then
+    if (oldWindow == nil) then
+      return
+    end
+    focusWindow(oldWindow)
+  else
+    oldWindow = currentWindow
+    focusWindow(pianobar)
+  end
+end
+
  -- toggle pianobar iTerm window
- hs.hotkey.bind("", "f14", function()
-                  local currentWindow = hs.window.focusedWindow()
-                  local pianobar = getPianobar()
-                  if (currentWindow:id() == pianobar:id()) then
-                    if (oldWindow == nil) then
-                      return
-                    end
-                    focusWindow(oldWindow)
-                  else
-                    oldWindow = currentWindow
-                    focusWindow(pianobar)
-                  end
- end)
+ -- hs.hotkey.bind("", "f14", togglePianobar)
 
  -- f13 is PrtSc
- hs.hotkey.bind("ctrl shift", "f13", function ()
-	 hs.caffeinate.systemSleep()
- end)
+-- hs.hotkey.bind("ctrl shift", "f13", function ()
+--	 -- hs.caffeinate.systemSleep()
+--	 hs.caffeinate.lockScreen()
+-- end)
