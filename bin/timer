@@ -1,0 +1,14 @@
+#!/usr/bin/osascript
+# vim: ft=applescript
+
+set appWidth to 645
+set appHeight to 415
+tell application "Safari"
+	open location "https://jon.thesquareplanet.com/time/"
+	delay 0.5
+	activate
+	set currBounds to bounds of the first window
+	set xPos to item 1 of currBounds
+	set yPos to item 2 of currBounds
+	set the bounds of the first window to {xPos, yPos, xPos + appWidth, yPos + appHeight}
+end tell
