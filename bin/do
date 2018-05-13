@@ -71,6 +71,27 @@ class Book:
         parser.set_defaults(func=cls.search)
 
 
+def remove_prefix(prefix, text):
+    if text.startswith(prefix):
+        return text[len(prefix):]
+    return text
+
+
+class MitBook:
+    @classmethod
+    def search(cls, args):
+        title = args.title.lower()
+        #title = remove_prefix("the ", title)
+        #title = remove_prefix("a ", title)
+        url = "http://library.mit.edu/F/?func=find-a&find_code=WTI&request={}&local_base=PBOOKS".format(title)
+        return Command(["open", url])
+
+    @classmethod
+    def setup_parser(cls, parser: argparse.ArgumentParser):
+        parser.add_argument("title")
+        parser.set_defaults(func=cls.search)
+
+
 class Audiobook:
     @classmethod
     def search(cls, args):
@@ -117,6 +138,9 @@ if __name__ == "__main__":
 
     Book.setup_parser(
         subparsers.add_parser('book', help="search for books at the BPL"))
+
+    MitBook.setup_parser(
+        subparsers.add_parser('mitlib', help="search for books in the MIT libraries"))
 
     Audiobook.setup_parser(
         subparsers.add_parser('audiobook', help="search for streaming audiobooks at the BPL"))
