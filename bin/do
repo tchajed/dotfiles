@@ -28,8 +28,7 @@ class PostprocessCommand(Command):
 class Cantor:
     @classmethod
     def start(cls, _args):
-        return Command(["VBoxManage", "startvm", "Arch",
-                        "--type", "headless"])
+        return Command(["cantor-start"])
 
     @classmethod
     def stop(cls, _args):
@@ -40,6 +39,10 @@ class Cantor:
     def poweroff(cls, _args):
         return Command(["VBoxManage", "controlvm", "Arch",
                         "poweroff"])
+
+    @classmethod
+    def checkpoint(cls, _args):
+        return Command(["cantor-checkpoint"])
 
     @classmethod
     def running(cls, _args):
@@ -57,6 +60,7 @@ class Cantor:
         subparsers.add_parser('stop').set_defaults(func=cls.stop)
         subparsers.add_parser('poweroff').set_defaults(func=cls.poweroff)
         subparsers.add_parser('running').set_defaults(func=cls.running)
+        subparsers.add_parser('checkpoint').set_defaults(func=cls.checkpoint)
 
 
 class Book:
