@@ -15,4 +15,4 @@ urlencode() {
 }
 
 title=$(urlencode "$1")
-open "things:///add?title=$title&when=in%201%20day"
+open -g "things:///add?title=$title&when=in%201%20day"
