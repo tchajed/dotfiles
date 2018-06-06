@@ -1,5 +1,6 @@
 command! -nargs=0 WriteMode call WriteMode()
 function! WriteMode()
+  " set wrap is also needed in diff mode
   set lbr
   map j gj
   map k gk
