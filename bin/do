@@ -129,6 +129,17 @@ class YoutubeDl:
         parser.set_defaults(func=cls.youtube_dl)
 
 
+class Comics:
+    @classmethod
+    def save_smbc(cls, args):
+        return Command(["/Users/tchajed/dropbox/save/comics/smbc/add-comic.py", args.name])
+
+    @classmethod
+    def setup_parser(cls, parser: argparse.ArgumentParser):
+        parser.add_argument("name")
+        parser.set_defaults(func=cls.save_smbc)
+
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
         formatter_class=argparse.ArgumentDefaultsHelpFormatter)
@@ -154,6 +165,9 @@ if __name__ == "__main__":
 
     YoutubeDl.setup_parser(
         subparsers.add_parser('youtube-dl', help="download YouTube URL song from clipboard"))
+
+    Comics.setup_parser(
+        subparsers.add_parser('smbc', help="save SMBC comic"))
 
     args = parser.parse_args()
     cmd = args.func(args)
