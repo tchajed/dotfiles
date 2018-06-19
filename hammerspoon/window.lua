@@ -9,9 +9,13 @@ function reversed(l)
 end
 
 function updateTitleThresh()
-    local numScreens = #hs.screen.allScreens()
+  local numScreens = #hs.screen.allScreens()
+  if numScreens > 1 then
     -- above this many windows, titles are shown
-    hs.hints.showTitleThresh = 4 * numScreens
+    hs.hints.showTitleThresh = 20
+  else
+    hs.hints.showTitleThresh = 5
+  end
 end
 hs.screen.watcher.new(updateTitleThresh):start()
 updateTitleThresh()
