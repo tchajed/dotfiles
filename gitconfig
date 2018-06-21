@@ -57,3 +57,5 @@
 	# consider zebra (the default when colorMoved is used), which has distinctive
 	# colors but too many
 	colorMoved = dimmed_zebra
+[rebase]
+	autosquash = true
