@@ -33,8 +33,19 @@ def commit_msgs(start_ref, end_ref):
         sha, summary = line.split("|", 1)
         yield (sha, summary)
 
+TEMP_PREFIXES = [
+        "oops ",
+        "checkpoint",
+        "Checkpoint",
+        "fixup!",
+        "squash!",
+        ]
+
 def temp_msg(msg):
-    return msg.startswith("oops ") or msg.startswith("checkpoint")
+    for prefix in TEMP_PREFIXES:
+        if msg.startswith(prefix):
+            return True
+    return False
 
 def main():
     temp_messages = []
