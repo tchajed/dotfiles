@@ -56,13 +56,14 @@ if __name__ == "__main__":
     if args.checklist == "gym":
         c = Checklist(args.name or "Go to gym", [
             "handkerchief in shorts",
-            "laundry card",
+            "towel card",
             "take clean socks",
             "take clean boxers",
             "earbuds",
             "iPhone case",
             "wear old socks",
             "wear old boxers",
+            "belt",
             "protein shake",
             "gym bag",
         ], when=when)
