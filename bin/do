@@ -99,7 +99,7 @@ class MitBook:
 class Audiobook:
     @classmethod
     def search(cls, args):
-        url = "https://bpl.bibliocommons.com/search?custom_query=title:({}) (formatcode:(AB_ONLINE) OR formatcode:(EBOOK))&suppress=true&custom_edit=true&search_scope=BPL".format(args.title)
+        url = "https://bpl.bibliocommons.com/search?custom_query=title:({}) (formatcode:(AB_ONLINE) OR formatcode:(EBOOK) OR formatcode:(AB))&suppress=true&custom_edit=true&search_scope=BPL".format(args.title)
         return Command(["open", url])
 
     @classmethod

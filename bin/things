@@ -78,3 +78,11 @@ if __name__ == "__main__":
             "check weather for gloves",
         ], when=when)
         c.command().run()
+
+    if args.checklist == "flight":
+        c = Checklist(args.name or "Flight", [
+            "phone charger",
+            "watch charger",
+            "headphones",
+        ], when=when)
+        c.command().run()

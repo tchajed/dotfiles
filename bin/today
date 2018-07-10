@@ -7,7 +7,7 @@
 on run argv
 	set AppleScript's text item delimiters to " "
 	set todo to argv as text
-	tell application "Things"
+	tell application "Things3"
 		set newToDo to make new to do ¬
 			with properties { name: todo } ¬
             at beginning of list "Today"
