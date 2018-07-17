@@ -44,6 +44,9 @@ end)
 -- adapted from Anish Athalye
 
 function moveTo(rect)
+  -- move the current window to th unit rect
+  -- a unit is an on-screen rectangle specified in relative coordinates:
+  --   {x,y,w,h} where all components are between 0 and 1
   hs.window.focusedWindow():moveToUnit(rect)
 end
 
@@ -66,7 +69,12 @@ hs.hotkey.bind({'shift', 'alt', 'cmd'}, 'down',
 hs.hotkey.bind({'alt', 'cmd'}, 'f', function() moveTo(hs.layout.maximized) end)
 
 -- center screen
-hs.hotkey.bind({'alt', 'cmd'}, 'c', function() hs.window.focusedWindow():centerOnScreen() end)
+hs.hotkey.bind({'alt', 'cmd'}, 'c', function()
+    hs.window.focusedWindow():centerOnScreen()
+    leftBorder = 0.25
+    topBorder = 0.18
+    moveTo({leftBorder, topBorder, (1-2*leftBorder), (1-2*topBorder)})
+end)
 
 -- grid gui
 --
