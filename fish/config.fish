@@ -33,9 +33,6 @@ set PATH ~/.dotfiles/bin $PATH
 
 set -gx RUST_SRC_PATH (rustc --print sysroot)/lib/rustlib/src/rust/src
 
-## Configure Homebrew
-set -x HOMEBREW_AUTO_UPDATE_SECS (math '60*60*25*7')
-
 ## Aliases
 # Use GNU versions
 alias sleep="gsleep"
@@ -60,6 +57,10 @@ eval (opam config env --shell=fish)
 # (opam HEAD fixed this by not setting MANPATH if not already set)
 #set -e MANPATH
 
+# Coq
+# (to override opam version)
+set PATH $COQBIN $PATH
+
 ## changing java version
 function jhome
     set -Ux JAVA_HOME (/usr/libexec/java_home $argv)
@@ -74,7 +75,3 @@ end
 ## iTerm 2 shell integration
 # https://iterm2.com/shell_integration.html
 source ~/.iterm2_shell_integration.fish
-
-# Coq
-# (to override opam version)
-set PATH $COQBIN $PATH
