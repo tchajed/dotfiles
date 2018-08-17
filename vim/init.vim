@@ -16,6 +16,7 @@ Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
 Plug 'dag/vim-fish'
 Plug 'FStarLang/VimFStar', {'for': 'fstar'}
 Plug 'rust-lang/rust.vim'
+Plug 'mattn/emmet-vim' " HTML
 
 " Haskell
 Plug 'eagletmt/ghcmod-vim'
