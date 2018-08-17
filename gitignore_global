@@ -7,3 +7,5 @@
 *~
 # emacs backup files
 .#*
+# AucTEX TeX-auto-local (customized from default, which is "auto")
+.auctex-auto/
