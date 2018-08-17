@@ -43,9 +43,9 @@ alias tar="gtar"
 alias timeout="gtimeout"
 
 # Emacs aliases
-alias e="/usr/local/bin/emacsclient -a emacs-app --no-wait --create-frame"
+alias e="/usr/local/bin/emacsclient -a '' --no-wait --create-frame"
 alias et="/usr/local/bin/emacsclient --tty --create-frame"
-alias es="/usr/local/bin/emacsclient -a emacs-app --no-wait --create-frame --eval '(progn (switch-to-buffer \"*scratch*\") (delete-other-windows))'"
+alias es="/usr/local/bin/emacsclient -a '' --no-wait --create-frame --eval '(progn (switch-to-buffer \"*scratch*\") (delete-other-windows))'"
 
 # use NeoVim by default
 alias vim="nvim"
