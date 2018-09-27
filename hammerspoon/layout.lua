@@ -22,12 +22,19 @@ function layoutSpec(application, monitor, locationSpec)
 end
 
 workLayout = {
-  layoutSpec("com.spotify.client", "mac", {2, 2, 1, 3}),
-  layoutSpec("com.culturedcode.ThingsMac", "mac", {1, 1, 1, 2}),
+  -- layoutSpec("com.spotify.client", "mac", {2, 2, 1, 3}),
+  -- layoutSpec("WorkFlowy Beta", "benq", {6, 1, 3, 2}),
+  -- layoutSpec("com.culturedcode.ThingsMac", "mac", {1, 1, 1, 2}),
+
+  -- temporary config for working on presentation
+  layoutSpec("com.spotify.client", "mac", {1, 2, 1, 3}),
+  layoutSpec("WorkFlowy Beta", "mac", {3, 1, 1, 3}),
+  layoutSpec("com.culturedcode.ThingsMac", "benq", {6, 1, 3, 2}),
+
   layoutSpec("com.google.Chrome", "benq", {5, 2, 1, 2}),
   layoutSpec("Emacs", "benq", {1, 2, 1, 4}),
+  layoutSpec("Preview", "benq", {3, 2, 1, 4}),
   layoutSpec("iTerm2", "benq", {5, 1, 3, 2}),
-  layoutSpec("WorkFlowy Beta", "benq", {6, 1, 3, 2}),
 }
 function setWorkLayout()
   hs.layout.apply(workLayout)
