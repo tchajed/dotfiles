@@ -8,6 +8,8 @@
     ~/.spacemacs: emacs/spacemacs
     ~/custom.el: emacs/custom.el
     ~/.config/fish/config.fish: fish/config.fish
+    # installed fisher packages
+    ~/.config/fish/fishfile: fish/fishfile
     ~/.config/fish/completions/skim.fish: fish/skim.fish
     ~/.hammerspoon: hammerspoon
     ~/.config/pianobar/config:
