@@ -32,12 +32,29 @@ workLayout = {
   -- layoutSpec("com.culturedcode.ThingsMac", "benq", {6, 1, 3, 2}),
 
   layoutSpec("com.google.Chrome", "benq", {5, 2, 1, 2}),
-  layoutSpec("Emacs", "benq", {1, 2, 1, 4}),
+  layoutSpec("org.gnu.Emacs", "benq", {1, 2, 1, 4}),
   layoutSpec("Preview", "benq", {3, 2, 1, 4}),
   layoutSpec("iTerm2", "benq", {5, 1, 3, 2}),
 }
+
+function openSpotify()
+  app = hs.application.get("com.spotify.client")
+  if not app:focusedWindow() then
+    app:activate()
+  end
+end
+
+function focusEmacs()
+  app = hs.application.get("org.gnu.Emacs")
+  if app then
+    app:activate()
+  end
+end
+
 function setWorkLayout()
+  openSpotify()
   hs.layout.apply(workLayout)
+  focusEmacs()
 end
 
 hs.hotkey.bind({'shift', 'cmd'}, 'w', setWorkLayout)
