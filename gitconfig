@@ -34,6 +34,13 @@
   today = log --since=03:00:00 --all --no-merges --oneline
   graph = log --graph --all --decorate --stat --date=iso
   dayswork = diff --stat 'HEAD@{today.3am}'
+
+  # handling submodules
+  # update fixes the working copy of every submodule
+  update-submodules = submodule update --init --recursive
+  # upgrade causes all submodules to refer to the latest upstream commit
+  # (which you can then commit)
+	upgrade-submodules = submodule update --init --remote
 [color]
 	ui = true
 # color.diff-highlight and color.diff are recommendations from diff-so-fancy
