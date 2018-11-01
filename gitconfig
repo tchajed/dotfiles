@@ -68,3 +68,6 @@
 	colorMoved = dimmed_zebra
 [rebase]
 	autosquash = true
+[submodule]
+  # automatically update submodules on pull
+	recurse = true
