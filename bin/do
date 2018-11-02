@@ -139,6 +139,16 @@ class Comics:
         parser.add_argument("name")
         parser.set_defaults(func=cls.save_smbc)
 
+class Unmount:
+    @classmethod
+    def unmount_volume(cls, args):
+        return Command(["diskutil", "unmount", "/Volumes/" + args.volume])
+
+    @classmethod
+    def setup_parser(cls, parser: argparse.ArgumentParser):
+        parser.add_argument("volume")
+        parser.set_defaults(func=cls.unmount_volume)
+
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
@@ -168,6 +178,9 @@ if __name__ == "__main__":
 
     Comics.setup_parser(
         subparsers.add_parser('smbc', help="save SMBC comic"))
+
+    Unmount.setup_parser(
+        subparsers.add_parser('unmount', help="unmount disks"))
 
     args = parser.parse_args()
     cmd = args.func(args)
