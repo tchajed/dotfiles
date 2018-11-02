@@ -38,10 +38,8 @@ workLayout = {
 }
 
 function openSpotify()
-  app = hs.application.get("com.spotify.client")
-  if not app:focusedWindow() then
-    app:activate()
-  end
+  -- ensures Spotify is open and has a window open
+  hs.application.open("com.spotify.client", 2, true)
 end
 
 function focusEmacs()
