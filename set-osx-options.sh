@@ -61,3 +61,7 @@ defaults write com.apple.screensaver askForPassword -bool true
 # ... after 5 seconds (note: setting this to a value not in the System
 # Preferences dropdown menu appears to not work)
 defaults write com.apple.screensaver askForPasswordDelay 5
+
+# disable some Safari promotion features
+defaults write com.apple.Safari DefaultBrowserDateOfLastPrompt -date '2050-01-01T00:00:00Z'
+defaults write com.apple.Safari DefaultBrowserPromptingState -int 2
