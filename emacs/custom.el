@@ -4,7 +4,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(TeX-auto-local ".auctex-auto")
- '(company-coq-disabled-features (quote (hello outline error-diffs)))
+ '(company-coq-disabled-features '(hello outline error-diffs))
  '(coq-compiler "/Users/tchajed/code/sw/coq/bin/coqc")
  '(coq-dependency-analyzer "/Users/tchajed/code/sw/coq/bin/coqdep")
  '(coq-prefer-top-of-conclusion t)
@@ -14,18 +14,13 @@
  '(explicit-shell-file-name "bash")
  '(flycheck-rust-cargo-executable "/Users/tchajed/.cargo/bin/cargo")
  '(flycheck-rust-executable "/Users/tchajed/.cargo/bin/rustc")
- '(font-latex-match-type-command-keywords (quote (("todo" "[{"))))
- '(font-latex-user-keyword-classes
-   (quote
-    (("note"
-      (("note" "[{"))
-      font-lock-keyword-face command))))
+ '(font-latex-match-type-command-keywords '(("todo" "[{")))
+ '(font-latex-user-keyword-classes '(("note" (("note" "[{")) font-lock-keyword-face command)))
  '(fstar-executable "/Users/tchajed/code/sw/everest/FStar/bin/fstar.exe")
  '(gofmt-command "goimports")
  '(js-indent-level 2)
  '(package-selected-packages
-   (quote
-    (flycheck-ocaml yasnippet-snippets yapfify yaml-mode ws-butler winum which-key web-mode web-beautify volatile-highlights vi-tilde-fringe uuidgen utop use-package tuareg toml-mode toc-org tide tagedit symon string-inflection spaceline-all-the-icons smeargle slim-mode seeing-is-believing scss-mode sass-mode rvm ruby-tools ruby-test-mode ruby-refactor ruby-hash-syntax rubocop rspec-mode robe restart-emacs rbenv rake rainbow-delimiters racer pyvenv pytest pyenv-mode py-isort pug-mode psci psc-ide proof-general popwin pippel pipenv pip-requirements persp-mode password-generator paradox overseer orgit org-projectile org-present org-pomodoro org-mime org-download org-bullets org-brain open-junk-file ocp-indent neotree nameless move-text mmm-mode minitest merlin markdown-toc magit-svn magit-gitflow macrostep lsp-ui lsp-python lsp-javascript-typescript lsp-go lorem-ipsum livid-mode live-py-mode link-hint json-navigator json-mode js2-refactor js-doc intero indent-guide importmagic impatient-mode idris-mode hungry-delete hlint-refactor hl-todo hindent highlight-parentheses highlight-numbers highlight-indentation helm-xref helm-themes helm-swoop helm-pydoc helm-purpose helm-projectile helm-mode-manager helm-make helm-hoogle helm-gitignore helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag haskell-snippets google-translate golden-ratio godoctor go-tag go-rename go-impl go-guru go-gen-test go-fill-struct go-eldoc gnuplot gitignore-templates gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ gh-md fuzzy fstar-mode fsharp-mode font-lock+ flycheck-rust flycheck-pos-tip flycheck-haskell flx-ido fill-column-indicator fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-org evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-cleverparens evil-args evil-anzu eval-sexp-fu emmet-mode elisp-slime-nav editorconfig dumb-jump dotenv-mode diminish diff-hl define-word dante cython-mode csv-mode counsel-projectile company-web company-tern company-statistics company-lua company-lsp company-go company-ghci company-ghc company-coq company-cabal company-auctex company-anaconda column-enforce-mode cmm-mode clean-aindent-mode chruby centered-cursor-mode cargo bundler browse-at-remote auto-yasnippet auto-highlight-symbol auto-compile auctex-latexmk aggressive-indent ace-window ace-link ace-jump-helm-line ac-ispell)))
+   '(yasnippet-snippets web-mode tide racer proof-general pip-requirements paradox org-mime lsp-ui hl-todo git-link evil-surround editorconfig dumb-jump doom-modeline counsel-projectile counsel ivy company-lsp company-anaconda cargo anaconda-mode smartparens helm helm-core yasnippet lsp-mode markdown-mode alert projectile magit git-commit with-editor flycheck company purescript-mode hydra org-plus-contrib yapfify yaml-mode ws-butler winum which-key web-beautify volatile-highlights vi-tilde-fringe uuidgen utop use-package tuareg toml-mode toc-org tagedit symon swiper string-inflection spinner spaceline-all-the-icons smeargle slim-mode shrink-path seeing-is-believing scss-mode sass-mode rvm rust-mode ruby-tools ruby-test-mode ruby-refactor ruby-hash-syntax rubocop rspec-mode robe restart-emacs rbenv rake rainbow-delimiters pyvenv pytest pyenv-mode py-isort pug-mode psci psc-ide prettier-js popwin pippel pipenv persp-mode password-generator overseer orgit org-projectile org-present org-pomodoro org-download org-bullets org-brain open-junk-file ocp-indent neotree nameless move-text mmm-mode minitest markdown-toc magit-svn magit-gitflow macrostep lsp-python lsp-javascript-typescript lsp-go lorem-ipsum log4e livid-mode live-py-mode link-hint json-navigator json-mode js2-refactor js-doc intero indent-guide importmagic impatient-mode idris-mode hungry-delete hlint-refactor hindent highlight-parentheses highlight-numbers highlight-indentation helm-xref helm-themes helm-swoop helm-pydoc helm-purpose helm-projectile helm-org-rifle helm-mode-manager helm-make helm-hoogle helm-gitignore helm-git-grep helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag haskell-snippets google-translate golden-ratio godoctor go-tag go-rename go-impl go-guru go-gen-test go-fill-struct go-eldoc gnuplot gntp gitignore-templates gitconfig-mode gitattributes-mode git-timemachine git-messenger git-gutter-fringe git-gutter-fringe+ ghub gh-md fuzzy fstar-mode fsharp-mode font-lock+ flycheck-rust flycheck-pos-tip flycheck-ocaml flycheck-haskell flx-ido fill-column-indicator fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-org evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-cleverparens evil-args evil-anzu eval-sexp-fu emmet-mode elisp-slime-nav eldoc-eval dotenv-mode diminish diff-hl define-word dante cython-mode csv-mode company-web company-tern company-statistics company-lua company-go company-ghci company-ghc company-coq company-cabal company-auctex column-enforce-mode cmm-mode clean-aindent-mode chruby centered-cursor-mode bundler browse-at-remote auto-yasnippet auto-highlight-symbol auto-compile auctex-latexmk aggressive-indent ace-window ace-link ace-jump-helm-line ac-ispell))
  '(proof-shrink-windows-tofit t)
  '(proof-splash-enable nil)
  '(psc-ide-add-import-on-completion t t)
@@ -33,22 +28,19 @@
  '(racer-rust-src-path nil)
  '(rust-indent-offset 2)
  '(safe-local-variable-values
-   (quote
-    ((coq-prog-args "-emacs" "-R" "." "POCS" "-top" "simpl_anomaly")
+   '((projectile-project-type quote make)
+     (projectile-project-type . "Make")
+     (TeX-master . p\.tex)
+     (coq-prog-args "-emacs" "-R" "." "POCS" "-top" "simpl_anomaly")
      (buffer-file-coding-system . utf-8-unix)
      (coq-prog-args "-noinit")
      (eval let
            ((default-directory
               (locate-dominating-file buffer-file-name ".dir-locals.el")))
            (setq-local coq-prog-args
-                       (\`
-                        ("-coqlib"
-                         (\,
-                          (expand-file-name ".."))
-                         "-R"
-                         (\,
-                          (expand-file-name "."))
-                         "Coq")))
+                       `("-coqlib" ,(expand-file-name "..")
+                         "-R" ,(expand-file-name ".")
+                         "Coq"))
            (setq-local coq-prog-name
                        (expand-file-name "../bin/coqtop")))
      (eval progn
@@ -58,15 +50,12 @@
                    (locate-dominating-file buffer-file-name ".dir-locals.el")))
                 (plzoo-project-find-file
                  (and
-                  (boundp
-                   (quote plzoo-project-find-file))
+                  (boundp 'plzoo-project-find-file)
                   plzoo-project-find-file)))
              (when plzoo-root-directory
                (setq tags-file-name
                      (concat plzoo-root-directory "TAGS"))
-               (add-to-list
-                (quote compilation-search-path)
-                plzoo-root-directory)
+               (add-to-list 'compilation-search-path plzoo-root-directory)
                (if
                    (not plzoo-project-find-file)
                    (setq compile-command
@@ -112,27 +101,23 @@
                    (locate-dominating-file buffer-file-name ".dir-locals.el")))
                 (coq-project-find-file
                  (and
-                  (boundp
-                   (quote coq-project-find-file))
+                  (boundp 'coq-project-find-file)
                   coq-project-find-file)))
              (set
-              (make-local-variable
-               (quote tags-file-name))
+              (make-local-variable 'tags-file-name)
               (concat coq-root-directory "TAGS"))
              (setq camldebug-command-name
                    (concat coq-root-directory "dev/ocamldebug-coq"))
              (unless coq-project-find-file
                (set
-                (make-local-variable
-                 (quote compile-command))
+                (make-local-variable 'compile-command)
                 (concat "make -C " coq-root-directory))
                (set
-                (make-local-variable
-                 (quote compilation-search-path))
+                (make-local-variable 'compilation-search-path)
                 (cons coq-root-directory nil)))
              (when coq-project-find-file
                (setq default-directory coq-root-directory))))
-     (reftex-default-bibliography "n.bib" "p.bib"))))
+     (reftex-default-bibliography "n.bib" "p.bib")))
  '(search-invisible t)
  '(sh-basic-offset 2)
  '(tab-width 2))
