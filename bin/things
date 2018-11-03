@@ -83,6 +83,12 @@ if __name__ == "__main__":
         c = Checklist(args.name or "Flight", [
             "phone charger",
             "watch charger",
+            "laptop charger",
             "headphones",
+            "boxers",
+            "socks",
+            "handkerchiefs",
+            "jeans",
+            "shirts",
         ], when=when)
         c.command().run()
