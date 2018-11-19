@@ -24,12 +24,16 @@ set PATH ~/.cargo/bin $PATH
 set PATH ~/code/sw/latexrun $PATH
 # Commited scripts in dotfiles
 set PATH ~/.dotfiles/bin $PATH
+# Ruby gem binaries
+set PATH /usr/local/lib/ruby/gems/2.5.0 /usr/local/Cellar/ruby/2.5.3_1/bin $PATH
 # F*
 #set PATH ~/code/sw/everest/FStar/bin $PATH
 #set PATH ~/code/sw/everest/kremlin $PATH
 #set PATH ~/code/sw/everest/z3-4.5.1.1f29cebd4df6-x64-osx-10.11.6/bin $PATH
 #set KREMLIN_HOME ~/code/sw/everest/kremlin
 #set HACL_HOME ~/code/sw/everest/hacl-star
+# Doom Emacs
+set PATH ~/doom-.emacs.d/bin $PATH
 
 set -gx RUST_SRC_PATH (rustc --print sysroot)/lib/rustlib/src/rust/src
 
