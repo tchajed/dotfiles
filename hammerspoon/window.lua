@@ -51,9 +51,8 @@ function moveTo(rect)
 end
 
 -- half of screen
--- use up/down to not conflcit with space switching left/right
-hs.hotkey.bind({'alt', 'cmd'}, 'up', function() moveTo(hs.layout.left50) end)
-hs.hotkey.bind({'alt', 'cmd'}, 'down', function() moveTo(hs.layout.right50) end )
+hs.hotkey.bind({'ctrl', 'cmd'}, 'h', function() moveTo(hs.layout.left50) end)
+hs.hotkey.bind({'ctrl', 'cmd'}, 'l', function() moveTo(hs.layout.right50) end )
 
 -- quarter of screen
 hs.hotkey.bind({'shift', 'alt', 'cmd'}, 'left',
