@@ -2,6 +2,7 @@
 
 import subprocess
 import argparse
+from os import path
 
 class Command:
     def __init__(self, args, post=lambda x: x):
@@ -149,6 +150,21 @@ class Unmount:
         parser.add_argument("volume")
         parser.set_defaults(func=cls.unmount_volume)
 
+class Noether:
+    @classmethod
+    def connect(cls, args):
+        return Command(["osascript", path.expanduser("~/.dotfiles/applescripts/connect-noether.scpt")])
+
+    @classmethod
+    def disconnect(cls, args):
+        return Command(["osascript", path.expanduser("~/.dotfiles/applescripts/disconnect-noether.scpt")])
+
+    @classmethod
+    def setup_parser(cls, parser: argparse.ArgumentParser):
+        subparsers = parser.add_subparsers()
+        subparsers.add_parser('connect').set_defaults(func=cls.connect)
+        subparsers.add_parser('disconnect').set_defaults(func=cls.disconnect)
+
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
@@ -181,6 +197,9 @@ if __name__ == "__main__":
 
     Unmount.setup_parser(
         subparsers.add_parser('unmount', help="unmount disks"))
+
+    Noether.setup_parser(
+        subparsers.add_parser('noether', help="manage noether headphones"))
 
     args = parser.parse_args()
     cmd = args.func(args)
