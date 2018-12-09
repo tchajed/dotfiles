@@ -79,3 +79,6 @@ end
 ## iTerm 2 shell integration
 # https://iterm2.com/shell_integration.html
 source ~/.iterm2_shell_integration.fish
+
+## jump integration
+status --is-interactive; and source (jump shell fish --bind=z | psub)
