@@ -59,7 +59,10 @@ values."
      rust
      typescript
      yaml
-     (go :variables go-tab-width 4)
+     (go :variables
+         go-tab-width 4
+         ;; go-use-metalinter t
+         gofmt-command "goimports")
      purescript
      )
    ;; List of additional packages that will be installed without being
