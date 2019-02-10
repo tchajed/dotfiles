@@ -1,0 +1,5 @@
+" disable annoying beeps
+set visualbell
+
+" enable incremental search (shows results while typing query)
+set incsearch
