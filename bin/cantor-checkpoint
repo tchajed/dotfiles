@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 VBoxManage snapshot "Arch" take "New checkpoint"
 VBoxManage snapshot "Arch" delete "Checkpoint"
 VBoxManage snapshot "Arch" edit "New checkpoint" --name "Checkpoint"
