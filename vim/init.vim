@@ -1,14 +1,17 @@
+:let mapleader = ","
+
 call plug#begin('~/.config/nvim/plugged')
-" Basic UI
+" Basics
+Plug 'tpope/vim-sensible'
+Plug 'wincent/Command-T'
+
+" Basic UI theming
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'jacoborus/tender.vim'
-Plug 'wincent/Command-T'
-
-" Git integration
-Plug 'tpope/vim-fugitive'
 
 " General Programming
+Plug 'tpope/vim-fugitive' " git
 Plug 'scrooloose/syntastic'
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
 
@@ -17,6 +20,8 @@ Plug 'dag/vim-fish'
 Plug 'FStarLang/VimFStar', {'for': 'fstar'}
 Plug 'rust-lang/rust.vim'
 Plug 'mattn/emmet-vim' " HTML
+Plug 'whonore/Coqtail', {'branch': 'v8.9'}
+Plug 'let-def/vimbufsync' " dependency for Coqtail
 
 " Haskell
 Plug 'eagletmt/ghcmod-vim'

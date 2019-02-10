@@ -31,8 +31,8 @@
   glog = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
   # today and graph are from
   # https://csswizardry.com/2017/05/little-things-i-like-to-do-with-git/
-  today = log --since=03:00:00 --all --no-merges --oneline
-  graph = log --graph --all --decorate --stat --date=iso
+  today = log --author=\"Tej Chajed\" --since=03:00:00 --all --no-merges --oneline
+  graph = log --author=\"Tej Chajed\" --graph --all --decorate --stat --date=iso
   dayswork = diff --stat 'HEAD@{today.3am}'
 
   # handling submodules
@@ -68,6 +68,3 @@
 	colorMoved = dimmed_zebra
 [rebase]
 	autosquash = true
-[submodule]
-  # automatically update submodules on pull
-	recurse = true

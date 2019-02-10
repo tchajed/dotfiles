@@ -25,7 +25,7 @@ set PATH ~/code/sw/latexrun $PATH
 # Commited scripts in dotfiles
 set PATH ~/.dotfiles/bin $PATH
 # Ruby gem binaries
-set PATH /usr/local/lib/ruby/gems/2.5.0 /usr/local/Cellar/ruby/2.5.3_1/bin $PATH
+set PATH /usr/local/lib/ruby/gems/2.6.0/bin /usr/local/Cellar/ruby/2.6.0/bin $PATH
 # F*
 #set PATH ~/code/sw/everest/FStar/bin $PATH
 #set PATH ~/code/sw/everest/kremlin $PATH

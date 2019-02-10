@@ -61,7 +61,7 @@ values."
      yaml
      (go :variables
          go-tab-width 4
-         ;; go-use-metalinter t
+         go-use-metalinter nil
          gofmt-command "goimports")
      purescript
      )
@@ -421,6 +421,58 @@ you should place your code here."
     `((".*" , emacs-tmp t))))
   (setq custom-file (file-truename (concat dotspacemacs-directory "custom.el")))
   (add-hook 'coq-mode-hook (lambda () (setq require-final-newline t)))
+(add-hook 'coq-mode-hook (lambda () (set-input-method "math")))
+(add-hook 'coq-mode-hook
+          (lambda ()
+            (require 'math-symbol-lists)
+            ;; Input method for the minibuffer
+            (defun my-inherit-input-method ()
+              "Inherit input method from `minibuffer-selected-window'."
+              (let* ((win (minibuffer-selected-window))
+                     (buf (and win (window-buffer win))))
+                (when buf
+                  (activate-input-method (buffer-local-value 'current-input-method buf)))))
+            (add-hook 'minibuffer-setup-hook #'my-inherit-input-method)
+            ;; Define the actual input method
+            (quail-define-package "math" "UTF-8" "Ω" t)
+            (quail-define-rules ; add whatever extra rules you want to define here...
+             ("\\mult"   ?⋅)
+             ("\\ent"    ?⊢)
+             ("\\valid"  ?✓)
+             ("\\box"    ?□)
+             ("\\later"  ?▷)
+             ("\\pred"   ?φ)
+             ("\\and"    ?∧)
+             ("\\or"     ?∨)
+             ("\\comp"   ?∘)
+             ("\\ccomp"  ?◎)
+             ("\\all"    ?∀)
+             ("\\ex"     ?∃)
+             ("\\to"     ?→)
+             ("\\sep"    ?∗)
+             ("\\lc"     ?⌜)
+             ("\\rc"     ?⌝)
+             ("\\lam"    ?λ)
+             ("\\empty"  ?∅)
+             ("\\Lam"    ?Λ)
+             ("\\Sig"    ?Σ)
+             ("\\-"      ?∖)
+             ("\\aa"     ?●)
+             ("\\af"     ?◯)
+             ("\\iff"    ?↔)
+             ("\\gname"  ?γ)
+             ("\\incl"   ?≼)
+             ("\\latert" ?▶)
+             )
+            (mapc (lambda (x)
+                    (if (cddr x)
+                        (quail-defrule (cadr x) (car (cddr x)))))
+                  (append math-symbol-list-basic math-symbol-list-extended))
+            ))
+  (add-hook 'flycheck-mode-hook
+            (lambda ()
+              (add-to-list 'flycheck-disabled-checkers 'go/go-unconvert)
+              ))
   (load custom-file)
   )
 (defun dotspacemacs/emacs-custom-settings ()
