@@ -6,6 +6,7 @@
         create: true
         path: git-hooks
     ~/.spacemacs: emacs/spacemacs
+    ~/.spacemacs.env: emacs/spacemacs.env
     ~/custom.el: emacs/custom.el
     ~/.config/fish/config.fish: fish/config.fish
     # installed fisher packages
@@ -18,9 +19,12 @@
     ~/.config/pianobar/pandora-pw.gpg:
         create: true
         path: pianobar/pandora-pw.gpg
-    ~/Library/Application Support/Coq/coqide.keys:
+    ~/.config/coq/coqide.keys:
         create: true
         path: coqide/coqide.keys
+    ~/.config/coq/coqiderc:
+        create: true
+        path: coqide/coqiderc
     ~/Library/Application Support/Karabiner/private.xml:
         create: true
         path: karabiner/private.xml

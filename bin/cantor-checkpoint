@@ -2,6 +2,10 @@
 
 set -e
 
-VBoxManage snapshot "Arch" take "New checkpoint"
-VBoxManage snapshot "Arch" delete "Checkpoint"
-VBoxManage snapshot "Arch" edit "New checkpoint" --name "Checkpoint"
+function snapshot() {
+  VBoxManage snapshot "Arch" "$@"
+}
+
+snapshot edit "Checkpoint" --name "Old checkpoint"
+snapshot take "Checkpoint"
+snapshot delete "Old checkpoint"

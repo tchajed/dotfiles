@@ -9,3 +9,5 @@
 .#*
 # AucTEX TeX-auto-local (customized from default, which is "auto")
 .auctex-auto/
+# IntelliJ IDEA projects
+.idea/

@@ -22,6 +22,8 @@ Plug 'rust-lang/rust.vim'
 Plug 'mattn/emmet-vim' " HTML
 Plug 'whonore/Coqtail', {'branch': 'v8.9'}
 Plug 'let-def/vimbufsync' " dependency for Coqtail
+Plug 'wlangstroth/vim-racket'
+Plug 'vim-scripts/scribble.vim'
 
 " Haskell
 Plug 'eagletmt/ghcmod-vim'

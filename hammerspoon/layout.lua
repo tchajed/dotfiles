@@ -4,6 +4,11 @@ function gridUnitRec(rows, cols, x1, width, y1, height)
   return hs.geometry.rect(x1, y1, width/cols, height/rows)
 end
 
+-- locationSpec: x_start, x_width, y_start, y_height
+-- 123456
+-- 2
+-- 3
+-- 4
 function layoutSpec(application, monitor, locationSpec)
   if monitor == "mac" then
     rows, cols = 3, 3
@@ -33,6 +38,8 @@ workLayout = {
 
   layoutSpec("com.google.Chrome", "benq", {5, 2, 1, 2}),
   layoutSpec("org.gnu.Emacs", "benq", {1, 2, 1, 4}),
+  layoutSpec("GoLand", "benq", {1, 4, 1, 4}),
+
   layoutSpec("com.apple.Preview", "benq", {3, 2, 1, 4}),
   layoutSpec("net.sourceforge.skim-app.skim", "benq", {3, 2, 1, 4}),
   layoutSpec("iTerm2", "benq", {5, 1, 3, 2}),
