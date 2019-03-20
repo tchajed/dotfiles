@@ -1,4 +1,14 @@
 ;;; ~/.doom.d/+coq.el -*- lexical-binding: nil; -*-
+;;;
+(setq proof-splash-enable nil)
+(setq proof-splash-seen t)
+(setq company-coq-disabled-features
+      '(hello
+        outline
+        error-diffs
+        alerts
+        spinner ;; minor modes are hidden anyway
+        obsolete-settings))
 
 (defun setup-coq-keys-for-map (state)
   "Add f-key support to evil state STATE."
@@ -61,21 +71,12 @@ Based on https://gitlab.mpi-sws.org/iris/iris/blob/master/Editor.md"
   )
 
 (add-hook! coq-mode
-  (setq proof-splash-enable nil)
-  (setq proof-splash-seen t)
   (setq proof-three-window-mode-policy 'hybrid)
-  (let ([coqbin (getenv "COQBIN")])
+
+  (let ((coqbin (getenv "COQBIN")))
     (setq coq-compiler (concat coqbin "coqc"))
     (setq coq-dependency-analyzer (concat coqbin "coqdep"))
     (setq coq-prog-name (concat coqbin "coqtop")))
-  (setq company-coq-disabled-features
-        '(hello
-          outline
-          error-diffs
-          alerts
-          spinner ;; minor modes are hidden anyway
-          obsolete-settings))
-
   (setq coq-prefer-top-of-conclusion t)
   (setq proof-electric-terminator-enable nil)
   (setq coq-double-hit-enable t)
