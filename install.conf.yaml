@@ -5,9 +5,10 @@
     ~/.git_template/hooks:
         create: true
         path: git-hooks
-    ~/.spacemacs: emacs/spacemacs
-    ~/.spacemacs.env: emacs/spacemacs.env
-    ~/custom.el: emacs/custom.el
+    # ~/.spacemacs: emacs/spacemacs
+    # ~/.spacemacs.env: emacs/spacemacs.env
+    # ~/custom.el: emacs/spacemacs/custom.el
+    ~/.doom.d: emacs/doom
     ~/.config/fish/config.fish: fish/config.fish
     # installed fisher packages
     ~/.config/fish/fishfile: fish/fishfile
@@ -45,5 +46,6 @@
     - ~/.dotfiles/set-osx-options.sh
     - if [ ! -e ~/.config/pianobar/ctl ]; then mkfifo ~/.config/pianobar/ctl; fi
     - if [ ! -d ~/.tmux/plugins/tpm ]; then git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm; fi
+    - if [ ! -d ~/doom-emacs.d ]; then git clone https://github.com/hlissner/doom-emacs ~/doom-emacs.d && ln -s ~/doom-emacs.d ~/.emacs.d; fi
     - pip2 install pynvim
     - pip3 install pynvim
