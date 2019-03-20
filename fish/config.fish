@@ -33,7 +33,7 @@ set PATH /usr/local/lib/ruby/gems/2.6.0/bin /usr/local/Cellar/ruby/2.6.0/bin $PA
 #set KREMLIN_HOME ~/code/sw/everest/kremlin
 #set HACL_HOME ~/code/sw/everest/hacl-star
 # Doom Emacs
-set PATH ~/doom-.emacs.d/bin $PATH
+set PATH ~/doom-emacs.d/bin $PATH
 
 set -gx RUST_SRC_PATH (rustc --print sysroot)/lib/rustlib/src/rust/src
 
