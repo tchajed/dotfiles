@@ -3,6 +3,7 @@
 
 ;; very broken https://github.com/ProofGeneral/PG/issues/174
 (setq evil-want-abbrev-expand-on-insert-exit nil)
+(setq doom-localleader-key ",")
 
 (doom! :feature
        ;;debugger          ; FIXME stepping through code, to help you add bugs

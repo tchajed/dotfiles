@@ -20,14 +20,35 @@
       ;;(sp-local-pair "(*" "*)" )
     )))
 
-(defun setup-coq-keys-for-map (state)
-  "Add f-key support to evil state STATE."
-  (evil-define-key state coq-mode-map
-    (kbd "<f3>") #'proof-assert-next-command-interactive)
-  (evil-define-key state coq-mode-map
-    (kbd "<f4>") #'company-coq-proof-goto-point)
-  (evil-define-key state coq-mode-map
-    (kbd "<f2>") #'proof-undo-last-successful-command))
+(map! :map coq-mode-map
+      :ni "<f3>" #'proof-assert-next-command-interactive
+      :ni "<f4>" #'company-coq-proof-goto-point
+      :ni "<f2>" #'proof-undo-last-successful-command
+
+      :localleader
+      :desc "Go to point"                "." #'proof-goto-point
+
+      :prefix ("p" . "Proof process")
+      :desc "Kill Coq process"           "x" #'proof-shell-exit
+      :desc "Interrupt Coq"              "c" #'proof-interrupt-process
+      :desc "Retract proof"              "r" #'proof-retract-buffer
+      :desc "Process buffer"             "b" #'proof-process-buffer
+
+      :prefix ("l" . "PG window layout")
+      :desc "Re-layout windows"          "l" #'proof-layout-windows
+      :desc "Clear response buffer"      "c" #'pg-response-clear-displays
+      :desc "Show proof state"           "p" #'proof-prf
+
+      :prefix ("a" . "Query Coq")
+      :desc "Check"                      "c" #'coq-Check
+      :desc "Print"                      "p" #'coq-Print
+      :desc "About"                      "b" #'coq-About
+
+      :prefix ("ai" . "Query Coq with implicits")
+      :desc "Check with implicits"       "c" #'coq-Check-show-implicits
+      :desc "Print with implicits"       "p" #'coq-Print-with-implicits
+      :desc "About with implicits"       "b" #'coq-About-with-implicits
+      )
 
 (defun iris-input-config ()
   "Set up math input for Iris.
@@ -94,7 +115,5 @@ Based on https://gitlab.mpi-sws.org/iris/iris/blob/master/Editor.md"
 
   (setq require-final-newline t)
 
-  (setup-coq-keys-for-map 'normal)
-  (setup-coq-keys-for-map 'insert)
   (iris-input-config)
   )
