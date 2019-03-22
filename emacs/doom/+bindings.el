@@ -2,7 +2,8 @@
 
 (map! :leader
       (:prefix ("c" . "code")
-        :desc "Recompile"                "r"   #'recompile)
+        :desc "Recompile"                "r"   #'recompile
+        :desc "Kill compilation"         "k"   #'kill-compilation)
 
       (:prefix ("p" . "project")
         :desc "Search project with rg"   "/" #'+ivy/rg

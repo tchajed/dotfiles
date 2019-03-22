@@ -10,6 +10,16 @@
         spinner ;; minor modes are hidden anyway
         obsolete-settings))
 
+(when (featurep! :config default +smartparens)
+  (after! smartparens
+    (sp-with-modes '(coq-mode)
+      ;; Disable ` because it is used in implicit generalization
+      (sp-local-pair "`" nil :actions nil)
+
+      ;; TODO: this worked in Spacemacs, right?
+      ;;(sp-local-pair "(*" "*)" )
+    )))
+
 (defun setup-coq-keys-for-map (state)
   "Add f-key support to evil state STATE."
   (evil-define-key state coq-mode-map
