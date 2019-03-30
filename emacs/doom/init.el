@@ -71,7 +71,7 @@
        flycheck          ; tasing you for every semicolon you forget
        ;;flyspell          ; tasing you for misspelling mispelling
        ;;gist              ; interacting with github gists
-       ;;lsp
+       lsp
        ;;macos             ; MacOS-specific commands
        magit             ; a git porcelain for Emacs
        ;;make              ; run make tasks from Emacs
@@ -100,7 +100,7 @@
        emacs-lisp        ; drown in parentheses
        ;;ess               ; emacs speaks statistics
        go                ; the hipster dialect
-       (haskell +intero) ; a language that's lazier than I am
+       (haskell +intero)   ; a language that's lazier than I am
        ;;hy                ; readability of scheme w/ speed of python
        ;;idris             ;
        ;;(java +meghanada) ; the poster child for carpal tunnel syndrome

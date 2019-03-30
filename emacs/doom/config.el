@@ -12,4 +12,5 @@
       )
 
 (load! "+coq.el")
+(load! "+markdown.el")
 (load! "+bindings.el")
