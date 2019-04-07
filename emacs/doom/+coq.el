@@ -103,6 +103,7 @@ Based on https://gitlab.mpi-sws.org/iris/iris/blob/master/Editor.md"
 
 (add-hook! coq-mode
   (setq proof-three-window-mode-policy 'hybrid)
+  (setq undo-tree-enable-undo-in-region nil)
 
   (let ((coqbin (getenv "COQBIN")))
     (setq coq-compiler (concat coqbin "coqc"))
