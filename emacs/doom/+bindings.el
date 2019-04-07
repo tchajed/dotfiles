@@ -1,11 +1,11 @@
 ;;; ~/.doom.d/+bindings.el -*- lexical-binding: t; -*-
 
 (map! :leader
-      (:prefix ("c" . "code")
+      (:prefix "c"
         :desc "Recompile"                "r"   #'recompile
         :desc "Kill compilation"         "k"   #'kill-compilation)
 
-      (:prefix ("p" . "project")
+      (:prefix "p"
         :desc "Search project with rg"   "/" #'+ivy/rg
         :desc "Find file in project"     "f" #'projectile-find-file)
 
