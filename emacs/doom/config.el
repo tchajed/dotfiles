@@ -2,6 +2,14 @@
 
 (setq doom-font (font-spec :family "Inconsolata for Powerline" :size 18))
 (setq doom-big-font (font-spec :family "Inconsolata for Powerline" :size 24))
+(setq frame-title-format
+    '(""
+      "%b"
+      (:eval
+       (let ((project-name (projectile-project-name)))
+         (unless (string= "-" project-name)
+           (format " in [%s]" project-name))))
+      " - Doom Emacs"))
 
 (setq +lookup-provider-url-alist
       '(("Google"            . "https://google.com/search?q=%s")
