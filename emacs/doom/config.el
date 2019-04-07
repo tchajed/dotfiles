@@ -19,10 +19,14 @@
         ("Wikipedia"         . "https://wikipedia.org/search-redirect.php?language=en&go=Go&search=%s"))
       )
 
+(defcustom frame-writing-width 110
+  "Frame width for writing text, in text columns"
+  :type '(integer))
+
 (defun setup-frame-for-writing ()
   "Set frame width for writing text."
   (interactive)
-  (set-frame-width (selected-frame) 110))
+  (set-frame-width (selected-frame) frame-writing-width))
 
 (load! "+coq.el")
 (load! "+markdown.el")
