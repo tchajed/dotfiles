@@ -19,6 +19,11 @@
         ("Wikipedia"         . "https://wikipedia.org/search-redirect.php?language=en&go=Go&search=%s"))
       )
 
+(defun setup-frame-for-writing ()
+  "Set frame width for writing text."
+  (interactive)
+  (set-frame-width (selected-frame) 110))
+
 (load! "+coq.el")
 (load! "+markdown.el")
 (load! "+bindings.el")
