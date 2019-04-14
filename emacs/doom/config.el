@@ -1,5 +1,7 @@
 ;;; ~/.doom.d/config.el -*- lexical-binding: t; -*-
 
+(setq custom-file (concat doom-private-dir "custom.el"))
+
 (setq doom-font (font-spec :family "Inconsolata for Powerline" :size 18))
 (setq doom-big-font (font-spec :family "Inconsolata for Powerline" :size 24))
 (setq frame-title-format
