@@ -30,6 +30,12 @@
   (interactive)
   (set-frame-width (selected-frame) frame-writing-width))
 
+(defun fix-menu-bar ()
+  "Reboot menu bar to fix it."
+  (interactive)
+  (menu-bar-mode -1)
+  (menu-bar-mode))
+
 (load! "+coq.el")
 (load! "+markdown.el")
 (load! "+bindings.el")
