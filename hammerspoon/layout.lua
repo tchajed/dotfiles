@@ -4,19 +4,50 @@ function gridUnitRec(rows, cols, x1, width, y1, height)
   return hs.geometry.rect(x1, y1, width/cols, height/rows)
 end
 
+benQKeys = {"123456", "qwerty", "asdfgh", "zxcvbn"}
+macKeys = {"qwe", "asd", "zxc"}
+
+-- translate a single location in a row mapping to 1-based (x,y) coordinations
+function cornerToCoords(keyRows, corner)
+  for i, row in pairs(keyRows) do
+    idx = row:find(corner)
+    if idx then
+      return {x=idx, y=i}
+    end
+  end
+end
+
+-- translate a corner specification (eg, "1x") using a key mapping (eg, benQKeys
+-- above) to a locationSpec (x1, width, y1, width)
 -- locationSpec: x_start, x_width, y_start, y_height
 -- 123456
 -- 2
 -- 3
 -- 4
-function layoutSpec(application, monitor, locationSpec)
+function translateCornerSpec(keyRows, corners)
+  upperLeft = cornerToCoords(keyRows, corners:sub(1,1))
+  lowerRight = cornerToCoords(keyRows, corners:sub(2,2))
+  return {
+    -- x1, width
+    upperLeft.x, lowerRight.x - upperLeft.x + 1,
+    -- y1, height
+    upperLeft.y, lowerRight.y - upperLeft.y + 1
+  }
+end
+
+function layoutSpec(application, monitor, corners)
+  local keyRows = nil
   if monitor == "mac" then
+    -- TODO: rows, cols is redundant with keys
     rows, cols = 3, 3
+    keyRows = macKeys
     monitor = "Color LCD"
   elseif monitor == "benq" then
     rows, cols = 4, 6
+    keyRows = benQKeys
     monitor = "BenQ PD3200U"
   end
+  locationSpec = translateCornerSpec(keyRows, corners)
   return {application, nil, monitor,
           gridUnitRec(rows, cols,
                       locationSpec[1],
@@ -27,22 +58,22 @@ function layoutSpec(application, monitor, locationSpec)
 end
 
 workLayout = {
-  layoutSpec("com.spotify.client", "mac", {2, 2, 1, 3}),
-  layoutSpec("WorkFlowy Beta", "benq", {6, 1, 3, 2}),
-  layoutSpec("com.culturedcode.ThingsMac", "mac", {1, 1, 1, 2}),
+  layoutSpec("com.spotify.client", "mac", "wc"),
+  layoutSpec("WorkFlowy Beta", "benq", "hn"),
+  layoutSpec("com.culturedcode.ThingsMac", "mac", "qa"),
 
   -- temporary config for working on presentation
-  -- layoutSpec("com.spotify.client", "mac", {1, 2, 1, 3}),
-  -- layoutSpec("WorkFlowy Beta", "mac", {3, 1, 1, 3}),
-  -- layoutSpec("com.culturedcode.ThingsMac", "benq", {6, 1, 3, 2}),
+  -- layoutSpec("com.spotify.client", "mac", "qx"),
+  -- layoutSpec("WorkFlowy Beta", "mac", "ec"),
+  -- layoutSpec("com.culturedcode.ThingsMac", "benq", "hn"),
 
-  layoutSpec("com.google.Chrome", "benq", {5, 2, 1, 2}),
-  layoutSpec("org.gnu.Emacs", "benq", {1, 2, 1, 4}),
-  layoutSpec("GoLand", "benq", {1, 4, 1, 4}),
+  layoutSpec("com.google.Chrome", "benq", "5y"),
+  layoutSpec("org.gnu.Emacs", "benq", "1x"),
+  layoutSpec("GoLand", "benq", "1v"),
 
-  layoutSpec("com.apple.Preview", "benq", {3, 2, 1, 4}),
-  layoutSpec("net.sourceforge.skim-app.skim", "benq", {3, 2, 1, 4}),
-  layoutSpec("iTerm2", "benq", {5, 1, 3, 2}),
+  layoutSpec("com.apple.Preview", "benq", "3v"),
+  layoutSpec("net.sourceforge.skim-app.skim", "benq", "3v"),
+  layoutSpec("iTerm2", "benq", "gb"),
 }
 
 function openSpotify()
