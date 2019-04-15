@@ -68,7 +68,7 @@ workLayout = {
   -- layoutSpec("com.culturedcode.ThingsMac", "benq", "hn"),
 
   layoutSpec("com.google.Chrome", "benq", "5y"),
-  layoutSpec("org.gnu.Emacs", "benq", "1x"),
+  layoutSpec("org.gnu.Emacs", "benq", "1v"),
   layoutSpec("GoLand", "benq", "1v"),
 
   layoutSpec("com.apple.Preview", "benq", "3v"),
