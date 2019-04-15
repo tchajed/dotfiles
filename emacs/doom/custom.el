@@ -25,6 +25,10 @@
  '(jdee-db-requested-breakpoint-face-colors (cons "#f0f0f0" "#50a14f"))
  '(jdee-db-spec-breakpoint-face-colors (cons "#f0f0f0" "#9ca0a4"))
  '(preview-auto-cache-preamble t)
+ '(preview-default-preamble
+   '("\\RequirePackage["
+     ("," . preview-default-option-list)
+     "]{preview}[2004/11/05]" "\\PreviewMacro[{}]{\\sys}"))
  '(proof-prog-name-guess nil)
  '(safe-local-variable-values
    (quote
