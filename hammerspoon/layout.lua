@@ -1,7 +1,8 @@
-function gridUnitRec(rows, cols, x1, width, y1, height)
-  x1 = (x1-1)/cols
-  y1 = (y1-1)/rows
-  return hs.geometry.rect(x1, y1, width/cols, height/rows)
+-- r should have rows, cols, x1, width, y1, height fields
+function gridUnitRec(r)
+  local x1 = (r.x1-1)/r.cols
+  local y1 = (r.y1-1)/r.rows
+  return hs.geometry.rect(x1, y1, r.width/r.cols, r.height/r.rows)
 end
 
 benQKeys = {"123456", "qwerty", "asdfgh", "zxcvbn"}
@@ -10,7 +11,7 @@ macKeys = {"qwe", "asd", "zxc"}
 -- translate a single location in a row mapping to 1-based (x,y) coordinations
 function cornerToCoords(keyRows, corner)
   for i, row in pairs(keyRows) do
-    idx = row:find(corner)
+    local idx = row:find(corner)
     if idx then
       return {x=idx, y=i}
     end
@@ -18,42 +19,31 @@ function cornerToCoords(keyRows, corner)
 end
 
 -- translate a corner specification (eg, "1x") using a key mapping (eg, benQKeys
--- above) to a locationSpec (x1, width, y1, width)
--- locationSpec: x_start, x_width, y_start, y_height
--- 123456
--- 2
--- 3
--- 4
+-- above) to a gridUnitRec rectangle specification
 function translateCornerSpec(keyRows, corners)
-  upperLeft = cornerToCoords(keyRows, corners:sub(1,1))
-  lowerRight = cornerToCoords(keyRows, corners:sub(2,2))
+  local rows = #keyRows
+  local cols = #keyRows[1]
+  local upperLeft = cornerToCoords(keyRows, corners:sub(1,1))
+  local lowerRight = cornerToCoords(keyRows, corners:sub(2,2))
   return {
-    -- x1, width
-    upperLeft.x, lowerRight.x - upperLeft.x + 1,
-    -- y1, height
-    upperLeft.y, lowerRight.y - upperLeft.y + 1
+    rows=#keyRows,
+    cols=#keyRows[1],
+    x1=upperLeft.x, width=lowerRight.x - upperLeft.x + 1,
+    y1=upperLeft.y, height=lowerRight.y - upperLeft.y + 1
   }
 end
 
 function layoutSpec(application, monitor, corners)
   local keyRows = nil
   if monitor == "mac" then
-    -- TODO: rows, cols is redundant with keys
-    rows, cols = 3, 3
     keyRows = macKeys
     monitor = "Color LCD"
   elseif monitor == "benq" then
-    rows, cols = 4, 6
     keyRows = benQKeys
     monitor = "BenQ PD3200U"
   end
-  locationSpec = translateCornerSpec(keyRows, corners)
-  return {application, nil, monitor,
-          gridUnitRec(rows, cols,
-                      locationSpec[1],
-                      locationSpec[2],
-                      locationSpec[3],
-                      locationSpec[4]),
+  local rec = gridUnitRec(translateCornerSpec(keyRows, corners))
+  return {application, nil, monitor, rec,
           nil, nil}
 end
 
