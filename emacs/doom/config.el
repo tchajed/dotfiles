@@ -36,6 +36,9 @@
   (menu-bar-mode -1)
   (menu-bar-mode))
 
+(setq python-shell-interpreter "python3"
+      flycheck-python-pycompile-executable "python3")
+
 (load! "+coq.el")
 (load! "+markdown.el")
 (load! "+bindings.el")
