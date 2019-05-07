@@ -1,0 +1,10 @@
+#!/bin/bash
+
+# open in Firefox
+
+# especially useful for PDF slides: the system PDF viewer (including Preview)
+# does not render a page until it's visible, which is optimized for continuous
+# scrolling but results in each slide being blurry when viewed one page at a
+# time.
+
+open -a 'Firefox.app' "$@"
