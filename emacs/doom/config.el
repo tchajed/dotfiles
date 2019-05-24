@@ -31,9 +31,8 @@
   (set-frame-width (selected-frame) frame-writing-width))
 
 (defun fix-menu-bar ()
-  "Reboot menu bar to fix it."
+  "Force menu bar back."
   (interactive)
-  (menu-bar-mode -1)
   (menu-bar-mode))
 
 (setq python-shell-interpreter "python3"

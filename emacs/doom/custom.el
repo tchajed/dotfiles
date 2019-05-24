@@ -7,12 +7,12 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(ansi-color-names-vector
-   ["#fafafa" "#e45649" "#50a14f" "#986801" "#4078f2" "#a626a4" "#0184bc" "#383a42"])
+   ["#f0f0f0" "#e45649" "#50a14f" "#986801" "#4078f2" "#a626a4" "#0184bc" "#383a42"])
  '(coq-one-command-per-line nil nil nil "With electric terminator, do not add a newline after advancing proof (since Coq doesn't add the correct indentation).")
  '(custom-enabled-themes (quote (doom-one-light)))
  '(custom-safe-themes
    (quote
-    ("5a8dbec3352b4fa1d38f18fd209d6a95f38cabde10fee375a67633bf2066a6d8" "6b289bab28a7e511f9c54496be647dc60f5bd8f9917c9495978762b99d8c96a0" "6b2636879127bf6124ce541b1b2824800afc49c6ccd65439d6eb987dbf200c36" "03d97ba26f176d258777c1f6363822a51562c17205e1eccd310901133b27f0a2" "a2aa9826c2a17f59efe3da9762bdf6fc35edafcf2e2b0f2f925a65fdf9f6abdc" "49ec957b508c7d64708b40b0273697a84d3fee4f15dd9fc4a9588016adee3dad" default)))
+    ("eb7df47b9dc166ecad22f388a08e2eaa7b6a5c58fc321ced3284d5174bb84e4b" "5a8dbec3352b4fa1d38f18fd209d6a95f38cabde10fee375a67633bf2066a6d8" "6b289bab28a7e511f9c54496be647dc60f5bd8f9917c9495978762b99d8c96a0" "6b2636879127bf6124ce541b1b2824800afc49c6ccd65439d6eb987dbf200c36" "03d97ba26f176d258777c1f6363822a51562c17205e1eccd310901133b27f0a2" "a2aa9826c2a17f59efe3da9762bdf6fc35edafcf2e2b0f2f925a65fdf9f6abdc" "49ec957b508c7d64708b40b0273697a84d3fee4f15dd9fc4a9588016adee3dad" default)))
  '(fci-rule-color "#383a42")
  '(font-latex-match-type-command-keywords (quote (("tej" "{") ("joe" "{") ("todo" "{"))))
  '(font-latex-user-keyword-classes
