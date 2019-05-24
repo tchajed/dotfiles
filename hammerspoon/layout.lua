@@ -58,8 +58,9 @@ workLayout = {
   -- layoutSpec("com.culturedcode.ThingsMac", "benq", "hn"),
 
   layoutSpec("com.google.Chrome", "benq", "5y"),
-  layoutSpec("org.gnu.Emacs", "benq", "1v"),
+  layoutSpec("org.gnu.Emacs", "benq", "1x"),
   layoutSpec("GoLand", "benq", "1v"),
+  layoutSpec("PyCharm", "benq", "1v"),
 
   layoutSpec("com.apple.Preview", "benq", "3v"),
   layoutSpec("net.sourceforge.skim-app.skim", "benq", "3v"),
