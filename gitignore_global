@@ -11,3 +11,5 @@
 .auctex-auto/
 # IntelliJ IDEA projects
 .idea/
+# Python compiled module cache
+__pycache__/
