@@ -95,7 +95,7 @@ class OptionsMenu(object):
       print("%2d %s" % (num + 1, display_string))
 
   def _GetSelectionByNumber(self):
-    selection = raw_input("> ")
+    selection = input("> ")
     try:
       selected_num = int(selection)
     except ValueError:
