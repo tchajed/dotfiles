@@ -145,15 +145,32 @@ class Comics:
         parser.add_argument("name")
         parser.set_defaults(func=cls.save_smbc)
 
+
 class Unmount:
     @classmethod
+    def unmount_command(cls, volume):
+        return Command(["diskutil", "unmount", "/Volumes/" + volume])
+
+    @classmethod
     def unmount_volume(cls, args):
-        return Command(["diskutil", "unmount", "/Volumes/" + args.volume])
+        return cls.unmount_command(args.voume)
 
     @classmethod
     def setup_parser(cls, parser: argparse.ArgumentParser):
         parser.add_argument("volume")
         parser.set_defaults(func=cls.unmount_volume)
+
+
+class Fermat:
+    @classmethod
+    def unmount(cls, args):
+        return Unmount.unmount_command("fermat")
+
+    @classmethod
+    def setup_parser(cls, parser: argparse.ArgumentParser):
+        subparsers = parser.add_subparsers()
+        subparsers.add_parser('unmount').set_defaults(func=cls.unmount)
+
 
 class Noether:
     @classmethod
@@ -202,6 +219,9 @@ if __name__ == "__main__":
 
     Unmount.setup_parser(
         subparsers.add_parser('unmount', help="unmount disks"))
+
+    Fermat.setup_parser(
+        subparsers.add_parser('fermat', help="manage Fermat disk"))
 
     Noether.setup_parser(
         subparsers.add_parser('noether', help="manage noether headphones"))
