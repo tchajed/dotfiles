@@ -46,6 +46,10 @@ class Cantor:
         return Command(["cantor-checkpoint"])
 
     @classmethod
+    def update(cls, _args):
+        return Command(["update-cantor.sh"])
+
+    @classmethod
     def running(cls, _args):
         def find_arch(status):
             if status.find(b"Arch") > 0:
@@ -62,6 +66,7 @@ class Cantor:
         subparsers.add_parser('poweroff').set_defaults(func=cls.poweroff)
         subparsers.add_parser('running').set_defaults(func=cls.running)
         subparsers.add_parser('checkpoint').set_defaults(func=cls.checkpoint)
+        subparsers.add_parser('update').set_defaults(func=cls.update)
 
 
 class Book:
