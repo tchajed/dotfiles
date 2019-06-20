@@ -34,6 +34,7 @@
   today = log --author=\"Tej Chajed\" --since=03:00:00 --all --no-merges --oneline
   graph = log --author=\"Tej Chajed\" --graph --all --decorate --stat --date=iso
   dayswork = diff --stat 'HEAD@{today.3am}'
+  root = rev-parse --show-toplevel
 
   # handling submodules
   # update fixes the working copy of every submodule
