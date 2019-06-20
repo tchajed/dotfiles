@@ -153,7 +153,7 @@ class Unmount:
 
     @classmethod
     def unmount_volume(cls, args):
-        return cls.unmount_command(args.voume)
+        return cls.unmount_command(args.volume)
 
     @classmethod
     def setup_parser(cls, parser: argparse.ArgumentParser):
