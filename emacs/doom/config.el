@@ -2,8 +2,8 @@
 
 (setq custom-file (concat doom-private-dir "custom.el"))
 
-(setq doom-font (font-spec :family "Inconsolata for Powerline" :size 18))
-(setq doom-big-font (font-spec :family "Inconsolata for Powerline" :size 24))
+(setq doom-font (font-spec :family "Inconsolata Nerd Font Mono" :size 18))
+(setq doom-big-font (font-spec :family "Inconsolata Nerd Font Mono" :size 24))
 (setq frame-title-format
     '(""
       "%b"
@@ -42,3 +42,4 @@
 (load! "+markdown.el")
 (load! "+bindings.el")
 (load! "+latex.el")
+(load! "+racket.el")
