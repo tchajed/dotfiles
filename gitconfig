@@ -9,6 +9,8 @@
   templatedir = ~/.git_template
 [commit]
   gpgsign = true
+[gpg]
+	program = gpg
 
 # Better behavior
 [core]
