@@ -49,7 +49,7 @@ end
 
 workLayout = {
   layoutSpec("com.spotify.client", "mac", "wc"),
-  layoutSpec("WorkFlowy Beta", "benq", "hn"),
+  --layoutSpec("WorkFlowy Beta", "benq", "hn"),
   layoutSpec("com.culturedcode.ThingsMac", "mac", "qa"),
 
   -- temporary config for working on presentation
@@ -64,7 +64,7 @@ workLayout = {
 
   layoutSpec("com.apple.Preview", "benq", "3v"),
   layoutSpec("net.sourceforge.skim-app.skim", "benq", "3v"),
-  layoutSpec("iTerm2", "benq", "gb"),
+  layoutSpec("iTerm2", "benq", "gn"),
 }
 
 function openSpotify()
