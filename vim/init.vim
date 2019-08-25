@@ -20,7 +20,7 @@ Plug 'dag/vim-fish'
 Plug 'FStarLang/VimFStar', {'for': 'fstar'}
 Plug 'rust-lang/rust.vim'
 Plug 'mattn/emmet-vim' " HTML
-Plug 'whonore/Coqtail', {'branch': 'v8.9'}
+Plug 'whonore/Coqtail'
 Plug 'let-def/vimbufsync' " dependency for Coqtail
 Plug 'wlangstroth/vim-racket'
 Plug 'vim-scripts/scribble.vim'
