@@ -27,6 +27,7 @@ imagemagick
 make
 pandoc
 parallel
+pass
 reattach-to-user-namespace
 ripgrep
 rsync

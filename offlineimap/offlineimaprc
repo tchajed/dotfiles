@@ -1,0 +1,28 @@
+[general]
+accounts = personal
+ui = ttyui
+fsync = False
+pythonfile = ~/.offlineimap.py
+
+[Account personal]
+localrepository = Local
+remoterepository = Remote
+synclabels = yes
+labelsheader = X-Keywords
+
+[Repository Local]
+type = GmailMaildir
+localfolders = ~/mail
+
+[Repository Remote]
+type = Gmail
+remoteuser = tchajed@gmail.com
+remotepasseval = mailpasswd("gmail/imap")
+realdelete = no
+folderfilter = lambda foldername: foldername in ['INBOX', '[Gmail]/All Mail', '[Gmail]/Sent Mail']
+nametrans = lambda foldername: re.sub('^\[Gmail\]/All Mail$', 'all', re.sub('^\[Gmail\]/Sent Mail$', 'sent', foldername))
+ssl = true
+# see https://wiki.archlinux.org/index.php/OfflineIMAP#Gmail_configuration
+ssl_version = tls1_2
+sslcacertfile = /usr/local/etc/openssl/cert.pem
+auth_mechanisms = GSSAPI, CRAM-MD5, LOGIN
