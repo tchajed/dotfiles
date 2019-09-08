@@ -38,6 +38,11 @@
 (setq python-shell-interpreter "python3"
       flycheck-python-pycompile-executable "python3")
 
+(setq +format-on-save-enabled-modes
+  '(not emacs-lisp-mode  ; elisp's mechanisms are good enough
+        sql-mode         ; sqlformat is currently broken
+        latex-mode))
+
 (load! "+coq.el")
 (load! "+markdown.el")
 (load! "+bindings.el")
