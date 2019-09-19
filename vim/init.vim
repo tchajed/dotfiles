@@ -24,6 +24,7 @@ Plug 'whonore/Coqtail'
 Plug 'let-def/vimbufsync' " dependency for Coqtail
 Plug 'wlangstroth/vim-racket'
 Plug 'vim-scripts/scribble.vim'
+Plug 'cespare/vim-toml'
 
 " Haskell
 Plug 'eagletmt/ghcmod-vim'
