@@ -1,11 +1,16 @@
-## Configure theme (bobthefish)
-set -g theme_color_scheme dark
-set -g theme_display_git_ahead_verbose yes
-set -g theme_display_ruby no
-set -g theme_title_use_abbreviated_path no
-#set -g theme_git_worktree_support yes
-set -g theme_nerd_fonts yes
-set -g theme_display_git_master_branch no
+### Configure theme (bobthefish)
+#set -g theme_color_scheme dark
+#set -g theme_display_git_ahead_verbose yes
+#set -g theme_display_ruby no
+#set -g theme_title_use_abbreviated_path no
+##set -g theme_git_worktree_support yes
+#set -g theme_nerd_fonts yes
+#set -g theme_display_git_master_branch no
+
+# No greeting when starting an interactive shell.
+function fish_greeting
+end
+eval (starship init fish)
 
 ## Configure PATH
 # Override system binaries with Homebrew
