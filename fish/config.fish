@@ -15,10 +15,6 @@ eval (starship init fish)
 ## Configure PATH
 # Override system binaries with Homebrew
 set PATH /usr/local/bin /usr/local/sbin $PATH
-# Go binaries
-set PATH /usr/local/opt/go/libexec/bin $PATH
-# Haskell stack recommended setup
-set PATH ~/.stack/programs/x86_64-osx/ghc-8.2.2/bin $PATH
 # Stack executables
 set PATH ~/.local/bin $PATH
 # Go
@@ -82,6 +78,10 @@ end
 function setupgo
     set -gx GOPATH $PWD
     set PATH $GOPATH/bin $PATH
+end
+
+function dafny
+  mono /Users/tchajed/.vscode/extensions/correctnesslab.dafny-vscode-*/dafny/dafny/Dafny.exe $argv
 end
 
 ## iTerm 2 shell integration

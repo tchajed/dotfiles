@@ -57,7 +57,7 @@ workLayout = {
   -- layoutSpec("WorkFlowy Beta", "mac", "ec"),
   -- layoutSpec("com.culturedcode.ThingsMac", "benq", "hn"),
 
-  layoutSpec("com.google.Chrome", "benq", "5y"),
+  layoutSpec("Firefox", "benq", "5y"),
   layoutSpec("org.gnu.Emacs", "benq", "1x"),
   layoutSpec("GoLand", "benq", "1v"),
   layoutSpec("PyCharm", "benq", "1v"),
