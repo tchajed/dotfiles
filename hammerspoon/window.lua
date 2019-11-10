@@ -17,7 +17,6 @@ function updateTitleThresh()
     hs.hints.showTitleThresh = 5
   end
 end
-hs.screen.watcher.new(updateTitleThresh):start()
 updateTitleThresh()
 hs.hints.hintChars = {"A","S","D","F","G","H","J","K","L","Q","W","E","R","T","Y","U","I","O","P","C","V","B","N"}
 hs.hotkey.bind("cmd", "escape", function()
@@ -83,4 +82,7 @@ hs.grid.setGrid('3x3', 'Color LCD')
 hs.grid.setGrid('6x4', 'BenQ PD3200U')
 
 hs.grid.setMargins({w = 0, h = 0})
-hs.hotkey.bind({'shift', 'cmd'}, 'g', hs.grid.show)
+hs.hotkey.bind({'shift', 'cmd'}, 'g', function()
+  updateTitleThresh()
+  hs.grid.show()
+end)
