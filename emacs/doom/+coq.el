@@ -53,9 +53,11 @@
 (defun iris-input-config ()
   "Set up math input for Iris.
 
-Based on https://gitlab.mpi-sws.org/iris/iris/blob/master/Editor.md"
+Based on https://gitlab.mpi-sws.org/iris/iris/blob/master/docs/editor.md"
 
   (require 'math-symbol-lists)
+  ; Automatically use math input method for Coq files
+  (add-hook 'coq-mode-hook (lambda () (set-input-method "math")))
   ;; Input method for the minibuffer
   (defun my-inherit-input-method ()
     "Inherit input method from `minibuffer-selected-window'."

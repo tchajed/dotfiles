@@ -19,3 +19,5 @@
 ;; reverse these two bindings since creating frames is more common
 (map! "s-n" #'make-frame)
 (map! "s-N" #'+default/new-buffer)
+
+(global-set-key (kbd "s-1") #'delete-other-windows)
