@@ -38,6 +38,7 @@ class Checklist:
 
 if __name__ == "__main__":
     import argparse
+    import sys
 
     parser = argparse.ArgumentParser()
     parser.add_argument("--today", action="store_true",
@@ -68,6 +69,7 @@ if __name__ == "__main__":
             "gym bag",
         ], when=when)
         c.command().run()
+        sys.exit(0)
 
     if args.checklist == "run":
         c = Checklist(args.name or "Long run", [
@@ -78,11 +80,11 @@ if __name__ == "__main__":
             "check weather for gloves",
         ], when=when)
         c.command().run()
+        sys.exit(0)
 
     if args.checklist == "flight":
         c = Checklist(args.name or "Flight", [
             "phone charger",
-            "watch charger",
             "laptop charger",
             "headphones",
             "boxers",
@@ -92,3 +94,6 @@ if __name__ == "__main__":
             "shirts",
         ], when=when)
         c.command().run()
+        sys.exit(0)
+    print("unknown checklist", args.checklist)
+    sys.exit(1)

@@ -9,3 +9,4 @@ function reloadConfig(files)
 end
 hs.pathwatcher.new(os.getenv("HOME") .. "/.hammerspoon/", reloadConfig):start()
 hs.alert.show("Config loaded")
+hs.hotkey.bind({'ctrl', 'shift', 'cmd', 'alt'}, 'r', hs.reload)
