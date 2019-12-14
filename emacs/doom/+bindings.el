@@ -21,3 +21,13 @@
 (map! "s-N" #'+default/new-buffer)
 
 (global-set-key (kbd "s-1") #'delete-other-windows)
+
+;; https://emacs.stackexchange.com/questions/19330/evil-emacs-how-to-select-last-pasted-text-like-gv/21093
+;;
+(defun my/evil-select-pasted ()
+  (interactive)
+  (let ((start-marker (evil-get-marker ?\[))
+        (end-marker (evil-get-marker ?\])))
+        (evil-visual-select start-marker end-marker)))
+(map! :leader
+      "v" #'my/evil-select-pasted)

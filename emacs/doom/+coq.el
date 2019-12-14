@@ -10,6 +10,28 @@
         spinner ;; minor modes are hidden anyway
         obsolete-settings))
 
+(setq company-coq-prettify-symbols-alist '(;; Disabled
+                                           ;; ("*" . ?×)  ; Inconsistent (‘intros H *’, rewrite in *, etc.)
+                                           ;; ("~" . ?¬)  ; Too invasive
+                                           ;; ("+-" . ?±) ; Too uncommon
+                                           ;; ("++" . ?⧺) ; Not present in TeX fonts
+                                           ;; ("nat" . ?𝓝) ("Prop" . ?𝓟) ; Rather uncommon
+                                           ;; ("N" . ?ℕ) ("Z" . ?ℤ) ("Q" . ?ℚ) ; Too invasive
+
+                                           ;; Core Coq symbols
+                                           ("|-" . ?⊢) ("||" . ?‖) ("/\\" . ?∧) ("\\/" . ?∨)
+                                           ("->" . ?→) ("<-" . ?←) ("<->" . ?↔) ("=>" . ?⇒)
+                                           ("<=" . ?≤) (">=" . ?≥) ("<>" . ?≠)
+                                           ("True" . ?⊤) ("False" . ?⊥)
+                                           ("fun" . ?λ) ("forall" . ?∀) ("exists" . ?∃)
+                                           ("Prop" . ?ℙ)
+                                           ;; ("nat" . ?ℕ) ("Prop" . ?ℙ) ("Real" . ?ℝ) ("bool" . ?𝔹)
+
+                                           ;; Extra symbols
+                                           (">->" . ?↣)
+                                           ("-->" . ?⟶) ("<--" . ?⟵) ("<-->" . ?⟷)
+                                           ("==>" . ?⟹) ("<==" . ?⟸) ("~~>" . ?⟿) ("<~~" . ?⬳)))
+
 (when (featurep! :config default +smartparens)
   (after! smartparens
     (sp-with-modes '(coq-mode)
@@ -17,7 +39,7 @@
       (sp-local-pair "`" nil :actions nil)
 
       ;; TODO: this worked in Spacemacs, right?
-      ;;(sp-local-pair "(*" "*)" )
+      ;; (sp-local-pair "(*" "*)")
     )))
 
 (map! :map coq-mode-map
@@ -56,8 +78,6 @@
 Based on https://gitlab.mpi-sws.org/iris/iris/blob/master/docs/editor.md"
 
   (require 'math-symbol-lists)
-  ; Automatically use math input method for Coq files
-  (add-hook 'coq-mode-hook (lambda () (set-input-method "math")))
   ;; Input method for the minibuffer
   (defun my-inherit-input-method ()
     "Inherit input method from `minibuffer-selected-window'."
@@ -82,6 +102,7 @@ Based on https://gitlab.mpi-sws.org/iris/iris/blob/master/docs/editor.md"
    ("\\all"    ?∀)
    ("\\ex"     ?∃)
    ("\\to"     ?→)
+   ("\\arr"    ?→)
    ("\\sep"    ?∗)
    ("\\lc"     ?⌜)
    ("\\rc"     ?⌝)
@@ -89,6 +110,7 @@ Based on https://gitlab.mpi-sws.org/iris/iris/blob/master/docs/editor.md"
    ("\\empty"  ?∅)
    ("\\Lam"    ?Λ)
    ("\\Sig"    ?Σ)
+   ("\\state"  ?σ)
    ("\\-"      ?∖)
    ("\\aa"     ?●)
    ("\\af"     ?◯)
@@ -113,6 +135,8 @@ Based on https://gitlab.mpi-sws.org/iris/iris/blob/master/docs/editor.md"
           (if (cddr x)
               (quail-defrule (cadr x) (car (cddr x)))))
         (append math-symbol-list-basic math-symbol-list-extended))
+  ; use the newly-created math input method
+  (set-input-method "math")
   )
 
 (add-hook! coq-mode
