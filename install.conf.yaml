@@ -20,10 +20,13 @@
     ~/.config/pianobar/pandora-pw.gpg:
       create: true
       path: pianobar/pandora-pw.gpg
-    ~/.config/coq/coqide.keys:
+    ~/Library/Application Support/Coq/coqide.keys:
       create: true
       path: coqide/coqide.keys
-    ~/.config/coq/coqiderc:
+    ~/Library/Application Support/Coq/coqide.bindings:
+      create: true
+      path: coqide/coqide.bindings
+    ~/Library/Application Support/Coq/coqiderc:
       create: true
       path: coqide/coqiderc
     ~/Library/Application Support/Karabiner/private.xml:
