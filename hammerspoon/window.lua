@@ -80,6 +80,7 @@ end)
 hs.grid.setGrid('4x3', 'HP ZR2740w')
 hs.grid.setGrid('3x3', 'Color LCD')
 hs.grid.setGrid('6x4', 'BenQ PD3200U')
+hs.grid.setGrid('6x4', 'LG HDR 4K')
 hs.grid.setGrid('6x4', 'Dell U3818DW')
 
 hs.grid.setMargins({w = 0, h = 0})
