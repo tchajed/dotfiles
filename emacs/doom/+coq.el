@@ -1,36 +1,40 @@
 ;;; ~/.doom.d/+coq.el -*- lexical-binding: nil; -*-
 ;;;
-(setq proof-splash-enable nil)
-(setq proof-splash-seen t)
-(setq company-coq-disabled-features
-      '(hello
-        outline
-        error-diffs
-        alerts
-        spinner ;; minor modes are hidden anyway
-        obsolete-settings))
+(add-hook! coq-mode
+  (setq proof-splash-enable nil)
+  (setq proof-splash-seen t)
+  (setq company-coq-disabled-features
+        '(hello
+          outline
+          error-diffs
+          alerts
+          spinner ;; minor modes are hidden anyway
+          obsolete-settings))
 
-(setq company-coq-prettify-symbols-alist '(;; Disabled
-                                           ;; ("*" . ?×)  ; Inconsistent (‘intros H *’, rewrite in *, etc.)
-                                           ;; ("~" . ?¬)  ; Too invasive
-                                           ;; ("+-" . ?±) ; Too uncommon
-                                           ;; ("++" . ?⧺) ; Not present in TeX fonts
-                                           ;; ("nat" . ?𝓝) ("Prop" . ?𝓟) ; Rather uncommon
-                                           ;; ("N" . ?ℕ) ("Z" . ?ℤ) ("Q" . ?ℚ) ; Too invasive
+  (setq company-coq-prettify-symbols-alist '(;; Disabled
+                                             ;; ("*" . ?×)  ; Inconsistent (‘intros H *’, rewrite in *, etc.)
+                                             ;; ("~" . ?¬)  ; Too invasive
+                                             ;; ("+-" . ?±) ; Too uncommon
+                                             ;; ("++" . ?⧺) ; Not present in TeX fonts
+                                             ;; ("nat" . ?𝓝) ("Prop" . ?𝓟) ; Rather uncommon
+                                             ;; ("N" . ?ℕ) ("Z" . ?ℤ) ("Q" . ?ℚ) ; Too invasive
 
-                                           ;; Core Coq symbols
-                                           ("|-" . ?⊢) ("||" . ?‖) ("/\\" . ?∧) ("\\/" . ?∨)
-                                           ("->" . ?→) ("<-" . ?←) ("<->" . ?↔) ("=>" . ?⇒)
-                                           ("<=" . ?≤) (">=" . ?≥) ("<>" . ?≠)
-                                           ("True" . ?⊤) ("False" . ?⊥)
-                                           ("fun" . ?λ) ("forall" . ?∀) ("exists" . ?∃)
-                                           ("Prop" . ?ℙ)
-                                           ;; ("nat" . ?ℕ) ("Prop" . ?ℙ) ("Real" . ?ℝ) ("bool" . ?𝔹)
+                                             ;; Core Coq symbols
+                                             ("|-" . ?⊢) ("||" . ?‖) ("/\\" . ?∧) ("\\/" . ?∨)
+                                             ("->" . ?→) ("<-" . ?←) ("<->" . ?↔) ("=>" . ?⇒)
+                                             ("<=" . ?≤) (">=" . ?≥) ("<>" . ?≠)
+                                             ("True" . ?⊤) ("False" . ?⊥)
+                                             ("fun" . ?λ) ("forall" . ?∀) ("exists" . ?∃)
+                                             ("Prop" . ?ℙ)
+                                             ;; ("nat" . ?ℕ) ("Prop" . ?ℙ) ("Real" . ?ℝ) ("bool" . ?𝔹)
 
-                                           ;; Extra symbols
-                                           (">->" . ?↣)
-                                           ("-->" . ?⟶) ("<--" . ?⟵) ("<-->" . ?⟷)
-                                           ("==>" . ?⟹) ("<==" . ?⟸) ("~~>" . ?⟿) ("<~~" . ?⬳)))
+                                             ;; Extra symbols
+                                             (">->" . ?↣)
+                                             ("-->" . ?⟶) ("<--" . ?⟵) ("<-->" . ?⟷)
+                                             ("==>" . ?⟹) ("<==" . ?⟸) ("~~>" . ?⟿) ("<~~" . ?⬳)))
+
+  ;; auto-indentation in Coq isn't good enough to use electric indentation
+  (electric-indent-mode -1))
 
 (when (featurep! :config default +smartparens)
   (after! smartparens
@@ -65,6 +69,9 @@
       :desc "Check"                      "c" #'coq-Check
       :desc "Print"                      "p" #'coq-Print
       :desc "About"                      "b" #'coq-About
+      :desc "Locate Constant"            "l" #'coq-LocateConstant
+      :desc "Locate Notation"            "n" #'coq-LocateNotation
+      :desc "Search"                     "s" #'coq-SearchConstant
 
       :prefix ("ai" . "Query Coq with implicits")
       :desc "Check with implicits"       "c" #'coq-Check-show-implicits
@@ -130,6 +137,9 @@ Based on https://gitlab.mpi-sws.org/iris/iris/blob/master/docs/editor.md"
    ("__a" ?ₐ) ("__e" ?ₑ) ("__h" ?ₕ) ("__i" ?ᵢ) ("__k" ?ₖ)
    ("__l" ?ₗ) ("__m" ?ₘ) ("__n" ?ₙ) ("__o" ?ₒ) ("__p" ?ₚ)
    ("__r" ?ᵣ) ("__s" ?ₛ) ("__t" ?ₜ) ("__u" ?ᵤ) ("__v" ?ᵥ) ("__x" ?ₓ)
+
+   ;; custom
+   ("\\bind" ?←)
    )
   (mapc (lambda (x)
           (if (cddr x)

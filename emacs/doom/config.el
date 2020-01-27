@@ -3,7 +3,8 @@
 ;; imported from customize
 
 (setq custom-safe-themes
-     '("6cbf6003e137485fb3f904e76fb15bc48abc386540f43f54e2a47a9884e679f6" default))
+   (quote
+    ("99ea831ca79a916f1bd789de366b639d09811501e8c092c85b2cb7d697777f93" "6cbf6003e137485fb3f904e76fb15bc48abc386540f43f54e2a47a9884e679f6" default)))
 (setq comment-multi-line t)
 (setq font-latex-match-type-command-keywords '(("tej" "{") ("joe" "{") ("todo" "{")))
 (setq font-latex-user-keyword-classes
@@ -61,6 +62,9 @@
 ;; (without using the Proof General coqtop), which doesn't make sense for any
 ;; real Coq project
 (setq flycheck-disabled-checkers '(coq))
+
+;; use ~/ to move to home (instead of just ~)
+(setq ivy-magic-tilde nil)
 
 (load! "+coq.el")
 (load! "+markdown.el")
