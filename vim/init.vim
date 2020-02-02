@@ -3,7 +3,9 @@
 call plug#begin('~/.config/nvim/plugged')
 " Basics
 Plug 'tpope/vim-sensible'
-Plug 'wincent/Command-T'
+Plug '/usr/local/opt/fzf'
+Plug 'junegunn/fzf.vim'
+Plug 'jremmen/vim-ripgrep'
 
 " Basic UI theming
 Plug 'vim-airline/vim-airline'
@@ -25,12 +27,13 @@ Plug 'let-def/vimbufsync' " dependency for Coqtail
 Plug 'wlangstroth/vim-racket'
 Plug 'vim-scripts/scribble.vim'
 Plug 'cespare/vim-toml'
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
 " Haskell
-Plug 'eagletmt/ghcmod-vim'
-Plug 'eagletmt/neco-ghc'
-Plug 'bitc/vim-hdevtools'
-Plug 'Shougo/vimproc.vim', { 'do': 'make' }
+" Plug 'eagletmt/ghcmod-vim'
+" Plug 'eagletmt/neco-ghc'
+" Plug 'bitc/vim-hdevtools'
+" Plug 'Shougo/vimproc.vim', { 'do': 'make' }
 call plug#end()
 
 " basically always want these
@@ -48,3 +51,5 @@ let g:airline_powerline_fonts = 1
 let g:airline_theme = 'tender'
 
 let g:syntastic_rust_checkers = ['cargo']
+let g:syntastic_go_checkers = ['go', 'gofmt']
+let g:go_fmt_command = "goimports"
