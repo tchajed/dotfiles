@@ -19,8 +19,8 @@
 
 ;(setq doom-font (font-spec :family "Inconsolata Nerd Font Mono" :size 18))
 ;(setq doom-big-font (font-spec :family "Inconsolata Nerd Font Mono" :size 24))
-(setq doom-font (font-spec :family "Victor Mono" :size 18))
-(setq doom-big-font (font-spec :family "Victor Mono" :size 24))
+(setq doom-font (font-spec :family "Victor Mono" :size 16))
+(setq doom-big-font (font-spec :family "Victor Mono" :size 20))
 (setq frame-title-format
     '(""
       "%b"

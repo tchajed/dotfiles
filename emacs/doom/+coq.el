@@ -37,18 +37,19 @@
   (electric-indent-mode -1))
 
 (when (featurep! :config default +smartparens)
-  (after! smartparens
+  (after! smartparens-ml
     (sp-with-modes '(coq-mode)
       ;; Disable ` because it is used in implicit generalization
       (sp-local-pair "`" nil :actions nil)
-
-      ;; TODO: this worked in Spacemacs, right?
-      ;; (sp-local-pair "(*" "*)")
-    )))
+      (sp-local-pair "(*" "*)" :actions nil)
+      (sp-local-pair "(*" "*"
+                     :actions '(insert)
+                     :post-handlers '(("| " "SPC") ("|\n[i]*)[d-2]" "RET")))
+      )))
 
 (map! :map coq-mode-map
       :ni "<f3>" #'proof-assert-next-command-interactive
-      :ni "<f4>" #'company-coq-proof-goto-point
+      :ni "<f4>" #'proof-goto-point
       :ni "<f2>" #'proof-undo-last-successful-command
 
       :localleader
@@ -84,7 +85,6 @@
 
 Based on https://gitlab.mpi-sws.org/iris/iris/blob/master/docs/editor.md"
 
-  (require 'math-symbol-lists)
   ;; Input method for the minibuffer
   (defun my-inherit-input-method ()
     "Inherit input method from `minibuffer-selected-window'."
@@ -96,12 +96,52 @@ Based on https://gitlab.mpi-sws.org/iris/iris/blob/master/docs/editor.md"
   ;; Define the actual input method
   (quail-define-package "math" "UTF-8" "Ω" t)
   (quail-define-rules ; add whatever extra rules you want to define here...
+   ;; LaTeX math rules
+   ("\\forall"         "∀")
+   ("\\exists"         "∃")
+   ("\\not"            "¬")
+   ;("\\/"              "∨")
+   ;("/\\"              "∧")
+   ;("->"               "→")
+   ;("<->"              "↔")
+   ("\\<-"             "←") ;; we add a backslash because the plain <- is used for the rewrite tactic
+   ("\\=="             "≡")
+   ("\\/=="            "≢")
+   ;("/="               "≠")
+   ;("<="               "≤")
+   ("\\in"             "∈")
+   ("\\notin"          "∉")
+   ("\\cup"            "∪")
+   ("\\cap"            "∩")
+   ("\\setminus"       "∖")
+   ("\\subset"         "⊂")
+   ("\\subseteq"       "⊆")
+   ("\\sqsubseteq"     "⊑")
+   ("\\sqsubseteq"     "⊑")
+   ("\\notsubseteq"    "⊈")
+   ("\\meet"           "⊓")
+   ("\\join"           "⊔")
+   ("\\top"            "⊤")
+   ("\\bottom"         "⊥")
+   ("\\vdash"          "⊢")
+   ("\\dashv"          "⊣")
+   ("\\Vdash"          "⊨")
+   ("\\infty"          "∞")
+   ("\\comp"           "∘")
+   ("\\prf"            "↾")
+   ("\\bind"           "≫=")
+   ("\\mapsto"         "↦")
+   ("\\hookrightarrow" "↪")
+   ("\\uparrow"        "↑")
+
    ("\\mult"   ?⋅)
    ("\\ent"    ?⊢)
    ("\\valid"  ?✓)
    ("\\box"    ?□)
    ("\\later"  ?▷)
    ("\\pred"   ?φ)
+   ("\\post"   ?Φ)
+   ("\\phi"    ?Φ)
    ("\\and"    ?∧)
    ("\\or"     ?∨)
    ("\\comp"   ?∘)
@@ -114,10 +154,12 @@ Based on https://gitlab.mpi-sws.org/iris/iris/blob/master/docs/editor.md"
    ("\\lc"     ?⌜)
    ("\\rc"     ?⌝)
    ("\\lam"    ?λ)
+   ("\\fun"    ?λ)
    ("\\empty"  ?∅)
    ("\\Lam"    ?Λ)
    ("\\Sig"    ?Σ)
    ("\\state"  ?σ)
+   ("\\sigma"  ?σ)
    ("\\-"      ?∖)
    ("\\aa"     ?●)
    ("\\af"     ?◯)
@@ -125,9 +167,11 @@ Based on https://gitlab.mpi-sws.org/iris/iris/blob/master/docs/editor.md"
    ("\\gname"  ?γ)
    ("\\incl"   ?≼)
    ("\\latert" ?▶)
+   ("\\bient"  "⊣⊢")
 
    ;; accents (for iLöb)
-   ("\\\"o" ?ö)
+   ("\\\"o"    ?ö)
+   ("\\Lob"    "Löb")
 
    ;; subscripts and superscripts
    ("^^+" ?⁺) ("__+" ?₊) ("^^-" ?⁻)
@@ -138,13 +182,36 @@ Based on https://gitlab.mpi-sws.org/iris/iris/blob/master/docs/editor.md"
    ("__l" ?ₗ) ("__m" ?ₘ) ("__n" ?ₙ) ("__o" ?ₒ) ("__p" ?ₚ)
    ("__r" ?ᵣ) ("__s" ?ₛ) ("__t" ?ₜ) ("__u" ?ᵤ) ("__v" ?ᵥ) ("__x" ?ₓ)
 
+   ;; Greek alphabet
+   ("\\Alpha"    "Α") ("\\alpha"    "α")
+   ("\\Beta"     "Β") ("\\beta"     "β")
+   ("\\Gamma"    "Γ") ("\\gamma"    "γ")
+   ("\\Delta"    "Δ") ("\\delta"    "δ")
+   ("\\Epsilon"  "Ε") ("\\epsilon"  "ε")
+   ("\\Zeta"     "Ζ") ("\\zeta"     "ζ")
+   ("\\Eta"      "Η") ("\\eta"      "η")
+   ("\\Theta"    "Θ") ("\\theta"    "θ")
+   ("\\Iota"     "Ι") ("\\iota"     "ι")
+   ("\\Kappa"    "Κ") ("\\kappa"    "κ")
+   ("\\Lamda"    "Λ") ("\\lamda"    "λ")
+   ("\\Lambda"   "Λ") ("\\lambda"   "λ")
+   ("\\Mu"       "Μ") ("\\mu"       "μ")
+   ("\\Nu"       "Ν") ("\\nu"       "ν")
+   ("\\Xi"       "Ξ") ("\\xi"       "ξ")
+   ("\\Omicron"  "Ο") ("\\omicron"  "ο")
+   ("\\Pi"       "Π") ("\\pi"       "π")
+   ("\\Rho"      "Ρ") ("\\rho"      "ρ")
+   ("\\Sigma"    "Σ") ("\\sigma"    "σ")
+   ("\\Tau"      "Τ") ("\\tau"      "τ")
+   ("\\Upsilon"  "Υ") ("\\upsilon"  "υ")
+   ("\\Phi"      "Φ") ("\\phi"      "φ")
+   ("\\Chi"      "Χ") ("\\chi"      "χ")
+   ("\\Psi"      "Ψ") ("\\psi"      "ψ")
+   ("\\Omega"    "Ω") ("\\omega"    "ω")
+
    ;; custom
-   ("\\bind" ?←)
+   ("\\gets" ?←)
    )
-  (mapc (lambda (x)
-          (if (cddr x)
-              (quail-defrule (cadr x) (car (cddr x)))))
-        (append math-symbol-list-basic math-symbol-list-extended))
   ; use the newly-created math input method
   (set-input-method "math")
   )
