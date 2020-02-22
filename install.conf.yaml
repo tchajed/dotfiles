@@ -32,6 +32,9 @@
     ~/Library/Application Support/Karabiner/private.xml:
       create: true
       path: karabiner/private.xml
+    ~/.config/karabiner/assets/complex_modifications/right_fn.json:
+      create: true
+      path: karabiner/right_fn.json
     ~/.tmux.conf:
       path: tmux.conf
     ~/.config/nvim/autoload/plug.vim:
