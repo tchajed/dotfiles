@@ -73,3 +73,7 @@
 [submodule]
   # fetch in parallel
   fetchJobs = 4
+[url "ssh://git@github.com/"]
+  insteadOf = https://github.com/
+[url "ssh://git@github.mit.edu/"]
+  insteadOf = https://github.mit.edu/
