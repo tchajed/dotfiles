@@ -10,6 +10,9 @@ Plug 'jremmen/vim-ripgrep'
 " Basic UI theming
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+" a few color schemes
+Plug 'NLKNguyen/papercolor-theme'
+" Plug 'rakr/vim-one'
 Plug 'jacoborus/tender.vim'
 
 " General Programming
@@ -47,9 +50,11 @@ endif
 
 syntax enable
 colorscheme tender
+set background=dark
 let g:airline_powerline_fonts = 1
 let g:airline_theme = 'tender'
 
 let g:syntastic_rust_checkers = ['cargo']
 let g:syntastic_go_checkers = ['go', 'gofmt']
 let g:go_fmt_command = "goimports"
+let g:go_info_mode = "gopls"
