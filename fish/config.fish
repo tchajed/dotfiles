@@ -10,7 +10,6 @@
 # No greeting when starting an interactive shell.
 function fish_greeting
 end
-eval (starship init fish)
 
 ## Configure PATH
 # Override system binaries with Homebrew
@@ -29,6 +28,12 @@ set PATH ~/.dotfiles/bin $PATH
 # Ruby gem binaries
 #set PATH /usr/local/lib/ruby/gems/2.6.3/bin /usr/local/Cellar/ruby/2.6.3/bin $PATH
 set PATH ~/.gem/bin $PATH
+# Racket
+set PATH /usr/local/Cellar/minimal-racket/7.5/bin $PATH
+
+# temp F* config
+set PATH ~/code/sw/FStar/bin $PATH
+set PATH ~/Downloads/z3-4.8.5-x64-osx-10.14.2/bin $PATH
 
 # F*
 #set PATH ~/code/sw/everest/FStar/bin $PATH
@@ -54,6 +59,10 @@ alias timeout="gtimeout"
 alias e="/usr/local/bin/emacsclient -a '' --no-wait"
 alias et="/usr/local/bin/emacsclient --tty"
 alias es="/usr/local/bin/emacsclient -a '' --no-wait --eval '(progn (switch-to-buffer \"*scratch*\") (delete-other-windows))'"
+
+# switch to exa
+alias ls="exa"
+alias ll="exa -l"
 
 # use NeoVim by default
 alias vim="nvim"
@@ -83,6 +92,9 @@ end
 function dafny
   mono /Users/tchajed/.vscode/extensions/correctnesslab.dafny-vscode-*/dafny/dafny/Dafny.exe $argv
 end
+
+# starship
+status --is-interactive; and starship init fish | source
 
 ## iTerm 2 shell integration
 # https://iterm2.com/shell_integration.html
