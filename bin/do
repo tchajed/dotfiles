@@ -172,6 +172,17 @@ class Fermat:
         subparsers.add_parser('unmount').set_defaults(func=cls.unmount)
 
 
+class Brouwer:
+    @classmethod
+    def unmount(cls, args):
+        return Unmount.unmount_command("brouwer")
+
+    @classmethod
+    def setup_parser(cls, parser: argparse.ArgumentParser):
+        subparsers = parser.add_subparsers()
+        subparsers.add_parser('unmount').set_defaults(func=cls.unmount)
+
+
 class Noether:
     @classmethod
     def connect(cls, args):
@@ -222,6 +233,9 @@ if __name__ == "__main__":
 
     Fermat.setup_parser(
         subparsers.add_parser('fermat', help="manage Fermat disk"))
+
+    Brouwer.setup_parser(
+        subparsers.add_parser('brouwer', help="manage Brouwer disk"))
 
     Noether.setup_parser(
         subparsers.add_parser('noether', help="manage noether headphones"))
