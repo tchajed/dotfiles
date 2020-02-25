@@ -51,20 +51,20 @@ workLayout = {
   layoutSpec("com.spotify.client", "mac", "wc"),
   --layoutSpec("WorkFlowy Beta", "benq", "hn"),
   layoutSpec("com.culturedcode.ThingsMac", "mac", "qa"),
+  layoutSpec("Firefox", "mac", "wc"),
 
   -- temporary config for working on presentation
   -- layoutSpec("com.spotify.client", "mac", "qx"),
   -- layoutSpec("WorkFlowy Beta", "mac", "ec"),
   -- layoutSpec("com.culturedcode.ThingsMac", "benq", "hn"),
 
-  layoutSpec("Firefox", "benq", "5y"),
-  layoutSpec("org.gnu.Emacs", "benq", "1x"),
+  layoutSpec("org.gnu.Emacs", "benq", "1v"),
   layoutSpec("GoLand", "benq", "1v"),
   layoutSpec("PyCharm", "benq", "1v"),
 
-  layoutSpec("com.apple.Preview", "benq", "3v"),
+  layoutSpec("com.apple.Preview", "benq", "2v"),
   layoutSpec("net.sourceforge.skim-app.skim", "benq", "3v"),
-  layoutSpec("iTerm2", "benq", "gn"),
+  layoutSpec("iTerm2", "benq", "5n"),
 }
 
 function openSpotify()
@@ -72,8 +72,8 @@ function openSpotify()
   hs.application.open("com.spotify.client", 2, true)
 end
 
-function focusEmacs()
-  app = hs.application.get("org.gnu.Emacs")
+function focusApp(name)
+  app = hs.application.get(name)
   if app then
     app:activate()
   end
@@ -82,7 +82,8 @@ end
 function setWorkLayout()
   openSpotify()
   hs.layout.apply(workLayout)
-  focusEmacs()
+  focusApp("Firefox")
+  focusApp("org.gnu.Emacs")
 end
 
 hs.hotkey.bind({'shift', 'cmd'}, 'w', setWorkLayout)
