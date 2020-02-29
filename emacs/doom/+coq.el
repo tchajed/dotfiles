@@ -11,6 +11,19 @@
           spinner ;; minor modes are hidden anyway
           obsolete-settings))
 
+  (evil-define-text-object evil-a-lift (count &optional beg end type)
+    "Select a lifted proposition."
+    :extend-selection nil
+    (evil-select-paren ?⌜ ?⌝ beg end type count t))
+
+  (evil-define-text-object evil-inner-lift (count &optional beg end type)
+    "Select inner lifted proposition."
+    :extend-selection nil
+    (evil-select-paren ?⌜ ?⌝ beg end type count))
+
+  (define-key evil-inner-text-objects-map "l" 'evil-inner-lift)
+  (define-key evil-outer-text-objects-map "l" 'evil-a-lift)
+
   (setq company-coq-prettify-symbols-alist '(;; Disabled
                                              ;; ("*" . ?×)  ; Inconsistent (‘intros H *’, rewrite in *, etc.)
                                              ;; ("~" . ?¬)  ; Too invasive
@@ -37,7 +50,7 @@
   (electric-indent-mode -1))
 
 (when (featurep! :config default +smartparens)
-  (after! smartparens-ml
+  (after! smartparens
     (sp-with-modes '(coq-mode)
       ;; Disable ` because it is used in implicit generalization
       (sp-local-pair "`" nil :actions nil)
@@ -129,7 +142,7 @@ Based on https://gitlab.mpi-sws.org/iris/iris/blob/master/docs/editor.md"
    ("\\infty"          "∞")
    ("\\comp"           "∘")
    ("\\prf"            "↾")
-   ("\\bind"           "≫=")
+   ("\\bind"           "≫")
    ("\\mapsto"         "↦")
    ("\\hookrightarrow" "↪")
    ("\\uparrow"        "↑")
@@ -158,6 +171,7 @@ Based on https://gitlab.mpi-sws.org/iris/iris/blob/master/docs/editor.md"
    ("\\empty"  ?∅)
    ("\\Lam"    ?Λ)
    ("\\Sig"    ?Σ)
+   ("\\env"    ?Δ)
    ("\\state"  ?σ)
    ("\\sigma"  ?σ)
    ("\\-"      ?∖)
@@ -167,11 +181,9 @@ Based on https://gitlab.mpi-sws.org/iris/iris/blob/master/docs/editor.md"
    ("\\gname"  ?γ)
    ("\\incl"   ?≼)
    ("\\latert" ?▶)
-   ("\\bient"  "⊣⊢")
 
    ;; accents (for iLöb)
    ("\\\"o"    ?ö)
-   ("\\Lob"    "Löb")
 
    ;; subscripts and superscripts
    ("^^+" ?⁺) ("__+" ?₊) ("^^-" ?⁻)
