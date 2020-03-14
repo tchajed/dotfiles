@@ -30,6 +30,8 @@ set PATH ~/.dotfiles/bin $PATH
 set PATH ~/.gem/bin $PATH
 # Racket
 set PATH /usr/local/Cellar/minimal-racket/7.5/bin $PATH
+# MacTeX
+set PATH /usr/local/texlive/2019/bin/x86_64-darwin $PATH
 
 # temp F* config
 set PATH ~/code/sw/FStar/bin $PATH
@@ -44,7 +46,8 @@ set PATH ~/Downloads/z3-4.8.5-x64-osx-10.14.2/bin $PATH
 # Doom Emacs
 set PATH ~/doom-emacs.d/bin $PATH
 
-set -gx RUST_SRC_PATH (rustc --print sysroot)/lib/rustlib/src/rust/src
+# takes non-trivial time at startup; replaced with universal variable
+# set -gx RUST_SRC_PATH (rustc --print sysroot)/lib/rustlib/src/rust/src
 
 ## Aliases
 # Use GNU versions
