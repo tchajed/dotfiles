@@ -3,6 +3,7 @@
 [user]
   name = Tej Chajed
   email = tchajed@mit.edu
+  signingKey = C59DA7E160BF50D5EF25ACB0A5CD04BD8ED49551
 [github]
   user = tchajed
 [init]
@@ -10,7 +11,7 @@
 [commit]
   gpgsign = true
 [gpg]
-	program = gpg
+  program = gpg
 
 # Better behavior
 [core]
@@ -42,34 +43,20 @@
   update-submodules = submodule update --init --recursive
   # upgrade causes all submodules to refer to the latest upstream commit
   # (which you can then commit)
-	upgrade-submodules = submodule update --init --remote
+  upgrade-submodules = submodule update --init --remote
 [color]
-	ui = true
-# color.diff-highlight and color.diff are recommendations from diff-so-fancy
-# configured by eval (diff-so-fancy --colors)
-#[color "diff-highlight"]
-#  oldNormal = red bold
-#  oldHighlight = red bold 52
-#  newNormal = green bold
-#  newHighlight = green bold 22
-#[color "diff"]
-#  meta = 227
-#  frag = magenta bold
-#  commit = 227 bold
-#  old = red bold
-#  new = green bold
-#  whitespace = red reverse
+  ui = true
 [diff-so-fancy]
   first-run = false
 [diff]
   # see https://blog.github.com/2018-04-05-git-217-released/
   compactionHeuristic = on
   # see https://blog.github.com/2018-04-05-git-217-released/
-	# consider zebra (the default when colorMoved is used), which has distinctive
-	# colors but too many
-	colorMoved = dimmed_zebra
+  # consider zebra (the default when colorMoved is used), which has distinctive
+  # colors but too many
+  colorMoved = dimmed_zebra
 [rebase]
-	autosquash = true
+  autosquash = true
 [submodule]
   # fetch in parallel
   fetchJobs = 4
