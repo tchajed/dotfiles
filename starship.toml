@@ -1,0 +1,36 @@
+# Don't print a new line at the start of the prompt
+add_newline = false
+
+[directory]
+# number of parent folders to show
+truncation_length = 5
+truncate_to_repo = true
+
+[cmd_duration]
+min_time = 200 # ms
+
+[git_status]
+show_sync_count = true
+modified = ""
+
+[memory_usage]
+# includes file-system cache so is nearly always full
+disabled = true
+
+## language-specific configuration
+
+[nodejs]
+disabled = true
+
+[golang]
+symbol = "Go "
+
+[package]
+# used for npm, cargo, and poetry (Python)
+symbol = "pkg "
+
+[rust]
+symbol = ""
+
+[python]
+disabled = true

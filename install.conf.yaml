@@ -57,6 +57,8 @@
       path: offlineimap/offlineimap.py
     ~/.offlineimaprc:
       path: offlineimap/offlineimaprc
+    ~/.config/starship.toml: starship.toml
+
 
 - shell:
     - ~/.dotfiles/set-osx-options.sh
