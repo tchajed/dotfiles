@@ -9,7 +9,9 @@
     # ~/.spacemacs.env: emacs/spacemacs.env
     # ~/custom.el: emacs/spacemacs/custom.el
     ~/.doom.d: emacs/doom
-    ~/.config/fish/config.fish: fish/config.fish
+    ~/.config/fish/config.fish:
+      create: true
+      path: fish/config.fish
     # installed fisher packages
     ~/.config/fish/fishfile: fish/fishfile
     ~/.config/fish/completions/skim.fish: fish/skim.fish
@@ -17,9 +19,9 @@
     ~/.config/pianobar/config:
       create: true
       path: pianobar/config
-    ~/.config/pianobar/pandora-pw.gpg:
-      create: true
-      path: pianobar/pandora-pw.gpg
+      #~/.config/pianobar/pandora-pw.gpg:
+      #  create: true
+      #  path: pianobar/pandora-pw.gpg
     ~/Library/Application Support/Coq/coqide.keys:
       create: true
       path: coqide/coqide.keys
@@ -32,6 +34,9 @@
     ~/Library/Application Support/Karabiner/private.xml:
       create: true
       path: karabiner/private.xml
+    ~/.config/karabiner/karabiner.json:
+      create: true
+      path: karabiner/karabiner.json
     ~/.config/karabiner/assets/complex_modifications/right_fn.json:
       create: true
       path: karabiner/right_fn.json
