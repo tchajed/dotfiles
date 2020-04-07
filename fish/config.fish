@@ -29,7 +29,7 @@ set PATH ~/.dotfiles/bin $PATH
 #set PATH /usr/local/lib/ruby/gems/2.6.3/bin /usr/local/Cellar/ruby/2.6.3/bin $PATH
 set PATH ~/.gem/bin $PATH
 # Racket
-set PATH /usr/local/Cellar/minimal-racket/7.5/bin $PATH
+set PATH /usr/local/Cellar/minimal-racket/7.6/bin $PATH
 # MacTeX
 set PATH /usr/local/texlive/2019/bin/x86_64-darwin $PATH
 
