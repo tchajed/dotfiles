@@ -20,21 +20,20 @@ gnu-sed
 gnu-tar
 gnuplot
 go
-gpg-agent
 grep
 htop
 imagemagick
 make
 pandoc
 parallel
-pass
-reattach-to-user-namespace
 ripgrep
 rsync
 tmux
 tree
 wget
 youtube-dl
+findutils
+pinentry-mac
 "
 
 brew install $pkgs

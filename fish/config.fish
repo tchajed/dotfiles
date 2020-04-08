@@ -44,7 +44,7 @@ set PATH ~/Downloads/z3-4.8.5-x64-osx-10.14.2/bin $PATH
 #set KREMLIN_HOME ~/code/sw/everest/kremlin
 #set HACL_HOME ~/code/sw/everest/hacl-star
 # Doom Emacs
-set PATH ~/doom-emacs.d/bin $PATH
+set PATH ~/.emacs.d/bin $PATH
 
 # takes non-trivial time at startup; replaced with universal variable
 # set -gx RUST_SRC_PATH (rustc --print sysroot)/lib/rustlib/src/rust/src
