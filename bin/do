@@ -43,7 +43,7 @@ class Cantor:
 
     @classmethod
     def checkpoint(cls, _args):
-        return Command(["cantor-checkpoint"])
+        return Command(["arch-checkpoint"])
 
     @classmethod
     def update(cls, _args):
@@ -53,9 +53,9 @@ class Cantor:
     def running(cls, _args):
         def find_arch(status):
             if status.find(b"Arch") > 0:
-                return "cantor is running"
+                return "hamilton is running"
             else:
-                return "cantor is stopped"
+                return "hamilton is stopped"
         return PostprocessCommand(["VBoxManage", "list", "runningvms"], find_arch)
 
     @classmethod
@@ -209,6 +209,9 @@ if __name__ == "__main__":
 
     Cantor.setup_parser(
         subparsers.add_parser('cantor', help="manage cantor VM"))
+
+    Cantor.setup_parser(
+        subparsers.add_parser('hamilton', help="manage hamilton VM"))
 
     Book.setup_parser(
         subparsers.add_parser('book', help="search for books at the BPL"))
