@@ -58,10 +58,51 @@ defaults -currentHost write com.apple.ImageCapture disableHotPlug -bool true
 
 # Ask for password after screen lock
 defaults write com.apple.screensaver askForPassword -bool true
-# ... after 5 seconds (note: setting this to a value not in the System
-# Preferences dropdown menu appears to not work)
-defaults write com.apple.screensaver askForPasswordDelay 5
+# ... immediately (after 0 seconds) (note: setting this to a value not in the
+# System Preferences dropdown menu appears to not work)
+defaults write com.apple.screensaver askForPasswordDelay 0
 
 # disable some Safari promotion features
 defaults write com.apple.Safari DefaultBrowserDateOfLastPrompt -date '2050-01-01T00:00:00Z'
 defaults write com.apple.Safari DefaultBrowserPromptingState -int 2
+
+# Disable the sound effects on boot
+sudo nvram SystemAudioVolume=" "
+
+# Disable automatic capitalization as it’s annoying when typing code
+defaults write NSGlobalDomain NSAutomaticCapitalizationEnabled -bool false
+
+# Disable smart dashes as they’re annoying when typing code
+defaults write NSGlobalDomain NSAutomaticDashSubstitutionEnabled -bool false
+
+# Disable automatic period substitution as it’s annoying when typing code
+defaults write NSGlobalDomain NSAutomaticPeriodSubstitutionEnabled -bool false
+
+# Disable smart quotes as they’re annoying when typing code
+defaults write NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled -bool false
+
+# Trackpad: map bottom right corner to right-click
+defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadCornerSecondaryClick -int 2
+defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadRightClick -bool true
+defaults -currentHost write NSGlobalDomain com.apple.trackpad.trackpadCornerClickBehavior -int 1
+defaults -currentHost write NSGlobalDomain com.apple.trackpad.enableSecondaryClick -bool true
+
+# Increase sound quality for Bluetooth headphones/headsets
+defaults write com.apple.BluetoothAudioAgent "Apple Bitpool Min (editable)" -int 40
+
+# Avoid creating .DS_Store files on network or USB volumes
+defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
+defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
+
+#################
+# applications  #
+#################
+
+# Don’t display the annoying prompt when quitting iTerm
+defaults write com.googlecode.iterm2 PromptOnQuit -bool false
+
+# Use plain text mode for new TextEdit documents
+defaults write com.apple.TextEdit RichText -int 0
+# Open and save files as UTF-8 in TextEdit
+defaults write com.apple.TextEdit PlainTextEncoding -int 4
+defaults write com.apple.TextEdit PlainTextEncodingForWrite -int 4
