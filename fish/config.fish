@@ -1,12 +1,3 @@
-### Configure theme (bobthefish)
-#set -g theme_color_scheme dark
-#set -g theme_display_git_ahead_verbose yes
-#set -g theme_display_ruby no
-#set -g theme_title_use_abbreviated_path no
-##set -g theme_git_worktree_support yes
-#set -g theme_nerd_fonts yes
-#set -g theme_display_git_master_branch no
-
 # No greeting when starting an interactive shell.
 function fish_greeting
 end
@@ -31,18 +22,8 @@ set PATH ~/.gem/bin $PATH
 # Racket
 set PATH /usr/local/Cellar/minimal-racket/7.6/bin $PATH
 # MacTeX
-set PATH /usr/local/texlive/2019/bin/x86_64-darwin $PATH
+set PATH /usr/local/texlive/2020/bin/x86_64-darwin $PATH
 
-# temp F* config
-set PATH ~/code/sw/FStar/bin $PATH
-set PATH ~/Downloads/z3-4.8.5-x64-osx-10.14.2/bin $PATH
-
-# F*
-#set PATH ~/code/sw/everest/FStar/bin $PATH
-#set PATH ~/code/sw/everest/kremlin $PATH
-#set PATH ~/code/sw/everest/z3-4.5.1.1f29cebd4df6-x64-osx-10.11.6/bin $PATH
-#set KREMLIN_HOME ~/code/sw/everest/kremlin
-#set HACL_HOME ~/code/sw/everest/hacl-star
 # Doom Emacs
 set PATH ~/.emacs.d/bin $PATH
 
@@ -67,15 +48,12 @@ alias es="/usr/local/bin/emacsclient -a '' --no-wait --eval '(progn (switch-to-b
 alias ls="exa"
 alias ll="exa -l"
 
-# use NeoVim by default
+# use neovim by default
 alias vim="nvim"
 
 ## opam setup
 source ~/.opam/opam-init/init.fish
 eval (opam config env --shell=fish)
-# setting MANPATH breaks manpage lookups, which normally use $PATH
-# (opam HEAD fixed this by not setting MANPATH if not already set)
-#set -e MANPATH
 
 # Coq
 # (to override opam version)
@@ -85,11 +63,6 @@ set PATH $COQBIN $PATH
 function jhome
     set -Ux JAVA_HOME (/usr/libexec/java_home $argv)
     java -version
-end
-
-function setupgo
-    set -gx GOPATH $PWD
-    set PATH $GOPATH/bin $PATH
 end
 
 function dafny
@@ -105,8 +78,3 @@ source ~/.iterm2_shell_integration.fish
 
 ## jump integration
 status --is-interactive; and source (jump shell fish --bind=z | psub)
-
-## Set up RVM (Ruby)
-# https://rvm.io/integration/fish
-# disabled because this is extremely slow
-#rvm default
