@@ -11,9 +11,9 @@ Plug 'jremmen/vim-ripgrep'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 " a few color schemes
-Plug 'NLKNguyen/papercolor-theme'
-" Plug 'rakr/vim-one'
-Plug 'jacoborus/tender.vim'
+" Plug 'NLKNguyen/papercolor-theme'
+Plug 'rakr/vim-one'
+" Plug 'jacoborus/tender.vim'
 
 " General Programming
 Plug 'tpope/vim-fugitive' " git
@@ -49,10 +49,10 @@ if has("termguicolors")
 endif
 
 syntax enable
-colorscheme tender
 set background=dark
+colorscheme one
 let g:airline_powerline_fonts = 1
-let g:airline_theme = 'tender'
+let g:airline_theme = 'one'
 
 let g:syntastic_rust_checkers = ['cargo']
 let g:syntastic_go_checkers = ['go', 'gofmt']
