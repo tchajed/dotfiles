@@ -17,6 +17,17 @@ class Command:
         # TODO: fix this naive version by adding quotes where appropriate
         return " ".join(self.args)
 
+class CommandGroup:
+    def __init__(self, cmds):
+        self.cmds = cmds
+
+    def run(self):
+        for cmd in self.cmds:
+            cmd.run()
+
+    def shell_command(self):
+        return "\n".join(cmd.shell_command() for cmd in self.cmds)
+
 class PostprocessCommand(Command):
     def __init__(self, args, post):
         super(PostprocessCommand, self).__init__(args)
@@ -175,7 +186,10 @@ class Fermat:
 class Brouwer:
     @classmethod
     def unmount(cls, args):
-        return Unmount.unmount_command("brouwer")
+        return CommandGroup([
+            Unmount.unmount_command("brouwer"),
+            Unmount.unmount_command("borel"),
+            ])
 
     @classmethod
     def setup_parser(cls, parser: argparse.ArgumentParser):
