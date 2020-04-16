@@ -1,15 +1,9 @@
 ;;; ~/.doom.d/+coq.el -*- lexical-binding: nil; -*-
 ;;;
+
 (add-hook! coq-mode
   (setq proof-splash-enable nil)
   (setq proof-splash-seen t)
-  (setq company-coq-disabled-features
-        '(hello
-          outline
-          error-diffs
-          alerts
-          spinner ;; minor modes are hidden anyway
-          obsolete-settings))
 
   (evil-define-text-object evil-a-lift (count &optional beg end type)
     "Select a lifted proposition."
@@ -241,8 +235,17 @@ Based on https://gitlab.mpi-sws.org/iris/iris/blob/master/docs/editor.md"
     (setq coq-prog-name (concat coqbin "coqtop")))
   (setq coq-prefer-top-of-conclusion t)
   (setq proof-electric-terminator-enable nil)
-  (setq coq-double-hit-enable t)
+  (setq coq-double-hit-enable nil)
   (setq company-coq-live-on-the-edge t)
+
+  (setq company-coq-disabled-features
+        '(hello
+          outline
+          refactorings
+          alerts ;; doesn't work on macOS
+          prettify-symbols ;; causes too many problems with Iris
+          spinner ;; minor modes are hidden anyway
+          obsolete-settings))
 
   (setq require-final-newline t)
 
