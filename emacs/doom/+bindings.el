@@ -14,7 +14,10 @@
         :desc "Zoom frame in"          "=" #'zoom-frm-in
         :desc "Zoom frame out"         "-" #'zoom-frm-out
         :desc "Zoom frame reset"       "0" #'zoom-frm-unzoom)
-      )
+
+      (:prefix "t"
+        :desc "Toggle light/dark themes"   "t" #'toggle-theme-phase
+        ))
 
 ;; reverse these two bindings since creating frames is more common
 (map! "s-n" #'make-frame)

@@ -15,6 +15,18 @@
 (setq which-key-idle-delay 0.7)
 (load-theme 'doom-one-light)
 
+(setq current-theme-phase 'light)
+(defun toggle-theme-phase ()
+  "Switch between light and dark themes."
+  (interactive)
+  (if (eq current-theme-phase 'light)
+      (progn
+        (setq current-theme-phase 'dark)
+        (load-theme 'doom-one))
+    (progn
+      (setq current-theme-phase 'light)
+      (load-theme 'doom-one-light))))
+
 (doom-load-envvars-file "/Users/tchajed/.emacs.d/.local/env")
 
 ;(setq doom-font (font-spec :family "Inconsolata Nerd Font Mono" :size 18))
