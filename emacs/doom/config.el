@@ -13,9 +13,10 @@
          font-lock-keyword-face command)))
 (setq proof-prog-name-guess nil)
 (setq which-key-idle-delay 0.7)
-(load-theme 'doom-one-light)
 
 (setq current-theme-phase 'light)
+(load-theme 'doom-one-light)
+
 (defun toggle-theme-phase ()
   "Switch between light and dark themes."
   (interactive)
