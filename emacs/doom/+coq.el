@@ -140,6 +140,7 @@ Based on https://gitlab.mpi-sws.org/iris/iris/blob/master/docs/editor.md"
    ("\\mapsto"         "↦")
    ("\\hookrightarrow" "↪")
    ("\\uparrow"        "↑")
+   ("\\upclose"        "↑")
 
    ("\\mult"   ?⋅)
    ("\\ent"    ?⊢)
@@ -170,7 +171,6 @@ Based on https://gitlab.mpi-sws.org/iris/iris/blob/master/docs/editor.md"
    ("\\Sig"    ?Σ)
    ("\\env"    ?Δ)
    ("\\state"  ?σ)
-   ("\\sigma"  ?σ)
    ("\\-"      ?∖)
    ("\\aa"     ?●)
    ("\\af"     ?◯)
