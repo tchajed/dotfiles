@@ -39,6 +39,8 @@ alias sed="gsed"
 alias tar="gtar"
 alias timeout="gtimeout"
 
+alias make="make -j12"
+
 # Emacs aliases
 alias e="/usr/local/bin/emacsclient -a '' --no-wait"
 alias et="/usr/local/bin/emacsclient --tty"
