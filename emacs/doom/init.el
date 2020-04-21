@@ -69,10 +69,7 @@
        ;;word-wrap         ; soft wrapping with language-aware indent
 
        :emacs
-       (dired            ; making dired pretty [functional]
-       +ranger         ; bringing the goodness of ranger to dired
-       ;;+icons          ; colorful icons for dired-mode
-        )
+       dired            ; making dired pretty [functional]
        electric          ; smarter, keyword-based electric-indent
        ibuffer           ; interactive buffer management
        undo              ; persistent, smarter undo for your inevitable mistakes
@@ -82,7 +79,7 @@
        ;;eshell            ; the elisp shell that works everywhere
        ;;shell             ; simple shell REPL for Emacs
        ;;term              ; basic terminal emulator for Emacs
-       ;;vterm             ; the best terminal emulation in Emacs
+       vterm             ; the best terminal emulation in Emacs
 
        :checkers
        syntax              ; tasing you for every semicolon you forget
@@ -157,7 +154,7 @@
        ;;qt                ; the 'cutest' gui framework ever
        racket            ; a DSL for DSLs
        ;;rest              ; Emacs as a REST client
-       rst               ; ReST in peace
+       ;;rst               ; ReST in peace
        ;;ruby              ; 1.step do {|i| p "Ruby is #{i.even? ? 'love' : 'life'}"}
        rust              ; Fe2O3.unwrap().unwrap().unwrap().unwrap()
        ;; scala             ; java, but good
