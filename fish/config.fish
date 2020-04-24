@@ -8,8 +8,7 @@ set PATH /usr/local/bin /usr/local/sbin $PATH
 # Stack executables
 set PATH ~/.local/bin $PATH
 # Go
-set GOPATH ~/go
-set PATH $GOPATH/bin $PATH
+set PATH ~/go/bin $PATH
 # Rust
 set PATH ~/.cargo/bin $PATH
 # latexrun
