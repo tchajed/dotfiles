@@ -225,6 +225,27 @@
           ]
         }
       ]
+    },
+    {
+      "description": "Change RCMD+return to F4",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "return_or_enter",
+            "modifiers": {
+              "mandatory": [
+                "right_command"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "f4"
+            }
+          ]
+        }
+      ]
     }
   ]
 }
