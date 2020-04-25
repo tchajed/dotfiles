@@ -142,6 +142,9 @@ Based on https://gitlab.mpi-sws.org/iris/iris/blob/master/docs/editor.md"
    ("\\uparrow"        "↑")
    ("\\upclose"        "↑")
 
+   ;; Perennial
+   ("\\named"           "∷")
+
    ("\\mult"   ?⋅)
    ("\\ent"    ?⊢)
    ("\\valid"  ?✓)
