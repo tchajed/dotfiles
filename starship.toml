@@ -17,6 +17,11 @@ modified = ""
 # includes file-system cache so is nearly always full
 disabled = true
 
+[time]
+disabled = false
+format = "%k:%M"
+style = "yellow"
+
 ## language-specific configuration
 
 [nodejs]
