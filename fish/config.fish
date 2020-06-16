@@ -19,7 +19,7 @@ set PATH ~/.dotfiles/bin $PATH
 #set PATH /usr/local/lib/ruby/gems/2.6.3/bin /usr/local/Cellar/ruby/2.6.3/bin $PATH
 set PATH ~/.gem/bin $PATH
 # Racket
-set PATH /usr/local/Cellar/minimal-racket/7.6/bin $PATH
+set PATH /usr/local/Cellar/minimal-racket/7.7/bin $PATH
 # MacTeX
 set PATH /usr/local/texlive/2020/bin/x86_64-darwin $PATH
 
@@ -39,6 +39,13 @@ alias tar="gtar"
 alias timeout="gtimeout"
 
 alias make="make -j12"
+# quickly re-build dependencies
+function make_recent
+    set -l file (gls -c src/**.v | head -2)
+    set -l target (string replace -r '.v$' '.required_vos' $file)
+    make -j8 $target
+    gtimeout "10s" make -j8 vos
+end
 
 # Emacs aliases
 alias e="/usr/local/bin/emacsclient -a '' --no-wait"
@@ -67,7 +74,7 @@ function jhome
 end
 
 function dafny
-  mono /Users/tchajed/.vscode/extensions/correctnesslab.dafny-vscode-*/dafny/dafny/Dafny.exe $argv
+    mono /Users/tchajed/.vscode/extensions/correctnesslab.dafny-vscode-*/dafny/dafny/Dafny.exe $argv
 end
 
 # starship

@@ -20,8 +20,6 @@
   pager = diff-so-fancy | less --tabs=4 -RFX
 [credential]
   helper = osxkeychain
-[push]
-  default = simple
 
 # Chrome
 [alias]
@@ -60,7 +58,10 @@
 [submodule]
   # fetch in parallel
   fetchJobs = 4
+	recurse = true
 [url "ssh://git@github.com/"]
   insteadOf = https://github.com/
 [url "ssh://git@github.mit.edu/"]
   insteadOf = https://github.mit.edu/
+[pull]
+	rebase = true

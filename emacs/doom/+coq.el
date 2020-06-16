@@ -120,6 +120,8 @@ Based on https://gitlab.mpi-sws.org/iris/iris/blob/master/docs/editor.md"
    ("\\notin"          "∉")
    ("\\cup"            "∪")
    ("\\cap"            "∩")
+   ("\\union"          "∪")
+   ("\\intersect"      "∩")
    ("\\setminus"       "∖")
    ("\\subset"         "⊂")
    ("\\subseteq"       "⊆")
@@ -254,3 +256,14 @@ Based on https://gitlab.mpi-sws.org/iris/iris/blob/master/docs/editor.md"
 
   (iris-input-config)
   )
+
+(with-eval-after-load 'treemacs
+
+  (defun treemacs-ignore-coq (filename absolute-path)
+    (or (string-suffix-p ".vo" filename)
+        (string-suffix-p ".vos" filename)
+        (string-suffix-p ".vok" filename)
+        (string-suffix-p ".aux" filename)
+        (string-suffix-p ".glob" filename)))
+
+  (add-to-list 'treemacs-ignored-file-predicates #'treemacs-ignore-coq))
