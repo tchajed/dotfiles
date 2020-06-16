@@ -1,27 +1,51 @@
-# vim: ts=2:sw=2
-# Core configuration
-[user]
-  name = Tej Chajed
-  email = tchajed@mit.edu
-  signingKey = C59DA7E160BF50D5EF25ACB0A5CD04BD8ED49551
-[github]
-  user = tchajed
+# vim: noet
+
+# Fix git being broken
+[merge]
+  # by default on git pull, only fast-forward (use git pull --rebase explicitly)
+  ff = only
+[core]
+  # some things were just meant to be ignored
+  excludesfile = ~/.gitignore_global
+[color]
+  # colors, like we discovered in the 90s
+  ui = true
+[alias]
+  # handling submodules (thanks to Anish for these commands)
+  # update fixes the working copy of every submodule
+  update-submodules = submodule update --init --recursive
+  # upgrade causes all submodules to refer to the latest upstream commit
+  # (which you can then commit)
+  upgrade-submodules = submodule update --init --remote
+[submodule]
+  # fetch in parallel
+  fetchJobs = 4
+  # automatically update submodules on git pull
+  recurse = true
+[status]
+  # it's dangerous to show an untracked directory as a single line
+  showUntrackedFiles = all
+
+# nice-to-have diff improvements
+[merge]
+  conflictstyle = diff3
+[diff-so-fancy]
+  first-run = false
+[diff]
+  # see https://blog.github.com/2018-04-05-git-217-released/
+  compactionHeuristic = on
+  # see https://blog.github.com/2018-04-05-git-217-released/
+  # consider zebra (the default when colorMoved is used), which has distinctive
+  # colors but too many
+  colorMoved = dimmed_zebra
+[init]
+  pager = diff-so-fancy | less --tabs=4 -RFX
+
+# global hooks
 [init]
   templatedir = ~/.git_template
-[commit]
-  gpgsign = true
-[gpg]
-  program = gpg
 
-# Better behavior
-[core]
-  excludesfile = ~/.gitignore_global
-  editor = nvim
-  pager = diff-so-fancy | less --tabs=4 -RFX
-[credential]
-  helper = osxkeychain
-
-# Chrome
+# some nice commands
 [alias]
   wat     = !~/.dotfiles/bin/git-wat
   rank-contributors = !~/.dotfiles/bin/git-rank-contributors
@@ -36,32 +60,25 @@
   dayswork = diff --stat 'HEAD@{today.3am}'
   root = rev-parse --show-toplevel
 
-  # handling submodules
-  # update fixes the working copy of every submodule
-  update-submodules = submodule update --init --recursive
-  # upgrade causes all submodules to refer to the latest upstream commit
-  # (which you can then commit)
-  upgrade-submodules = submodule update --init --remote
-[color]
-  ui = true
-[diff-so-fancy]
-  first-run = false
-[diff]
-  # see https://blog.github.com/2018-04-05-git-217-released/
-  compactionHeuristic = on
-  # see https://blog.github.com/2018-04-05-git-217-released/
-  # consider zebra (the default when colorMoved is used), which has distinctive
-  # colors but too many
-  colorMoved = dimmed_zebra
-[rebase]
-  autosquash = true
-[submodule]
-  # fetch in parallel
-  fetchJobs = 4
-	recurse = true
+# fix some logins to use ssh authentication
 [url "ssh://git@github.com/"]
   insteadOf = https://github.com/
 [url "ssh://git@github.mit.edu/"]
   insteadOf = https://github.mit.edu/
-[pull]
-	rebase = true
+
+# User configuration
+[user]
+  name = Tej Chajed
+  email = tchajed@mit.edu
+[github]
+  user = tchajed
+
+# GPG-related configuration
+[user]
+  signingKey = C59DA7E160BF50D5EF25ACB0A5CD04BD8ED49551
+[commit]
+  gpgsign = true
+[gpg]
+  program = gpg
+[credential]
+  helper = osxkeychain
