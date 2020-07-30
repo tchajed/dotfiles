@@ -58,3 +58,8 @@ let g:syntastic_rust_checkers = ['cargo']
 let g:syntastic_go_checkers = ['go', 'gofmt']
 let g:go_fmt_command = "goimports"
 let g:go_info_mode = "gopls"
+
+" Coqtail mappings
+map <F3> <Plug>CoqNext
+map <F4> <Plug>CoqToLine
+map <F2> <Plug>CoqUndo

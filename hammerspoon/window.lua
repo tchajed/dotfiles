@@ -50,8 +50,8 @@ function moveTo(rect)
 end
 
 -- half of screen
-hs.hotkey.bind({'ctrl', 'cmd'}, 'h', function() moveTo(hs.layout.left50) end)
-hs.hotkey.bind({'ctrl', 'cmd'}, 'l', function() moveTo(hs.layout.right50) end )
+-- hs.hotkey.bind({'ctrl', 'cmd'}, 'h', function() moveTo(hs.layout.left50) end)
+-- hs.hotkey.bind({'ctrl', 'cmd'}, 'l', function() moveTo(hs.layout.right50) end )
 
 -- quarter of screen
 hs.hotkey.bind({'shift', 'alt', 'cmd'}, 'left',

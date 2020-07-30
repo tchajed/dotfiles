@@ -6,6 +6,7 @@ function gridUnitRec(r)
 end
 
 benQKeys = {"123456", "qwerty", "asdfgh", "zxcvbn"}
+dellwideKeys = {"12345678", "qwertyui", "asdfghjk", "zxcvbnm,"}
 macKeys = {"qwe", "asd", "zxc"}
 
 -- translate a single location in a row mapping to 1-based (x,y) coordinations
@@ -41,6 +42,9 @@ function layoutSpec(application, monitor, corners)
   elseif monitor == "benq" then
     keyRows = benQKeys
     monitor = "BenQ PD3200U"
+  elseif monitor == "dellwide" then
+    keyRows = dellwideKeys
+    monitor = "Dell U3818DW"
   end
   local rec = gridUnitRec(translateCornerSpec(keyRows, corners))
   return {application, nil, monitor, rec,
@@ -58,13 +62,16 @@ workLayout = {
   -- layoutSpec("WorkFlowy Beta", "mac", "ec"),
   -- layoutSpec("com.culturedcode.ThingsMac", "benq", "hn"),
 
-  layoutSpec("org.gnu.Emacs", "benq", "1v"),
-  layoutSpec("GoLand", "benq", "1v"),
-  layoutSpec("PyCharm", "benq", "1v"),
+  -- layoutSpec("org.gnu.Emacs", "benq", "1v"),
+  -- layoutSpec("GoLand", "benq", "1v"),
+  -- layoutSpec("PyCharm", "benq", "1v"),
+  layoutSpec("org.gnu.Emacs", "dellwide", "2b"),
+  layoutSpec("GoLand", "dellwide", "2b"),
 
-  layoutSpec("com.apple.Preview", "benq", "2v"),
-  layoutSpec("net.sourceforge.skim-app.skim", "benq", "3v"),
-  layoutSpec("iTerm2", "benq", "5n"),
+  -- layoutSpec("com.apple.Preview", "benq", "2v"),
+  -- layoutSpec("net.sourceforge.skim-app.skim", "benq", "3v"),
+  -- layoutSpec("iTerm2", "benq", "5n"),
+  layoutSpec("iTerm2", "dellwide", "6k"),
 }
 
 function openSpotify()

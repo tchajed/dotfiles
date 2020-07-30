@@ -22,9 +22,22 @@ set PATH ~/.gem/bin $PATH
 set PATH /usr/local/Cellar/minimal-racket/7.7/bin $PATH
 # MacTeX
 set PATH /usr/local/texlive/2020/bin/x86_64-darwin $PATH
+# pip3-installed binaries
+set PATH ~/Library/Python/3.7/bin $PATH
 
 # Doom Emacs
 set PATH ~/.emacs.d/bin $PATH
+
+## opam setup
+source ~/.opam/opam-init/init.fish
+eval (opam config env --shell=fish)
+
+# Coq
+if ! which coqc >/dev/null
+  # use local build
+  set -x COQBIN /Users/tchajed/code/sw/coq/bin/
+  set PATH $COQBIN $PATH
+end
 
 # takes non-trivial time at startup; replaced with universal variable
 # set -gx RUST_SRC_PATH (rustc --print sysroot)/lib/rustlib/src/rust/src
@@ -58,14 +71,6 @@ alias ll="exa -l"
 
 # use neovim by default
 alias vim="nvim"
-
-## opam setup
-source ~/.opam/opam-init/init.fish
-eval (opam config env --shell=fish)
-
-# Coq
-# (to override opam version)
-set PATH $COQBIN $PATH
 
 ## changing java version
 function jhome

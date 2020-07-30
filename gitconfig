@@ -1,7 +1,7 @@
 # vim: noet
 
 # Fix git being broken
-[merge]
+[pull]
   # by default on git pull, only fast-forward (use git pull --rebase explicitly)
   ff = only
 [core]
@@ -20,8 +20,6 @@
 [submodule]
   # fetch in parallel
   fetchJobs = 4
-  # automatically update submodules on git pull
-  recurse = true
 [status]
   # it's dangerous to show an untracked directory as a single line
   showUntrackedFiles = all
