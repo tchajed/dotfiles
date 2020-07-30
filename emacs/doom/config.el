@@ -72,7 +72,9 @@
 (setq +format-on-save-enabled-modes
   '(not emacs-lisp-mode  ; elisp's mechanisms are good enough
         sql-mode         ; sqlformat is currently broken
-        latex-mode))
+        latex-mode
+        bibtex-mode      ; causes too much disruption
+        ))
 
 ;; the flycheck coq checker is implemented by flycheck and compiles separately
 ;; (without using the Proof General coqtop), which doesn't make sense for any
@@ -92,6 +94,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(preview-auto-cache-preamble t)
  '(safe-local-variable-values '((reftex-default-bibliography "n.bib" "p.bib"))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -99,3 +102,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+
+;; use auto-fill-mode by default for writing
+(add-hook 'latex-mode-hook #'auto-fill-mode)
+(add-hook 'markdown-mode-hook #'auto-fill-mode)
