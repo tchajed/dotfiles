@@ -84,6 +84,11 @@
 ;; use ~/ to move to home (instead of just ~)
 (setq ivy-magic-tilde nil)
 
+;; tab indents anywhere in the line (TODO: probably want this only in only
+;; programming language major modes, especially Coq but also any language with
+;; reliable auto-indentation)
+(setq tab-always-indent t)
+
 (load! "+coq.el")
 (load! "+markdown.el")
 (load! "+bindings.el")
