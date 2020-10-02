@@ -26,17 +26,30 @@ end)
 
 -- Throwing windows between screens (monitors)
 hs.window.animationDuration = 0 -- default is 0.2
+-- workaround for window:moveOneScreenEast() not working
+function moveWindow(where)
+  if hs.window.focusedWindow() then
+    local w = hs.window.frontmostWindow()
+    local s = hs.screen.mainScreen()
+    if (where == "east") then s = s:toEast()
+    elseif (where == "west") then s = s:toWest()
+    elseif (where == "south") then s = s:toSouth()
+    elseif (where == "north") then s = s:toNorth()
+    end
+    w:moveToScreen(s)
+  end
+end
 hs.hotkey.bind("cmd-ctrl", "right", function()
-                 hs.window.focusedWindow():moveOneScreenEast()
+  moveWindow("east")
 end)
 hs.hotkey.bind("cmd-ctrl", "left", function()
-                 hs.window.focusedWindow():moveOneScreenWest()
+  moveWindow("west")
 end)
 hs.hotkey.bind("cmd-ctrl", "up", function()
-                 hs.window.focusedWindow():moveOneScreenNorth()
+  moveWindow("north")
 end)
 hs.hotkey.bind("cmd-ctrl", "down", function()
-                 hs.window.focusedWindow():moveOneScreenSouth()
+  moveWindow("south")
 end)
 
 -- Resizing windows

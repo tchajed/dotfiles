@@ -61,5 +61,8 @@ let g:go_info_mode = "gopls"
 
 " Coqtail mappings
 map <F3> <Plug>CoqNext
+imap <F3> <Plug>CoqNext
 map <F4> <Plug>CoqToLine
+imap <F4> <Plug>CoqToLine
 map <F2> <Plug>CoqUndo
+imap <F2> <Plug>CoqUndo

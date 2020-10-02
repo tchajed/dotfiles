@@ -24,6 +24,8 @@ set PATH /usr/local/Cellar/minimal-racket/7.7/bin $PATH
 set PATH /usr/local/texlive/2020/bin/x86_64-darwin $PATH
 # pip3-installed binaries
 set PATH ~/Library/Python/3.7/bin $PATH
+# Alectryon
+set PATH ~/code/sw/alectryon $PATH
 
 # Doom Emacs
 set PATH ~/.emacs.d/bin $PATH
