@@ -4,6 +4,6 @@
 # key: trigger-key
 # condition: t                     
 # --
-Definition ${1:name}_aux : seal (@$1_def). by eexists. Qed.
+Definition ${1:name}_aux : seal (@$1_def). Proof. by eexists. Qed.
 Definition $1 := ($1_aux).(unseal).
-Definition $1_eq := ($1_aux).(seal_eq).
+Definition $1_eq : @$1 = @$1_def  := ($1_aux).(seal_eq).

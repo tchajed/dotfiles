@@ -134,11 +134,12 @@ Based on https://gitlab.mpi-sws.org/iris/iris/blob/master/docs/editor.md"
    ("\\bottom"         "⊥")
    ("\\vdash"          "⊢")
    ("\\dashv"          "⊣")
+   ("\\bient"          ["⊣⊢"])
    ("\\Vdash"          "⊨")
    ("\\infty"          "∞")
    ("\\comp"           "∘")
    ("\\prf"            "↾")
-   ("\\bind"           "≫")
+   ("\\bind"           ["≫="])
    ("\\mapsto"         "↦")
    ("\\hookrightarrow" "↪")
    ("\\uparrow"        "↑")
@@ -186,6 +187,7 @@ Based on https://gitlab.mpi-sws.org/iris/iris/blob/master/docs/editor.md"
 
    ;; accents (for iLöb)
    ("\\\"o"    ?ö)
+   ("\\Lob"    ?ö)
 
    ;; subscripts and superscripts
    ("^^+" ?⁺) ("__+" ?₊) ("^^-" ?⁻)
@@ -224,7 +226,13 @@ Based on https://gitlab.mpi-sws.org/iris/iris/blob/master/docs/editor.md"
    ("\\Omega"    "Ω") ("\\omega"    "ω")
 
    ;; custom
-   ("\\gets" ?←)
+   ("\\gets"     ?←)
+   ("\\op"       ?⋅)
+   ("\\except0"  ?◇)
+   ;; note that this is a elisp vector - quail interprets a string as a list of
+   ;; characters that are candidates for translation, while a vector can contain
+   ;; strings that are candidates for translation.
+   ("\\bient"    ["⊣⊢"])
    )
   ; use the newly-created math input method
   (set-input-method "math")
@@ -232,7 +240,7 @@ Based on https://gitlab.mpi-sws.org/iris/iris/blob/master/docs/editor.md"
 
 (add-hook! coq-mode
   (setq proof-three-window-mode-policy 'hybrid)
-  (setq undo-tree-enable-undo-in-region nil)
+  ;;(setq undo-tree-enable-undo-in-region nil)
 
   (let ((coqbin (getenv "COQBIN")))
     (setq coq-compiler (concat coqbin "coqc"))
