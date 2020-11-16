@@ -42,7 +42,7 @@ if ! which coqc >/dev/null
 end
 
 # takes non-trivial time at startup; replaced with universal variable
-# set -gx RUST_SRC_PATH (rustc --print sysroot)/lib/rustlib/src/rust/src
+# set -Ux RUST_SRC_PATH (rustc --print sysroot)/lib/rustlib/src/rust/library
 
 ## Aliases
 # Use GNU versions
