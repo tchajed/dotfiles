@@ -233,6 +233,8 @@ Based on https://gitlab.mpi-sws.org/iris/iris/blob/master/docs/editor.md"
    ;; characters that are candidates for translation, while a vector can contain
    ;; strings that are candidates for translation.
    ("\\bient"    ["⊣⊢"])
+   ;; common typo due to keyboard config
+   ("\\_ep"    ?∗)
    )
   ; use the newly-created math input method
   (set-input-method "math")

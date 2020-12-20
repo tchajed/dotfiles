@@ -3,10 +3,13 @@
 ;; imported from customize
 
 (setq custom-safe-themes
-   (quote
-    ("e1ecb0536abec692b5a5e845067d75273fe36f24d01210bf0aa5842f2a7e029f" "99ea831ca79a916f1bd789de366b639d09811501e8c092c85b2cb7d697777f93" "6cbf6003e137485fb3f904e76fb15bc48abc386540f43f54e2a47a9884e679f6" default)))
+      '("2f1518e906a8b60fac943d02ad415f1d8b3933a5a7f75e307e6e9a26ef5bf570"
+        "e1ecb0536abec692b5a5e845067d75273fe36f24d01210bf0aa5842f2a7e029f"
+        "99ea831ca79a916f1bd789de366b639d09811501e8c092c85b2cb7d697777f93"
+        "6cbf6003e137485fb3f904e76fb15bc48abc386540f43f54e2a47a9884e679f6"
+        default))
 (setq comment-multi-line t)
-(setq font-latex-match-type-command-keywords '(("tej" "{") ("joe" "{") ("todo" "{")))
+(setq font-latex-match-type-command-keywords '(("tej" "{") ("joe" "{") ("todo" "{") ("mfk" "{") ("ralf" "{")))
 (setq font-latex-user-keyword-classes
       '(("note"
          (("note" "{"))
@@ -14,6 +17,9 @@
 (setq proof-prog-name-guess nil)
 (setq which-key-idle-delay 0.7)
 (setq projectile-indexing-method 'hybrid)
+(setq safe-local-variable-values '((reftex-default-bibliography "n.bib" "p.bib")))
+(setq font-lock-type-face '((t (:foreground "#986801"))))
+(setq company-coq-disabled-features '(hello prettify-symbols alerts spinner company-defaults))
 
 (setq current-theme-phase 'light)
 (load-theme 'doom-one-light)
@@ -33,18 +39,18 @@
 
 (setq fancy-splash-image "~/Pictures/iris-tan.png")
 
-;(setq doom-font (font-spec :family "Inconsolata Nerd Font Mono" :size 18))
-;(setq doom-big-font (font-spec :family "Inconsolata Nerd Font Mono" :size 24))
+;;(setq doom-font (font-spec :family "Inconsolata Nerd Font Mono" :size 18))
+;;(setq doom-big-font (font-spec :family "Inconsolata Nerd Font Mono" :size 24))
 (setq doom-font (font-spec :family "Victor Mono" :size 16))
 (setq doom-big-font (font-spec :family "Victor Mono" :size 20))
 (setq frame-title-format
-    '(""
-      "%b"
-      (:eval
-       (let ((project-name (projectile-project-name)))
-         (unless (string= "-" project-name)
-           (format " in [%s]" project-name))))
-      " - Doom Emacs"))
+      '(""
+        "%b"
+        (:eval
+         (let ((project-name (projectile-project-name)))
+           (unless (string= "-" project-name)
+             (format " in [%s]" project-name))))
+        " - Doom Emacs"))
 
 (setq +lookup-provider-url-alist
       '(("Google"            . "https://google.com/search?q=%s")
@@ -70,11 +76,11 @@
       flycheck-python-pycompile-executable "python3")
 
 (setq +format-on-save-enabled-modes
-  '(not emacs-lisp-mode  ; elisp's mechanisms are good enough
-        sql-mode         ; sqlformat is currently broken
-        latex-mode
-        bibtex-mode      ; causes too much disruption
-        ))
+      '(not emacs-lisp-mode  ; elisp's mechanisms are good enough
+            sql-mode         ; sqlformat is currently broken
+            latex-mode
+            bibtex-mode      ; causes too much disruption
+            ))
 
 ;; the flycheck coq checker is implemented by flycheck and compiles separately
 ;; (without using the Proof General coqtop), which doesn't make sense for any
@@ -94,19 +100,7 @@
 (load! "+bindings.el")
 (load! "+latex.el")
 (load! "+racket.el")
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(preview-auto-cache-preamble t)
- '(safe-local-variable-values '((reftex-default-bibliography "n.bib" "p.bib"))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
+
 
 ;; use auto-fill-mode by default for writing
 (add-hook 'latex-mode-hook #'auto-fill-mode)
