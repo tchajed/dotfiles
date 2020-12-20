@@ -112,3 +112,7 @@ defaults write com.apple.TextEdit RichText -int 0
 # Open and save files as UTF-8 in TextEdit
 defaults write com.apple.TextEdit PlainTextEncoding -int 4
 defaults write com.apple.TextEdit PlainTextEncodingForWrite -int 4
+
+# https://tex.stackexchange.com/questions/43057/macosx-pdf-viewer-automatic-reload-on-file-modification
+# make Skim auto-reload without prompt
+defaults write -app Skim SKAutoReloadFileUpdate -boolean true

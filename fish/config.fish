@@ -19,13 +19,15 @@ set PATH ~/.dotfiles/bin $PATH
 #set PATH /usr/local/lib/ruby/gems/2.6.3/bin /usr/local/Cellar/ruby/2.6.3/bin $PATH
 set PATH ~/.gem/bin $PATH
 # Racket
-set PATH /usr/local/Cellar/minimal-racket/7.7/bin $PATH
+set PATH /usr/local/opt/minimal-racket/bin $PATH
 # MacTeX
 set PATH /usr/local/texlive/2020/bin/x86_64-darwin $PATH
 # pip3-installed binaries
 set PATH ~/Library/Python/3.7/bin $PATH
 # Alectryon
 set PATH ~/code/sw/alectryon $PATH
+# F*
+set PATH ~/code/sw/z3-fstar/bin $PATH
 
 # Doom Emacs
 set PATH ~/.emacs.d/bin $PATH
@@ -35,11 +37,11 @@ source ~/.opam/opam-init/init.fish
 eval (opam config env --shell=fish)
 
 # Coq
-if ! which coqc >/dev/null
+#if ! which coqc >/dev/null
   # use local build
   set -x COQBIN /Users/tchajed/code/sw/coq/bin/
   set PATH $COQBIN $PATH
-end
+  #end
 
 # takes non-trivial time at startup; replaced with universal variable
 # set -Ux RUST_SRC_PATH (rustc --print sysroot)/lib/rustlib/src/rust/library

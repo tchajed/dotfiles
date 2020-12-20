@@ -31,6 +31,7 @@ Plug 'wlangstroth/vim-racket'
 Plug 'vim-scripts/scribble.vim'
 Plug 'cespare/vim-toml'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
 
 " Haskell
 " Plug 'eagletmt/ghcmod-vim'
