@@ -7,7 +7,7 @@
 [core]
   # some things were just meant to be ignored
   excludesfile = ~/.gitignore_global
-	attributesfile = /Users/tchajed/.gitattributes
+  attributesfile = /Users/tchajed/.gitattributes
 [color]
   # colors, like we discovered in the 90s
   ui = true
@@ -43,6 +43,7 @@
 # global hooks
 [init]
   templatedir = ~/.git_template
+  defaultBranch = main
 
 # some nice commands
 [alias]
@@ -83,4 +84,4 @@
   helper = osxkeychain
 
 [diff "coq"]
-	xfuncname = ".*(Lemma|Theorem|Definition).*\\.$"
+  xfuncname = ".*(Lemma|Theorem|Definition).*\\.$"
