@@ -100,7 +100,7 @@
 (load! "+bindings.el")
 (load! "+latex.el")
 (load! "+racket.el")
-
+(load! "+dafny.el")
 
 ;; use auto-fill-mode by default for writing
 (add-hook 'latex-mode-hook #'auto-fill-mode)

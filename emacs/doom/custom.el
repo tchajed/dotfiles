@@ -840,9 +840,15 @@
  '(company-coq-disabled-features '(hello prettify-symbols alerts spinner company-defaults))
  '(custom-safe-themes
    '("2f1518e906a8b60fac943d02ad415f1d8b3933a5a7f75e307e6e9a26ef5bf570" "e1ecb0536abec692b5a5e845067d75273fe36f24d01210bf0aa5842f2a7e029f" "99ea831ca79a916f1bd789de366b639d09811501e8c092c85b2cb7d697777f93" "6cbf6003e137485fb3f904e76fb15bc48abc386540f43f54e2a47a9884e679f6" default))
+ '(dafny-prover-args '("/compile:0"))
  '(preview-auto-cache-preamble t)
  '(safe-local-variable-values
-   '((reftex-default-bibliography "n.bib" "paper.bib")
+   '((dafny-prover-local-args "/noNLarith" "/arith:5")
+     (dafny-prover-local-args "/z3opt:smt.arith.nl=true" "/arith:1")
+     (dafny-prover-local-args "/z3opt:smt.arith.nl=false" "/arith:5")
+     (dafny-prover-local-args "/z3opt:smt.arith.nl=true")
+     (dafny-prover-local-args "/z3opt:smt.arith.nl=false")
+     (reftex-default-bibliography "n.bib" "paper.bib")
      (reftex-default-bibliography "n.bib" "p.bib")))
  '(vterm-shell "/usr/local/bin/fish"))
 (custom-set-faces

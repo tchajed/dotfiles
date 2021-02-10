@@ -10,3 +10,4 @@
 (package! frame-fns :recipe (:host github :repo "emacsmirror/frame-fns"))
 (package! frame-cmds :recipe (:host github :repo "emacsmirror/frame-cmds"))
 (package! zoom-frm :recipe (:host github :repo "emacsmirror/zoom-frm"))
+(package! boogie-friends)
