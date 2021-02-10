@@ -94,7 +94,10 @@ hs.grid.setGrid('4x3', 'HP ZR2740w')
 hs.grid.setGrid('3x3', 'Color LCD')
 hs.grid.setGrid('6x4', 'BenQ PD3200U')
 hs.grid.setGrid('6x4', 'LG HDR 4K')
-hs.grid.setGrid('8x4', 'Dell U3818DW')
+-- monitor has column of broken pixels on left side; avoid using that strip by
+-- starting at x=220 (y=25 is there in the default frame, see
+-- hs.screen.find("Dell U3818DW"):frame())
+hs.grid.setGrid('8x4', 'Dell U3818DW', hs.geometry(220, 25, 3200, 1308))
 
 hs.grid.setMargins({w = 0, h = 0})
 hs.hotkey.bind({'shift', 'cmd'}, 'g', function()
