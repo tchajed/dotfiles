@@ -160,7 +160,11 @@ class Comics:
 class Unmount:
     @classmethod
     def unmount_command(cls, volume):
-        return Command(["diskutil", "unmount", "/Volumes/" + volume])
+        volume_path = path.join("/Volumes",  volume)
+        if not path.isdir(volume_path):
+            return Command(["echo", f"{volume} is not mounted"])
+        else:
+                return Command(["diskutil", "unmount", volume_path])
 
     @classmethod
     def unmount_volume(cls, args):
