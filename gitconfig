@@ -85,3 +85,6 @@
 
 [diff "coq"]
   xfuncname = ".*(Lemma|Theorem|Definition).*\\.$"
+[maintenance]
+	repo = /Users/tchajed/code/pdos/fscq-doc
+	repo = /Users/tchajed/code/perennial

@@ -23,11 +23,9 @@ set PATH /usr/local/opt/minimal-racket/bin $PATH
 # MacTeX
 set PATH /usr/local/texlive/2020/bin/x86_64-darwin $PATH
 # pip3-installed binaries
-set PATH ~/Library/Python/3.7/bin $PATH
+set PATH ~/Library/Python/3.9/bin $PATH
 # Alectryon
 set PATH ~/code/sw/alectryon $PATH
-# F*
-set PATH ~/code/sw/z3-fstar/bin $PATH
 
 # Doom Emacs
 set PATH ~/.emacs.d/bin $PATH
@@ -41,7 +39,7 @@ eval (opam config env --shell=fish)
   # use local build
   set -x COQBIN /Users/tchajed/code/sw/coq/bin/
   set PATH $COQBIN $PATH
-  #end
+#end
 
 # takes non-trivial time at startup; replaced with universal variable
 # set -Ux RUST_SRC_PATH (rustc --print sysroot)/lib/rustlib/src/rust/library
@@ -80,10 +78,6 @@ alias vim="nvim"
 function jhome
     set -Ux JAVA_HOME (/usr/libexec/java_home $argv)
     java -version
-end
-
-function dafny
-    mono /Users/tchajed/.vscode/extensions/correctnesslab.dafny-vscode-*/dafny/dafny/Dafny.exe $argv
 end
 
 # starship

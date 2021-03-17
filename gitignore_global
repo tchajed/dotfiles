@@ -13,3 +13,5 @@
 .idea/
 # Python compiled module cache
 __pycache__/
+# VSCode
+.vscode/
