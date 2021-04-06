@@ -12,4 +12,6 @@ file="Oracle_VM_VirtualBox_Extension_Pack-$var1-$var2.vbox-extpack"
 echo $file
 wget https://download.virtualbox.org/virtualbox/$var1/$file -O /tmp/$file
 #sudo VBoxManage extpack uninstall "Oracle VM VirtualBox Extension Pack"
-sudo VBoxManage extpack install /tmp/$file --replace
+sudo VBoxManage extpack install /tmp/$file \
+  --replace \
+  --accept-license=33d7284dc4a0ece381196fda3cfe2ed0e1e8e7ed7f27b9a9ebc4ee22e24bd23c
