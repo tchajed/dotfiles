@@ -5,7 +5,7 @@ end
 ## Configure PATH
 # Override system binaries with Homebrew
 set PATH /usr/local/bin /usr/local/sbin $PATH
-# Stack executables
+# other local executables
 set PATH ~/.local/bin $PATH
 # Go
 set PATH ~/go/bin $PATH
@@ -21,11 +21,14 @@ set PATH ~/.gem/bin $PATH
 # Racket
 set PATH /usr/local/opt/minimal-racket/bin $PATH
 # MacTeX
-set PATH /usr/local/texlive/2020/bin/x86_64-darwin $PATH
+set PATH /usr/local/texlive/2021/bin/universal-darwin $PATH
 # pip3-installed binaries
 set PATH ~/Library/Python/3.9/bin $PATH
 # Alectryon
 set PATH ~/code/sw/alectryon $PATH
+# dotnet (for Boogie)
+set PATH ~/.dotnet/tools $PATH
+set PATH (brew --prefix dafny)/libexec/z3/bin $PATH
 
 # Doom Emacs
 set PATH ~/.emacs.d/bin $PATH
