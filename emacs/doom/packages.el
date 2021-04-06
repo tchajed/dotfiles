@@ -11,3 +11,4 @@
 (package! frame-cmds :recipe (:host github :repo "emacsmirror/frame-cmds"))
 (package! zoom-frm :recipe (:host github :repo "emacsmirror/zoom-frm"))
 (package! boogie-friends)
+(package! gnuplot :recipe (:host github :repo "emacsorphanage/gnuplot"))

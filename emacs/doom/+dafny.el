@@ -6,7 +6,7 @@
 
 
 (setq flycheck-dafny-executable (concat dafny-dir "dafny"))
-;(setq flycheck-boogie-executable "/Users/tchajed/.dotnet/tools/boogie")
+(setq flycheck-boogie-executable "/Users/tchajed/.dotnet/tools/boogie")
 (setq flycheck-z3-smt2-executable (concat dafny-dir "z3/bin/z3"))
 (setq flycheck-inferior-dafny-executable (concat dafny-dir "DafnyServer")) ;; Optional
 ;(setq boogie-friends-profile-analyzer-executable "PATH-TO-Z3-AXIOM-PROFILER") ;; Optional
