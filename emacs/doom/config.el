@@ -85,7 +85,7 @@
 (setq +format-on-save-enabled-modes
       '(not emacs-lisp-mode  ; elisp's mechanisms are good enough
             sql-mode         ; sqlformat is currently broken
-            latex-mode
+            LaTeX-mode
             bibtex-mode      ; causes too much disruption
             ))
 
@@ -110,9 +110,11 @@
 (load! "+dafny.el")
 
 ;; use auto-fill-mode by default for writing
-(add-hook 'latex-mode-hook #'auto-fill-mode)
+(add-hook 'LaTeX-mode-hook #'auto-fill-mode)
 (add-hook 'markdown-mode-hook #'auto-fill-mode)
 
 ;; from https://emacsredux.com/blog/2020/07/18/automatically-kill-running-processes-on-exit/
 ;; comes up with background Coq processes
 (setq confirm-kill-processes nil)
+
+(setq enable-local-variables t)
