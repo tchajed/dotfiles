@@ -1,5 +1,6 @@
 # Don't print a new line at the start of the prompt
 add_newline = false
+command_timeout = 550
 
 [directory]
 # number of parent folders to show
@@ -32,6 +33,9 @@ disabled = true
 format="[@$hostname]($style) "
 style = "bold green"
 
+[aws]
+disabled = true
+
 ## language-specific configuration
 
 [nodejs]
@@ -49,3 +53,10 @@ symbol = ""
 
 [python]
 disabled = true
+
+[perl]
+disabled = true
+
+[ocaml]
+detect_extensions = ["ml", "mli"]
+detect_files = [".merlin", ".ocamlformat", ".ocamlinit"]

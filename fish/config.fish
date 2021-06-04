@@ -40,7 +40,7 @@ eval (opam config env --shell=fish)
 # Coq
 #if ! which coqc >/dev/null
   # use local build
-  set -x COQBIN /Users/tchajed/code/sw/coq/bin/
+  set -x COQBIN /Users/tchajed/code/sw/coq/_build/install/default/bin/
   set PATH $COQBIN $PATH
 #end
 
@@ -86,8 +86,12 @@ end
 # starship
 status --is-interactive; and starship init fish | source
 
+# needed due to https://github.com/starship/starship/pull/2636
+function fish_mode_prompt; end
+
 ## iTerm 2 shell integration
 # https://iterm2.com/shell_integration.html
+# must be loaded after starship since it modifies the prompt
 source ~/.iterm2_shell_integration.fish
 
 ## jump integration

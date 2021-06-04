@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# print running coqc processes and their runtime so far
+
+ps -f | grep -E 'bin/dafny .*(\w|/|-)*\.dfy\b' | grep -E -v '\bgrep\b' | gsed -E 's!.* ([0-9]*:[0-9.]*).* ((\w|/|-)*\.dfy).*!\1 \2!'

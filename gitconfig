@@ -88,3 +88,5 @@
 [maintenance]
 	repo = /Users/tchajed/code/pdos/fscq-doc
 	repo = /Users/tchajed/code/perennial
+[advice]
+	detachedHead = false

@@ -1,7 +1,10 @@
 #!/bin/bash
 
-VBoxManage startvm Arch --type headless
-sleep 3
+if ! VBoxManage list runningvms | grep -q 'Arch'; then
+  VBoxManage startvm Arch --type headless
+  sleep 3
+fi
+
 while ! gtimeout 1 ssh cantor 'exit' 2>/dev/null; do
   :
 done
