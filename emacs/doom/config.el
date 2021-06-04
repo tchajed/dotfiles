@@ -86,8 +86,23 @@
       '(not emacs-lisp-mode  ; elisp's mechanisms are good enough
             sql-mode         ; sqlformat is currently broken
             LaTeX-mode
+            latex-mode
             bibtex-mode      ; causes too much disruption
+            sh-mode ; use workaround below that handles tabs properly
             ))
+
+;; from https://github.com/hlissner/doom-emacs/issues/2905#issuecomment-845847323
+(when (featurep! :lang sh)
+  ;; use shfmt directly instead of format-all which fucks up tabs
+  (use-package! shfmt
+    :hook (sh-mode . shfmt-on-save-mode)
+    :config
+    (setq
+     shfmt-arguments
+     `(
+       ;; indent with spaces, has to be 2 different strings due to the space
+       "-i" ,(format "%s" tab-width)))
+    ))
 
 ;; the flycheck coq checker is implemented by flycheck and compiles separately
 ;; (without using the Proof General coqtop), which doesn't make sense for any
