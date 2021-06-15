@@ -9,6 +9,8 @@
         "e1ecb0536abec692b5a5e845067d75273fe36f24d01210bf0aa5842f2a7e029f"
         "99ea831ca79a916f1bd789de366b639d09811501e8c092c85b2cb7d697777f93"
         "6cbf6003e137485fb3f904e76fb15bc48abc386540f43f54e2a47a9884e679f6"
+        "63bfcabeb44559c67d8827dc68cd6c4a6d3ce35ef4504343af12d42f24894e00"
+        "cebda623e3f9ecd4a4af08d92c406bc4517e323d9259d5156f43901860224e30"
         default))
 (setq comment-multi-line t)
 (setq font-latex-match-type-command-keywords '(("tej" "{") ("joe" "{") ("todo" "{") ("mfk" "{") ("ralf" "{")))
