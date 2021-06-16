@@ -10,7 +10,8 @@
         "99ea831ca79a916f1bd789de366b639d09811501e8c092c85b2cb7d697777f93"
         "6cbf6003e137485fb3f904e76fb15bc48abc386540f43f54e2a47a9884e679f6"
         "63bfcabeb44559c67d8827dc68cd6c4a6d3ce35ef4504343af12d42f24894e00"
-        "cebda623e3f9ecd4a4af08d92c406bc4517e323d9259d5156f43901860224e30"
+        "88f59acbeacefb4998f45126d4d8ae8b2184f2a48753db362a349fd55321c7e1"
+        "6c386d159853b0ee6695b45e64f598ed45bd67c47f671f69100817d7db64724d"
         default))
 (setq comment-multi-line t)
 (setq font-latex-match-type-command-keywords '(("tej" "{") ("joe" "{") ("todo" "{") ("mfk" "{") ("ralf" "{")))
@@ -50,8 +51,21 @@
 
 ;;(setq doom-font (font-spec :family "Inconsolata Nerd Font Mono" :size 18))
 ;;(setq doom-big-font (font-spec :family "Inconsolata Nerd Font Mono" :size 24))
-(setq doom-font (font-spec :family "Victor Mono" :size 16))
-(setq doom-big-font (font-spec :family "Victor Mono" :size 20))
+(setq doom-font (font-spec :family "Victor Mono" :size 16 :slant 'normal))
+(setq doom-big-font (font-spec :family "Victor Mono" :size 20 :slant 'normal))
+;; increase font by small increments
+(setq doom-font-increment 1)
+
+;; from https://stackoverflow.com/questions/17362999
+;;
+;; start Emacs with a reasonably-sized frame (macOS window)
+;;; Nice size for the default window
+(defun get-default-height ()
+       (/ (- (display-pixel-height) 120)
+          (frame-char-height)))
+(add-to-list 'default-frame-alist '(width . 140))
+(add-to-list 'default-frame-alist (cons 'height (get-default-height)))
+
 (setq frame-title-format
       '(""
         "%b"
@@ -90,21 +104,16 @@
             LaTeX-mode
             latex-mode
             bibtex-mode      ; causes too much disruption
-            sh-mode ; use workaround below that handles tabs properly
             ))
 
-;; from https://github.com/hlissner/doom-emacs/issues/2905#issuecomment-845847323
-(when (featurep! :lang sh)
-  ;; use shfmt directly instead of format-all which fucks up tabs
-  (use-package! shfmt
-    :hook (sh-mode . shfmt-on-save-mode)
-    :config
-    (setq
-     shfmt-arguments
-     `(
-       ;; indent with spaces, has to be 2 different strings due to the space
-       "-i" ,(format "%s" tab-width)))
-    ))
+;; auto-detecting shell language as in
+;; https://github.com/hlissner/doom-emacs/issues/2905 doesn't seem to work,
+;; force it to be bash
+(after! sh-script
+  (set-formatter! 'shfmt
+    '("shfmt" "-ci"
+      ("-i" "%d" (unless indent-tabs-mode tab-width))
+      ("-ln" "%s" "bash"))))
 
 ;; the flycheck coq checker is implemented by flycheck and compiles separately
 ;; (without using the Proof General coqtop), which doesn't make sense for any
