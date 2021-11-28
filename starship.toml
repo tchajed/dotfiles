@@ -9,22 +9,20 @@ truncate_to_repo = true
 
 [cmd_duration]
 min_time = 200 # ms
+style = "red"
 
 [git_status]
 ahead = "⇡$count"
 behind = "⇣$count"
 diverged = "⇡$ahead_count ⇣$behind_count"
 modified = ""
-
-[memory_usage]
-# includes file-system cache so is nearly always full
-disabled = true
+style = "bold red"
 
 [time]
 disabled = false
 time_format = "%_H:%M"
 format = "[$time]($style) "
-style = "yellow"
+style = "cyan"
 
 [username]
 disabled = true
