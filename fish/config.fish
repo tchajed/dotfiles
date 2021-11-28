@@ -29,6 +29,12 @@ set PATH ~/code/sw/alectryon $PATH
 # dotnet (for Boogie)
 set PATH ~/.dotnet/tools $PATH
 set PATH (brew --prefix dafny)/libexec/z3/bin $PATH
+# Ruby
+if test -d "/usr/local/opt/ruby/bin"
+  set PATH /usr/local/opt/ruby/bin $PATH
+  # ugh this takes 100ms
+  set PATH (gem environment gemdir)/bin $PATH
+end
 
 # Doom Emacs
 set PATH ~/.emacs.d/bin $PATH
@@ -38,14 +44,25 @@ source ~/.opam/opam-init/init.fish
 eval (opam config env --shell=fish)
 
 # Coq
-#if ! which coqc >/dev/null
+if ! which coqc >/dev/null
   # use local build
-  set -x COQBIN /Users/tchajed/code/sw/coq/_build/install/default/bin/
+  set -l COQ_REPO /Users/tchajed/code/sw/coq
+  if test -d $COQ_REPO/_build/install/default/bin
+    set -x COQBIN $COQ_REPO/_build/install/default/bin/
+  else
+    set -x COQBIN $COQ_REPO/bin/
+  end
   set PATH $COQBIN $PATH
-#end
+end
 
 # takes non-trivial time at startup; replaced with universal variable
 # set -Ux RUST_SRC_PATH (rustc --print sysroot)/lib/rustlib/src/rust/library
+
+## Homebrew config
+# man brew
+set -g HOMEBREW_NO_EMOJI 1
+set -g HOMEBREW_NO_INSTALL_CLEANUP 1
+set -g HOMEBREW_NO_ENV_HINTS 1
 
 ## Aliases
 # Use GNU versions
@@ -87,7 +104,7 @@ end
 status --is-interactive; and starship init fish | source
 
 # needed due to https://github.com/starship/starship/pull/2636
-function fish_mode_prompt; end
+#function fish_mode_prompt; end
 
 ## iTerm 2 shell integration
 # https://iterm2.com/shell_integration.html
