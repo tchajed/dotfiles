@@ -265,6 +265,22 @@ Based on https://gitlab.mpi-sws.org/iris/iris/blob/master/docs/editor.md"
   (setq require-final-newline t)
 
   (iris-input-config)
+
+  ;; fix indentation of these connectives, by mapping them to the indentation of
+  ;; other symbols
+  ;;
+  ;; see https://gitlab.mpi-sws.org/iris/iris/-/blob/master/docs/editor.md#automated-indentation
+  (setq coq-smie-user-tokens
+    '(("∗" . "*")
+      ("-∗" . "->")
+      ("∗-∗" . "<->")
+      ("==∗" . "->")
+      ("⊢" . "->")
+      ("⊣⊢" . "<->")
+      ("⋅" . "*")
+      (":>" . ":=")
+      ("by" . "now")
+      ("forall" . "now")))
   )
 
 (with-eval-after-load 'treemacs

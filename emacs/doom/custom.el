@@ -840,7 +840,7 @@
  '(ansi-color-names-vector
    ["#fafafa" "#e45649" "#50a14f" "#986801" "#4078f2" "#a626a4" "#0184bc" "#383a42"])
  '(custom-safe-themes
-   '("6c386d159853b0ee6695b45e64f598ed45bd67c47f671f69100817d7db64724d" "88f59acbeacefb4998f45126d4d8ae8b2184f2a48753db362a349fd55321c7e1" "63bfcabeb44559c67d8827dc68cd6c4a6d3ce35ef4504343af12d42f24894e00" "cebda623e3f9ecd4a4af08d92c406bc4517e323d9259d5156f43901860224e30" "8f5a7a9a3c510ef9cbb88e600c0b4c53cdcdb502cfe3eb50040b7e13c6f4e78e" "f4876796ef5ee9c82b125a096a590c9891cec31320569fc6ff602ff99ed73dca" "2f1518e906a8b60fac943d02ad415f1d8b3933a5a7f75e307e6e9a26ef5bf570" "e1ecb0536abec692b5a5e845067d75273fe36f24d01210bf0aa5842f2a7e029f" "99ea831ca79a916f1bd789de366b639d09811501e8c092c85b2cb7d697777f93" "6cbf6003e137485fb3f904e76fb15bc48abc386540f43f54e2a47a9884e679f6" default))
+   '("835868dcd17131ba8b9619d14c67c127aa18b90a82438c8613586331129dda63" "246a9596178bb806c5f41e5b571546bb6e0f4bd41a9da0df5dfbca7ec6e2250c" "6c386d159853b0ee6695b45e64f598ed45bd67c47f671f69100817d7db64724d" "88f59acbeacefb4998f45126d4d8ae8b2184f2a48753db362a349fd55321c7e1" "63bfcabeb44559c67d8827dc68cd6c4a6d3ce35ef4504343af12d42f24894e00" "cebda623e3f9ecd4a4af08d92c406bc4517e323d9259d5156f43901860224e30" "8f5a7a9a3c510ef9cbb88e600c0b4c53cdcdb502cfe3eb50040b7e13c6f4e78e" "f4876796ef5ee9c82b125a096a590c9891cec31320569fc6ff602ff99ed73dca" "2f1518e906a8b60fac943d02ad415f1d8b3933a5a7f75e307e6e9a26ef5bf570" "e1ecb0536abec692b5a5e845067d75273fe36f24d01210bf0aa5842f2a7e029f" "99ea831ca79a916f1bd789de366b639d09811501e8c092c85b2cb7d697777f93" "6cbf6003e137485fb3f904e76fb15bc48abc386540f43f54e2a47a9884e679f6" default))
  '(dafny-prover-args '("/compile:0"))
  '(exwm-floating-border-color "#c8c8c8")
  '(fci-rule-color "#383a42")
@@ -858,7 +858,8 @@
  '(rustic-ansi-faces
    ["#fafafa" "#e45649" "#50a14f" "#986801" "#4078f2" "#a626a4" "#0184bc" "#383a42"])
  '(safe-local-variable-values
-   '((git-commit-major-mode . git-commit-elisp-text-mode)
+   '((tex-main-file . "thesis.tex")
+     (git-commit-major-mode . git-commit-elisp-text-mode)
      (dafny-prover-local-args "/noNLarith" "/arith:5")
      (dafny-prover-local-args "/z3opt:smt.arith.nl=true" "/arith:1")
      (dafny-prover-local-args "/z3opt:smt.arith.nl=false" "/arith:5")

@@ -14,3 +14,4 @@
 (package! gnuplot :recipe (:host github :repo "emacsorphanage/gnuplot"))
 (package! shfmt)
 (package! bats-mode)
+(package! sed-mode)

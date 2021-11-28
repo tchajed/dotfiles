@@ -3,7 +3,10 @@
 ;; imported from customize
 
 (setq custom-safe-themes
-      '("8f5a7a9a3c510ef9cbb88e600c0b4c53cdcdb502cfe3eb50040b7e13c6f4e78e"
+      '(
+        "835868dcd17131ba8b9619d14c67c127aa18b90a82438c8613586331129dda63"
+        "246a9596178bb806c5f41e5b571546bb6e0f4bd41a9da0df5dfbca7ec6e2250c"
+        "8f5a7a9a3c510ef9cbb88e600c0b4c53cdcdb502cfe3eb50040b7e13c6f4e78e"
         "f4876796ef5ee9c82b125a096a590c9891cec31320569fc6ff602ff99ed73dca"
         "2f1518e906a8b60fac943d02ad415f1d8b3933a5a7f75e307e6e9a26ef5bf570"
         "e1ecb0536abec692b5a5e845067d75273fe36f24d01210bf0aa5842f2a7e029f"
@@ -25,6 +28,7 @@
 (setq safe-local-variable-values '((reftex-default-bibliography "n.bib" "p.bib")))
 (setq font-lock-type-face '((t (:foreground "#986801"))))
 (setq company-coq-disabled-features '(hello prettify-symbols alerts spinner company-defaults))
+(setq dtrt-indent-max-lines 800)
 
 ;; use a slightly narrower font for mode line to fit more symbols
 (custom-set-faces!
@@ -51,8 +55,10 @@
 
 ;;(setq doom-font (font-spec :family "Inconsolata Nerd Font Mono" :size 18))
 ;;(setq doom-big-font (font-spec :family "Inconsolata Nerd Font Mono" :size 24))
-(setq doom-font (font-spec :family "Victor Mono" :size 16 :slant 'normal))
-(setq doom-big-font (font-spec :family "Victor Mono" :size 20 :slant 'normal))
+(setq doom-font (font-spec :family "Victor Mono" :size 16
+                           :slant 'normal :weight 'normal))
+(setq doom-big-font (font-spec :family "Victor Mono" :size 20
+                               :slant 'normal :weight 'normal))
 ;; increase font by small increments
 (setq doom-font-increment 1)
 
@@ -111,7 +117,7 @@
 ;; force it to be bash
 (after! sh-script
   (set-formatter! 'shfmt
-    '("shfmt" "-ci"
+    '("shfmt"
       ("-i" "%d" (unless indent-tabs-mode tab-width))
       ("-ln" "%s" "bash"))))
 
@@ -127,6 +133,13 @@
 ;; programming language major modes, especially Coq but also any language with
 ;; reliable auto-indentation)
 (setq tab-always-indent t)
+
+;; the regular smie-config-guess takes forever in Coq mode due to some advice
+;; added by Doom; replace it with a constant
+(defun my-smie-config-guess ()
+  (if (equal major-mode 'coq-mode) 2 nil))
+(advice-add 'smie-config-guess
+            :before-until #'my-smie-config-guess)
 
 (load! "+coq.el")
 (load! "+markdown.el")
