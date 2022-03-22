@@ -1,4 +1,4 @@
-;;; ../code/dotfiles/emacs/doom/+boogie.el -*- lexical-binding: t; -*-
+;;; ../code/dotfiles/emacs/doom/+dafny.el -*- lexical-binding: t; -*-
 
 ;(setq dafny-dir (file-name-as-directory "/Users/tchajed/.vscode/extensions/correctnesslab.dafny-vscode-0.19.0/dafny/dafny"))
 ;; for Dafny 3.0.0

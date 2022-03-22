@@ -15,3 +15,4 @@
 (package! shfmt)
 (package! bats-mode)
 (package! sed-mode)
+(package! hotcrp-mode :recipe (:host github :repo "adamdoupe/hotcrp-mode-el"))
