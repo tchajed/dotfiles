@@ -17,7 +17,7 @@ set PATH ~/code/sw/latexrun $PATH
 set PATH ~/.dotfiles/bin $PATH
 # Ruby gem binaries
 #set PATH /usr/local/lib/ruby/gems/2.6.3/bin /usr/local/Cellar/ruby/2.6.3/bin $PATH
-set PATH ~/.gem/bin $PATH
+set PATH ~/.gem/ruby/3.0.0/bin $PATH
 # Racket
 set PATH /usr/local/opt/minimal-racket/bin $PATH
 # MacTeX
@@ -60,9 +60,9 @@ end
 
 ## Homebrew config
 # man brew
-set -g HOMEBREW_NO_EMOJI 1
-set -g HOMEBREW_NO_INSTALL_CLEANUP 1
-set -g HOMEBREW_NO_ENV_HINTS 1
+set -gx HOMEBREW_NO_EMOJI 1
+set -gx HOMEBREW_NO_INSTALL_CLEANUP 1
+set -gx HOMEBREW_NO_ENV_HINTS 1
 
 ## Aliases
 # Use GNU versions
