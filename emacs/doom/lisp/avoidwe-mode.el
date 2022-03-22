@@ -8,10 +8,11 @@
 ;;
 ;; Author: Tej Chajed
 ;; Created: 2022-03-22
-;; Version: 1.0
+;; Version: 1.1
 ;; Last-Updated: 2022-03-22
-;; Keywords: writing
-;; Compatability:
+;; Keywords: wp
+;; Homepage: https://github.com/tchajed/dotfiles/blob/master/emacs/doom/lisp/avoidwe-mode.el
+;; Package-Requires: ((emacs "24.1"))
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
@@ -25,7 +26,8 @@
 ;;
 ;;; Change Log:
 ;;
-;; 1.0.0 Initial version
+;; 1.1 Include underlining as well in face
+;; 1.0 Initial version
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
@@ -52,17 +54,18 @@
   "Minor mode to avoid 'we'."
   :prefix "avoidwe-"
   :group 'help
-  ;; :link '(url-link "http://github.com/bnbeckwith/writegood-mode")
+  :link '(url-link "https://github.com/tchajed/dotfiles/blob/master/emacs/doom/lisp/avoidwe-mode.el")
   )
 
-(defconst we-version "1.0"
+(defconst avoidwe-version "1.1"
   "avoidwe-mode version")
 
 (defface avoidwe-bads-face
   '( ;;(((supports :underline (:style wave)))
      ;; :underline (:style wave :color "DarkOrange"))
     (((class color) (background light))
-     (:inherit font-lock-warning-face :background "moccasin"))
+     (:inherit font-lock-warning-face :background "moccasin"
+      :underline (:style wave :color "DarkOrange")))
     (((class color) (background dark))
      (:inherit font-lock-warning-face :background "DarkOrange")))
   "Face for 'we'"
