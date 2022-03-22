@@ -148,6 +148,9 @@
 (load! "+racket.el")
 (load! "+dafny.el")
 
+(add-load-path! "lisp")
+(require 'avoidwe-mode)
+
 ;; use auto-fill-mode by default for writing
 (add-hook 'LaTeX-mode-hook #'auto-fill-mode)
 (add-hook 'markdown-mode-hook #'auto-fill-mode)
