@@ -1,6 +1,0 @@
-#!/bin/bash
-
-/Applications/Firefox.app/Contents/MacOS/firefox-bin --new-window ""
-gsleep 0.3
-osascript ~/.dotfiles/applescripts/center-firefox.scpt
-
