@@ -55,6 +55,9 @@ disabled = true
 [perl]
 disabled = true
 
+[vlang]
+disabled = true
+
 [ocaml]
 detect_extensions = ["ml", "mli"]
 detect_files = [".merlin", ".ocamlformat", ".ocamlinit"]

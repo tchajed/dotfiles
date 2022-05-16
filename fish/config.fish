@@ -17,11 +17,11 @@ set PATH ~/code/sw/latexrun $PATH
 set PATH ~/.dotfiles/bin $PATH
 # Ruby gem binaries
 #set PATH /usr/local/lib/ruby/gems/2.6.3/bin /usr/local/Cellar/ruby/2.6.3/bin $PATH
-set PATH ~/.gem/ruby/3.0.0/bin $PATH
+set PATH ~/.gem/ruby/3.1.0/bin $PATH
 # Racket
 set PATH /usr/local/opt/minimal-racket/bin $PATH
 # MacTeX
-set PATH /usr/local/texlive/2021/bin/universal-darwin $PATH
+set PATH /usr/local/texlive/2022/bin/universal-darwin $PATH
 # pip3-installed binaries
 set PATH ~/Library/Python/3.9/bin $PATH
 # Alectryon
@@ -73,7 +73,7 @@ alias sed="gsed"
 alias tar="gtar"
 alias timeout="gtimeout"
 
-alias make="make -j12"
+alias make="make -j8"
 # quickly re-build dependencies
 function make_recent
     set -l file (gls -c src/**.v | head -2)

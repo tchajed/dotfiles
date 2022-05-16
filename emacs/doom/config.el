@@ -121,10 +121,15 @@
       ("-i" "%d" (unless indent-tabs-mode tab-width))
       ("-ln" "%s" "bash"))))
 
-;; the flycheck coq checker is implemented by flycheck and compiles separately
-;; (without using the Proof General coqtop), which doesn't make sense for any
-;; real Coq project
-(setq flycheck-disabled-checkers '(coq))
+(setq flycheck-disabled-checkers
+      '(
+        ;; the flycheck coq checker is implemented by flycheck and compiles separately
+        ;; (without using the Proof General coqtop), which doesn't make sense for any
+        ;; real Coq project
+        coq
+        ;; the LaTeX flycheck checker has many false positives and does not
+        ;; really catch any bugs
+        latex))
 
 ;; use ~/ to move to home (instead of just ~)
 (setq ivy-magic-tilde nil)

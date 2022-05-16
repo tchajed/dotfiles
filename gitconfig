@@ -36,13 +36,13 @@
   # see https://blog.github.com/2018-04-05-git-217-released/
   # consider zebra (the default when colorMoved is used), which has distinctive
   # colors but too many
-  colorMoved = dimmed_zebra
-[init]
-  pager = diff-so-fancy | less --tabs=4 -RFX
+	#colorMoved = dimmed_zebra
+#[init]
+	#pager = diff-so-fancy | less --tabs=4 -RFX
 
 # global hooks
 [init]
-  templatedir = ~/.git_template
+	templatedir = ~/.git_template
   defaultBranch = main
 
 # some nice commands
@@ -90,3 +90,13 @@
 	repo = /Users/tchajed/code/perennial
 [advice]
 	detachedHead = false
+
+[core]
+	pager = delta --diff-so-fancy
+[interactive]
+	diffFilter = delta --color-only
+[delta]
+	# setting theme doesn't seem to have worked
+	features = GitHub
+[diff]
+	colorMoved = default
