@@ -59,6 +59,8 @@
                            :slant 'normal :weight 'normal))
 (setq doom-big-font (font-spec :family "Victor Mono" :size 20
                                :slant 'normal :weight 'normal))
+;; replaces Apple Color Emoji with a font that has black-and-white symbols
+(setq doom-unicode-font (font-spec :family "Symbola"))
 ;; increase font by small increments
 (setq doom-font-increment 1)
 
@@ -165,3 +167,10 @@
 (setq confirm-kill-processes nil)
 
 (setq enable-local-variables t)
+
+(after! lsp
+  (lsp-register-client
+   (make-lsp-client :new-connection (lsp-tramp-connection "clangd")
+                    :major-modes '(c-mode c++-mode objc-mode)
+                    :remote? t
+                    :server-id 'clangd)))

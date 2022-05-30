@@ -889,7 +889,7 @@
     (cons 340 "#383a42")
     (cons 360 "#383a42")))
  '(vc-annotate-very-old-color nil)
- '(vterm-shell "/usr/local/bin/fish"))
+ '(vterm-shell "fish"))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

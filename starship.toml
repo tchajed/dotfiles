@@ -61,3 +61,6 @@ disabled = true
 [ocaml]
 detect_extensions = ["ml", "mli"]
 detect_files = [".merlin", ".ocamlformat", ".ocamlinit"]
+
+[c]
+commands = [["clang", "--version"], ["gcc", "--version"]]

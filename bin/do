@@ -192,6 +192,7 @@ class Brouwer:
     def unmount(cls, args):
         return CommandGroup([
             Unmount.unmount_command("brouwer"),
+            Unmount.unmount_command("poincare"),
             Unmount.unmount_command("borel"),
             ])
 

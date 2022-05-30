@@ -6,5 +6,5 @@ set incsearch
 set ideajoin
 
 " use wrap to column plugin to implement gq
-nmap gqq :action com.andrewbrookins.idea.wrap.WrapAction<CR>
-vmap gq :action com.andrewbrookins.idea.wrap.WrapAction<CR>
+nmap gqq <Action>(com.andrewbrookins.idea.wrap.WrapAction)
+vmap gq <Action>(com.andrewbrookins.idea.wrap.WrapAction)
