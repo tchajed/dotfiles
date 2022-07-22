@@ -30,6 +30,7 @@ disabled = true
 [hostname]
 format="[@$hostname]($style) "
 style = "bold green"
+ssh_only = true
 
 [aws]
 disabled = true
@@ -64,3 +65,4 @@ detect_files = [".merlin", ".ocamlformat", ".ocamlinit"]
 
 [c]
 commands = [["clang", "--version"], ["gcc", "--version"]]
+disabled = true

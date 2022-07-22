@@ -23,6 +23,12 @@
 (map! "s-n" #'make-frame)
 (map! "s-N" #'+default/new-buffer)
 
+;; window movement outside of command mode (especially useful for vterm)
+(map! "s-<up>" #'evil-window-up)
+(map! "s-<down>" #'evil-window-down)
+(map! "s-<right>" #'evil-window-right)
+(map! "s-<left>" #'evil-window-left)
+
 (global-set-key (kbd "s-1") #'delete-other-windows)
 
 ;; https://emacs.stackexchange.com/questions/19330/evil-emacs-how-to-select-last-pasted-text-like-gv/21093

@@ -69,7 +69,7 @@
 # User configuration
 [user]
   name = Tej Chajed
-  email = tchajed@mit.edu
+  email = tchajed@gmail.com
 [github]
   user = tchajed
 
@@ -92,11 +92,12 @@
 	detachedHead = false
 
 [core]
-	pager = delta --diff-so-fancy
+	pager = delta
 [interactive]
 	diffFilter = delta --color-only
 [delta]
 	# setting theme doesn't seem to have worked
 	features = GitHub
+	side-by-side = false
 [diff]
 	colorMoved = default

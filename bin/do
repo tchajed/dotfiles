@@ -164,7 +164,7 @@ class Unmount:
         if not path.isdir(volume_path):
             return Command(["echo", f"{volume} is not mounted"])
         else:
-                return Command(["diskutil", "unmount", volume_path])
+            return Command(["diskutil", "unmount", volume_path])
 
     @classmethod
     def unmount_volume(cls, args):
