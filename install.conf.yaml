@@ -42,15 +42,6 @@
       path: karabiner/right_fn.json
     ~/.tmux.conf:
       path: tmux.conf
-    ~/.config/nvim/autoload/plug.vim:
-      create: true
-      path: vim/plug.vim
-    ~/.config/nvim/init.vim:
-      create: true
-      path: vim/init.vim
-    ~/.config/nvim/plugin:
-      create: true
-      path: vim/plugin
     ~/.ideavimrc:
       path: ideavimrc
     ~/.offlineimap.py:
@@ -61,9 +52,11 @@
     ~/.gnupg/gpg-agent.conf:
       create: true
       path: gnupg/gpg-agent.conf
+    ~/.config/kitty: kitty
+    ~/.SpaceVim.d: vim/.SpaceVim.d
 
 - shell:
     - ~/.dotfiles/set-macos-options.sh
     - if [ ! -d ~/.tmux/plugins/tpm ]; then git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm; fi
-    - if [ ! -d ~/.emacs.d ]; then git clone https://github.com/hlissner/doom-emacs ~/.emacs.d; fi
+    - if [ ! -d ~/.emacs.d ]; then git clone https://github.com/doomemacs/doomemacs ~/.emacs.d; fi
     - pip3 install pynvim
