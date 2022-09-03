@@ -90,10 +90,12 @@ end)
 -- grid gui
 --
 -- per-monitor configuration
+-- to identify monitors, look at hs.screen.allScreens()[1] (and possibly [2])
 hs.grid.setGrid('4x3', 'HP ZR2740w')
 hs.grid.setGrid('3x3', 'Color LCD')
 hs.grid.setGrid('8x4', 'BenQ PD3200U')
 hs.grid.setGrid('8x4', 'LG HDR 4K')
+hs.grid.setGrid('6x4', 'U2790B')
 -- monitor has column of broken pixels on left side; avoid using that strip by
 -- starting at x=220 (y=25 is there in the default frame, see
 -- hs.screen.find("Dell U3818DW"):frame())
