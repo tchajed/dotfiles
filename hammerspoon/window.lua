@@ -52,6 +52,53 @@ hs.hotkey.bind("cmd-ctrl", "down", function()
   moveWindow("south")
 end)
 
+
+-- Throwing windows between spaces
+--
+-- Looks at the space layout to identify what the "right" and "left" spaces are,
+-- on the current screen.
+
+function indexOf(needle, a)
+  for i=1,#a do
+    if a[i] == needle then
+      return i
+    end
+  end
+  return nil
+end
+
+function moveWindowToSpace(where)
+  local win = hs.window.focusedWindow()
+  local space = hs.spaces.focusedSpace()
+  -- local spaces = hs.spaces.windowSpaces(win)
+  -- if #spaces ~= 1 then
+  --   -- unusual window that is on multiple spaces
+  --   return nil
+  -- end
+  -- local space = spaces[1]
+
+  local screen = hs.screen.mainScreen()
+  local spaces = hs.spaces.spacesForScreen(screen)
+  local currentIndex = indexOf(space, spaces)
+  if currentIndex == nil then
+    -- this is an error, something is unusual about focused space/screen
+    return nil
+  end
+  local destIndex = currentIndex + where
+  -- if destination is out-of-bounds, then do nothing
+  if not (1 <= destIndex and destIndex <= #spaces) then
+    return nil
+  end
+  local destSpace = spaces[destIndex]
+  hs.spaces.moveWindowToSpace(win, destSpace)
+  -- NOTE: focusing the window will switch spaces, but unlike
+  -- hs.spaces.gotoSpace() does not open up mission control
+  win:focus()
+end
+
+hs.hotkey.bind({'ctrl', 'shift', 'cmd'}, 'left', function() moveWindowToSpace(-1) end)
+hs.hotkey.bind({'ctrl', 'shift', 'cmd'}, 'right', function() moveWindowToSpace(1) end)
+
 -- Resizing windows
 -- adapted from Anish Athalye
 
