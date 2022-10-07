@@ -285,6 +285,27 @@
           ]
         }
       ]
+    },
+    {
+      "description": "Change RCMD+o to -",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "o",
+            "modifiers": {
+              "mandatory": [
+                "right_command"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "hyphen"
+            }
+          ]
+        }
+      ]
     }
   ]
 }
