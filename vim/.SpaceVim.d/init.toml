@@ -48,6 +48,9 @@ name = "fzf"
 name = "colorscheme"
 
 [[layers]]
+name = "language-server-protocol"
+
+[[layers]]
 name = "lang#rust"
 
 [[layers]]
@@ -58,3 +61,17 @@ name = "lang#sh"
 
 [[layers]]
 name = "lang#toml"
+
+[[layers]]
+name = "lang#c"
+
+[[custom_plugins]]
+repo = "mlr-msft/vim-loves-dafny"
+
+[[custom_plugins]]
+repo = "Julian/lean.nvim"
+# dependencies for lean.nvim
+[[custom_plugins]]
+repo = "neovim/nvim-lspconfig"
+[[custom_plugins]]
+repo = "nvim-lua/plenary.nvim"

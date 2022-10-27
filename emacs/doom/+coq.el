@@ -1,7 +1,7 @@
 ;;; ~/.doom.d/+coq.el -*- lexical-binding: nil; -*-
 ;;;
 
-(add-hook! coq-mode
+(add-hook! coq-mode :append
   (setq proof-splash-enable nil)
   (setq proof-splash-seen t)
 
@@ -43,7 +43,7 @@
   ;; auto-indentation in Coq isn't good enough to use electric indentation
   (electric-indent-mode -1))
 
-(when (featurep! :config default +smartparens)
+(when (modulep! :config default +smartparens)
   (after! smartparens
     (sp-with-modes '(coq-mode)
       ;; Disable ` because it is used in implicit generalization
@@ -235,12 +235,20 @@ Based on https://gitlab.mpi-sws.org/iris/iris/blob/master/docs/editor.md"
    ("\\bient"    ["⊣⊢"])
    ;; common typo due to keyboard config
    ("\\_ep"    ?∗)
+
+   ("\\eventually" ?◇)
+   ("\\diamond"    ?◇)
+   ("\\always"     ?□)
+   ;; TODO: make these snippets so the point is set correctly
+   ("\\action"     ["⟨⟩"])
+   ("\\next"       ["□⟨next⟩"])
+   ("\\statepred"       ["⌜λ s, ⌝"])
    )
   ; use the newly-created math input method
   (set-input-method "math")
   )
 
-(add-hook! coq-mode
+(add-hook! coq-mode :append
   (setq proof-three-window-mode-policy 'hybrid)
   ;;(setq undo-tree-enable-undo-in-region nil)
 
@@ -280,13 +288,23 @@ Based on https://gitlab.mpi-sws.org/iris/iris/blob/master/docs/editor.md"
       ("⋅" . "*")
       (":>" . ":=")
       ("by" . "now")
-      ("forall" . "now")))
+      ("forall" . "now")
+      ("⌜" . "(")
+      ("⌝" . ")")
+      ("∧" . "/\\")
+      ("∨" . "\\/")
+      ))
+  )
+
+(add-hook! coq-mode :append
+  (activate-input-method "math")
   )
 
 (with-eval-after-load 'treemacs
 
   (defun treemacs-ignore-coq (filename absolute-path)
-    (or (string-suffix-p ".vo" filename)
+    (or (equal ".lia.cache" filename)
+        (string-suffix-p ".vo" filename)
         (string-suffix-p ".vos" filename)
         (string-suffix-p ".vok" filename)
         (string-suffix-p ".aux" filename)

@@ -4,6 +4,8 @@
 
 (setq custom-safe-themes
       '(
+        "02f57ef0a20b7f61adce51445b68b2a7e832648ce2e7efb19d217b6454c1b644"
+        "afa47084cb0beb684281f480aa84dab7c9170b084423c7f87ba755b15f6776ef"
         "835868dcd17131ba8b9619d14c67c127aa18b90a82438c8613586331129dda63"
         "246a9596178bb806c5f41e5b571546bb6e0f4bd41a9da0df5dfbca7ec6e2250c"
         "8f5a7a9a3c510ef9cbb88e600c0b4c53cdcdb502cfe3eb50040b7e13c6f4e78e"
@@ -30,13 +32,15 @@
 (setq company-coq-disabled-features '(hello prettify-symbols alerts spinner company-defaults))
 (setq dtrt-indent-max-lines 800)
 
-;; use a slightly narrower font for mode line to fit more symbols
-(custom-set-faces!
-  '(mode-line :family "Inconsolata Nerd Font Mono" :height 1.0)
-  '(mode-line-inactive :family "Inconsolata Nerd Font Mono" :height 1.0))
-
 (setq current-theme-phase 'light)
 (load-theme 'doom-one-light)
+
+;; use a slightly narrower font for mode line to fit more symbols
+;; TODO: this is not properly auto-loaded
+(after! doom-themes
+  (custom-set-faces!
+    '(mode-line :family "Inconsolata Nerd Font" :height 1.0)
+    '(mode-line-inactive :family "Inconsolata Nerd Font" :height 1.0)))
 
 (defun toggle-theme-phase ()
   "Switch between light and dark themes."
@@ -49,15 +53,15 @@
       (setq current-theme-phase 'light)
       (load-theme 'doom-one-light))))
 
-(doom-load-envvars-file "/Users/tchajed/.emacs.d/.local/env")
+(doom-load-envvars-file "/home/tchajed/.emacs.d/.local/env")
 
-(setq fancy-splash-image "~/Pictures/iris-tan.png")
+;;(setq fancy-splash-image "~/Pictures/iris-tan.png")
 
 ;;(setq doom-font (font-spec :family "Inconsolata Nerd Font Mono" :size 18))
 ;;(setq doom-big-font (font-spec :family "Inconsolata Nerd Font Mono" :size 24))
-(setq doom-font (font-spec :family "Victor Mono" :size 16
+(setq doom-font (font-spec :family "Victor Mono" :size 36
                            :slant 'normal :weight 'normal))
-(setq doom-big-font (font-spec :family "Victor Mono" :size 20
+(setq doom-big-font (font-spec :family "Victor Mono" :size 42
                                :slant 'normal :weight 'normal))
 ;; replaces Apple Color Emoji with a font that has black-and-white symbols
 (setq doom-unicode-font (font-spec :family "Symbola"))
@@ -71,7 +75,7 @@
 (defun get-default-height ()
        (/ (- (display-pixel-height) 120)
           (frame-char-height)))
-(add-to-list 'default-frame-alist '(width . 140))
+(add-to-list 'default-frame-alist '(width . 160))
 (add-to-list 'default-frame-alist (cons 'height (get-default-height)))
 
 (setq frame-title-format
@@ -156,7 +160,8 @@
 (load! "+dafny.el")
 
 (add-load-path! "lisp")
-(require 'avoidwe-mode)
+;; TODO: loading this is broken
+;; (require 'avoidwe-mode)
 
 ;; use auto-fill-mode by default for writing
 (add-hook 'LaTeX-mode-hook #'auto-fill-mode)
@@ -174,3 +179,4 @@
                     :major-modes '(c-mode c++-mode objc-mode)
                     :remote? t
                     :server-id 'clangd)))
+

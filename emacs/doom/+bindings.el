@@ -22,6 +22,8 @@
 ;; reverse these two bindings since creating frames is more common
 (map! "s-n" #'make-frame)
 (map! "s-N" #'+default/new-buffer)
+(map! "s-s" #'save-buffer)
+(map! "s-w" #'+workspace/close-window-or-workspace)
 
 ;; window movement outside of command mode (especially useful for vterm)
 (map! "s-<up>" #'evil-window-up)
