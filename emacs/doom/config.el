@@ -4,6 +4,8 @@
 
 (setq custom-safe-themes
       '(
+        "02f57ef0a20b7f61adce51445b68b2a7e832648ce2e7efb19d217b6454c1b644"
+        "afa47084cb0beb684281f480aa84dab7c9170b084423c7f87ba755b15f6776ef"
         "835868dcd17131ba8b9619d14c67c127aa18b90a82438c8613586331129dda63"
         "246a9596178bb806c5f41e5b571546bb6e0f4bd41a9da0df5dfbca7ec6e2250c"
         "8f5a7a9a3c510ef9cbb88e600c0b4c53cdcdb502cfe3eb50040b7e13c6f4e78e"
@@ -25,10 +27,22 @@
 (setq proof-prog-name-guess nil)
 (setq which-key-idle-delay 0.7)
 (setq projectile-indexing-method 'hybrid)
+(setq projectile-sort-order 'recently-active)
 (setq safe-local-variable-values '((reftex-default-bibliography "n.bib" "p.bib")))
 (setq font-lock-type-face '((t (:foreground "#986801"))))
 (setq company-coq-disabled-features '(hello prettify-symbols alerts spinner company-defaults))
 (setq dtrt-indent-max-lines 800)
+
+;; TODO: this doesn't seem to have worked (for getting sorted results)
+(vertico-multiform-mode)
+(setq vertico-multiform-commands
+      '((describe-symbol (vertico-sort-function . vertico-sort-alpha))))
+(setq vertico-multiform-categories
+      '((file (vertico-sort-function . sort-directories-first))))
+(defun sort-directories-first (files)
+  (setq files (vertico-sort-history-length-alpha files))
+  (nconc (seq-filter (lambda (x) (string-suffix-p "/" x)) files)
+         (seq-remove (lambda (x) (string-suffix-p "/" x)) files)))
 
 ;; use a slightly narrower font for mode line to fit more symbols
 (custom-set-faces!
@@ -154,9 +168,10 @@
 (load! "+latex.el")
 (load! "+racket.el")
 (load! "+dafny.el")
+(load! "+ivy.el")
 
 (add-load-path! "lisp")
-(require 'avoidwe-mode)
+;; (require 'avoidwe-mode)
 
 ;; use auto-fill-mode by default for writing
 (add-hook 'LaTeX-mode-hook #'auto-fill-mode)

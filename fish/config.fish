@@ -28,13 +28,17 @@ set PATH ~/Library/Python/3.9/bin $PATH
 set PATH ~/code/sw/alectryon $PATH
 # dotnet (for Boogie)
 set PATH ~/.dotnet/tools $PATH
-set PATH (brew --prefix dafny)/libexec/z3/bin $PATH
+#set PATH (brew --prefix dafny)/libexec/z3/bin $PATH
 # Ruby
 if test -d "/usr/local/opt/ruby/bin"
   set PATH /usr/local/opt/ruby/bin $PATH
   # ugh this takes 100ms
   set PATH (gem environment gemdir)/bin $PATH
 end
+set PATH ~/Library/Python/3.10/bin $PATH
+
+alias mypyvy="$HOME/code/sw/mypyvy/src/mypyvy.py"
+set PATH ~/code/ivy-docker $PATH
 
 # Doom Emacs
 set PATH ~/.emacs.d/bin $PATH
@@ -116,3 +120,10 @@ source ~/.iterm2_shell_integration.fish
 
 ## jump integration
 status --is-interactive; and source (jump shell fish --bind=z | psub)
+
+## direnv (.envrc files)
+direnv hook fish | source
+
+### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
+set --export --prepend PATH "/Users/tchajed/.rd/bin"
+### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)

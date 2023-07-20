@@ -147,6 +147,7 @@ hs.grid.setGrid('6x4', 'U2790B')
 -- starting at x=220 (y=25 is there in the default frame, see
 -- hs.screen.find("Dell U3818DW"):frame())
 hs.grid.setGrid('8x4', 'Dell U3818DW', hs.geometry(220, 25, 3200, 1308))
+hs.grid.setGrid('8x4', 'Dell C3422WE')
 
 hs.grid.setMargins({w = 0, h = 0})
 hs.hotkey.bind({'shift', 'cmd'}, 'g', function()

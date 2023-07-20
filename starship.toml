@@ -48,6 +48,8 @@ symbol = "Go "
 [package]
 # used for npm, cargo, and poetry (Python)
 symbol = "pkg "
+# disabled, not really that helpful
+disabled = true
 
 [rust]
 symbol = ""

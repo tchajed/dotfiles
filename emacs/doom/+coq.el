@@ -43,7 +43,7 @@
   ;; auto-indentation in Coq isn't good enough to use electric indentation
   (electric-indent-mode -1))
 
-(when (featurep! :config default +smartparens)
+(when (modulep! :config default +smartparens)
   (after! smartparens
     (sp-with-modes '(coq-mode)
       ;; Disable ` because it is used in implicit generalization
@@ -235,6 +235,11 @@ Based on https://gitlab.mpi-sws.org/iris/iris/blob/master/docs/editor.md"
    ("\\bient"    ["⊣⊢"])
    ;; common typo due to keyboard config
    ("\\_ep"    ?∗)
+
+   ("\\always"      ?□)
+   ("\\eventually"  ?◇)
+   ("\\action"      ["⟨⟩"])
+   ("\\next"      ["□⟨next⟩"])
    )
   ; use the newly-created math input method
   (set-input-method "math")
@@ -286,10 +291,13 @@ Based on https://gitlab.mpi-sws.org/iris/iris/blob/master/docs/editor.md"
 (with-eval-after-load 'treemacs
 
   (defun treemacs-ignore-coq (filename absolute-path)
-    (or (string-suffix-p ".vo" filename)
-        (string-suffix-p ".vos" filename)
-        (string-suffix-p ".vok" filename)
-        (string-suffix-p ".aux" filename)
+    (or (string-equal ".lia.cache"  filename)
+        (string-equal ".nia.cache"  filename)
+        (string-equal ".coqdeps.d"  filename)
+        (string-suffix-p ".vo"   filename)
+        (string-suffix-p ".vos"  filename)
+        (string-suffix-p ".vok"  filename)
+        (string-suffix-p ".aux"  filename)
         (string-suffix-p ".glob" filename)))
 
   (add-to-list 'treemacs-ignored-file-predicates #'treemacs-ignore-coq))

@@ -40,6 +40,9 @@
     ~/.config/karabiner/assets/complex_modifications/right_fn.json:
       create: true
       path: karabiner/right_fn.json
+    ~/.config/karabiner/assets/complex_modifications/cmd_fn.json:
+      create: true
+      path: karabiner/cmd_fn.json
     ~/.tmux.conf:
       path: tmux.conf
     ~/.ideavimrc:

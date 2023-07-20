@@ -35,6 +35,7 @@ youtube-dl
 findutils
 pinentry-mac
 black
+blueutil
 "
 
 brew install $pkgs

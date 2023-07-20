@@ -68,23 +68,23 @@
 
 # User configuration
 [user]
-  name = Tej Chajed
-  email = tchajed@gmail.com
+	name = Tej Chajed
+	email = tchajed@gmail.com
 [github]
   user = tchajed
 
 # GPG-related configuration
-[user]
-  signingKey = C59DA7E160BF50D5EF25ACB0A5CD04BD8ED49551
 [commit]
   gpgsign = true
 [gpg]
-  program = gpg
+  program = /usr/local/bin/gpg
 [credential]
   helper = osxkeychain
 
 [diff "coq"]
   xfuncname = ".*(Lemma|Theorem|Definition).*\\.$"
+[diff "lean"]
+  xfuncname = "\b(lemma|def|theorem)\b.*"
 [maintenance]
 	repo = /Users/tchajed/code/pdos/fscq-doc
 	repo = /Users/tchajed/code/perennial
@@ -101,3 +101,11 @@
 	side-by-side = false
 [diff]
 	colorMoved = default
+[push]
+	# automatically create remote when no upstream tracking exists
+	autoSetupRemote = true
+[filter "lfs"]
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f

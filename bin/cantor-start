@@ -2,10 +2,10 @@
 
 if ! VBoxManage list runningvms | grep -q 'Arch'; then
   VBoxManage startvm Arch --type headless
-  sleep 3
+  sleep 6
 fi
 
-while ! gtimeout 1 ssh cantor 'exit' 2>/dev/null; do
+while ! gtimeout 1 ssh hamilton 'exit' 2>/dev/null; do
   :
 done
 exit 0

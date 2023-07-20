@@ -40,3 +40,6 @@
         (evil-visual-select start-marker end-marker)))
 (map! :leader
       "v" #'my/evil-select-pasted)
+
+(map! :mode image-mode "<wheel-up>" #'image-previous-line)
+(map! :mode image-mode "<wheel-down>" #'image-next-line)
