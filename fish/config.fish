@@ -3,6 +3,9 @@ function fish_greeting
 end
 
 ## Configure PATH
+if [ -f /opt/homebrew/bin/brew ]
+	eval (/opt/homebrew/bin/brew shellenv)
+end
 # Override system binaries with Homebrew
 set PATH /usr/local/bin /usr/local/sbin $PATH
 # other local executables
@@ -65,8 +68,9 @@ end
 ## Homebrew config
 # man brew
 set -gx HOMEBREW_NO_EMOJI 1
-set -gx HOMEBREW_NO_INSTALL_CLEANUP 1
 set -gx HOMEBREW_NO_ENV_HINTS 1
+set -gx HOMEBREW_AUTO_UPDATE_SECS (math '2*24*60*60')
+set -gx HOMEBREW_BAT 1
 
 ## Aliases
 # Use GNU versions
@@ -123,7 +127,3 @@ status --is-interactive; and source (jump shell fish --bind=z | psub)
 
 ## direnv (.envrc files)
 direnv hook fish | source
-
-### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
-set --export --prepend PATH "/Users/tchajed/.rd/bin"
-### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)
