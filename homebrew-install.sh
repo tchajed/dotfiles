@@ -3,39 +3,42 @@
 # Install a few essential Homebrew packages, especially if they're implicit
 # dependencies of scripts.
 
-pkgs="
-vitorgalvao/tiny-scripts/cask-repair
-cloc
-codemod
-coreutils
-curl
-diff-so-fancy
-fd
-fish
-fswatch
-fzf
-gcc
-git
-gnu-sed
-gnu-tar
-gnuplot
-go
-grep
-htop
-imagemagick
-make
-pandoc
-parallel
-ripgrep
-rsync
-tmux
-tree
-wget
-youtube-dl
-findutils
-pinentry-mac
-black
-blueutil
+casks="
+1password
+gpg-suite
+karabiner-elements
+kitty
+visual-studio-code
+skim
+font-victor-mono-nerd-font
+font-victor-mono
+font-inconsolata-nerd-font
 "
 
+pkgs="
+btop
+hammerspoon
+direnv
+wget
+exa
+rustup
+opam
+starship
+jump
+nvim
+coreutils
+
+ripgrep
+fd
+fzf
+gnu-sed
+gnu-tar
+grep
+tree
+parallel
+
+black
+"
+
+brew install --cask $casks
 brew install $pkgs
