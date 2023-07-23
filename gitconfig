@@ -91,14 +91,6 @@
 [advice]
 	detachedHead = false
 
-[core]
-	pager = delta
-[interactive]
-	diffFilter = delta --color-only
-[delta]
-	# setting theme doesn't seem to have worked
-	features = GitHub
-	side-by-side = false
 [diff]
 	colorMoved = default
 [push]
