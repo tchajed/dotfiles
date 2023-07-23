@@ -1,4 +1,7 @@
 #!/bin/bash
+
+set -x
+
 # Personalize OS X settings
 #
 # original credits:
@@ -7,13 +10,16 @@
 #   https://github.com/mathiasbynens/dotfiles/blob/master/.macos
 
 # Disable press-and-hold for keys in favor of key repeat.
-defaults write -g ApplePressAndHoldEnabled -bool false
+defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
 
 # Always open everything in Finder's list view. This is important.
 defaults write com.apple.Finder FXPreferredViewStyle Nlsv
 
 # Show the ~/Library folder.
 chflags nohidden ~/Library
+
+# Save to disk (not to iCloud) by default
+defaults write NSGlobalDomain NSDocumentSaveNewDocumentsToCloud -bool false
 
 # Set the Finder prefs for showing a few different volumes on the Desktop.
 defaults write com.apple.finder ShowExternalHardDrivesOnDesktop -bool true
@@ -30,7 +36,7 @@ defaults write com.apple.Safari "com.apple.Safari.ContentPageGroupIdentifier.Web
 defaults write NSGlobalDomain WebKitDeveloperExtras -bool true
 
 # Show battery life percentage.
-defaults write com.apple.menuextra.battery ShowPercent -string "YES"
+#defaults write com.apple.menuextra.battery ShowPercent -string "YES"
 
 # Set ~/ as the default location for new Finder windows
 # For other paths, use `PfLo` and `file:///full/path/here/`
@@ -88,13 +94,7 @@ defaults -currentHost write NSGlobalDomain com.apple.trackpad.trackpadCornerClic
 defaults -currentHost write NSGlobalDomain com.apple.trackpad.enableSecondaryClick -bool true
 
 # Increase sound quality for Bluetooth headphones/headsets
-defaults write com.apple.BluetoothAudioAgent "Apple Bitpool Min (editable)" -int 80
-defaults write com.apple.BluetoothAudioAgent "Apple Bitpool Max (editable)" -int 80
-defaults write com.apple.BluetoothAudioAgent "Apple Initial Bitpool (editable)" -int 80
-defaults write com.apple.BluetoothAudioAgent "Apple Initial Bitpool Min (editable)" -int 80
-defaults write com.apple.BluetoothAudioAgent "Negotiated Bitpool" -int 80
-defaults write com.apple.BluetoothAudioAgent "Negotiated Bitpool Max" -int 80
-defaults write com.apple.BluetoothAudioAgent "Negotiated Bitpool Min" -int 80
+defaults write com.apple.BluetoothAudioAgent "Apple Bitpool Min (editable)" -int 40
 
 # Avoid creating .DS_Store files on network or USB volumes
 defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
@@ -103,9 +103,6 @@ defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
 #################
 # applications  #
 #################
-
-# Don’t display the annoying prompt when quitting iTerm
-defaults write com.googlecode.iterm2 PromptOnQuit -bool false
 
 # Use plain text mode for new TextEdit documents
 defaults write com.apple.TextEdit RichText -int 0
