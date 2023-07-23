@@ -12,6 +12,10 @@
     ~/.config/fish/config.fish:
       create: true
       path: fish/config.fish
+    ~/.config/fish/conf.d:
+      path: fish/conf.d
+    ~/.config/fish/functions:
+      path: fish/functions
     # installed fisher packages
     ~/.config/fish/fishfile: fish/fishfile
     ~/.config/fish/completions/skim.fish: fish/skim.fish
