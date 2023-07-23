@@ -40,7 +40,7 @@ if test -d "/usr/local/opt/ruby/bin"
 end
 set PATH ~/Library/Python/3.10/bin $PATH
 
-alias mypyvy="$HOME/code/sw/mypyvy/src/mypyvy.py"
+alias mypyvy="$HOME/sw/mypyvy/src/mypyvy.py"
 set PATH ~/code/ivy-docker $PATH
 
 # Doom Emacs
@@ -65,23 +65,9 @@ end
 # takes non-trivial time at startup; replaced with universal variable
 # set -Ux RUST_SRC_PATH (rustc --print sysroot)/lib/rustlib/src/rust/library
 
-## Homebrew config
-# man brew
-set -gx HOMEBREW_NO_EMOJI 1
-set -gx HOMEBREW_NO_ENV_HINTS 1
-set -gx HOMEBREW_AUTO_UPDATE_SECS (math '2*24*60*60')
-set -gx HOMEBREW_BAT 1
-
 ## Aliases
-# Use GNU versions
-alias sleep="gsleep"
-alias realpath="grealpath"
-alias readlink="greadlink"
-alias sed="gsed"
-alias tar="gtar"
-alias timeout="gtimeout"
+# see conf.d/aliases.fish
 
-alias make="make -j8"
 # quickly re-build dependencies
 function make_recent
     set -l file (gls -c src/**.v | head -2)
@@ -89,21 +75,6 @@ function make_recent
     make -j8 $target
     gtimeout "10s" make -j8 vos
 end
-
-# Emacs aliases
-alias e="/usr/local/bin/emacsclient -a '' --no-wait"
-alias et="env TERM=xterm-emacs /usr/local/bin/emacsclient --tty"
-alias es="/usr/local/bin/emacsclient -a '' --no-wait --eval '(progn (switch-to-buffer \"*scratch*\") (delete-other-windows))'"
-
-# switch to exa
-alias ls="exa"
-alias ll="exa -l"
-alias la="exa -a"
-
-# use neovim by default
-alias vim="nvim"
-
-alias s="kitty +kitten ssh"
 
 ## changing java version
 function jhome
