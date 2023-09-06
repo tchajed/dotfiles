@@ -146,8 +146,12 @@ hs.grid.setGrid('6x4', 'U2790B')
 -- monitor has column of broken pixels on left side; avoid using that strip by
 -- starting at x=220 (y=25 is there in the default frame, see
 -- hs.screen.find("Dell U3818DW"):frame())
-hs.grid.setGrid('8x4', 'Dell U3818DW', hs.geometry(220, 25, 3200, 1308))
+-- hs.grid.setGrid('8x4', 'Dell U3818DW', hs.geometry(220, 25, 3200, 1308))
+
+-- now using different monitor that isn't broken
+hs.grid.setGrid('8x4', 'Dell U3818DW')
 hs.grid.setGrid('8x4', 'Dell C3422WE')
+hs.grid.setGrid('8x4', 'Dell U2723QE')
 
 hs.grid.setMargins({w = 0, h = 0})
 hs.hotkey.bind({'shift', 'cmd'}, 'g', function()
