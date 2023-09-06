@@ -20,7 +20,7 @@ btop
 hammerspoon
 direnv
 wget
-exa
+eza
 rustup
 opam
 starship
