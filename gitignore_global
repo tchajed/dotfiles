@@ -14,8 +14,7 @@
 # Python compiled module cache
 __pycache__/
 # VSCode
-.vscode/*
-!.vscode/extensions.json
+.vscode/
 # often add random personal settings
 #!.vscode/settings.json
 # writing-tracking database

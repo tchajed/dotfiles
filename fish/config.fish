@@ -62,6 +62,11 @@ if ! which coqc >/dev/null
   set PATH $COQBIN $PATH
 end
 
+# Maelstrom
+set PATH ~/code/sw/maelstrom/target/maelstrom $PATH
+
+alias verus=$HOME/code/sw/verus/source/target-verus/release/verus
+
 # takes non-trivial time at startup; replaced with universal variable
 # set -Ux RUST_SRC_PATH (rustc --print sysroot)/lib/rustlib/src/rust/library
 

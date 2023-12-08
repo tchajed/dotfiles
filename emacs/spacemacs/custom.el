@@ -43,33 +43,33 @@
      (buffer-file-coding-system . utf-8-unix)
      (coq-prog-args "-noinit")
      (eval let
-           ((default-directory
-              (locate-dominating-file buffer-file-name ".dir-locals.el")))
-           (setq-local coq-prog-args
-                       `("-coqlib" ,(expand-file-name "..")
-                         "-R" ,(expand-file-name ".")
-                         "Coq"))
-           (setq-local coq-prog-name
-                       (expand-file-name "../bin/coqtop")))
+      ((default-directory
+        (locate-dominating-file buffer-file-name ".dir-locals.el")))
+      (setq-local coq-prog-args
+                  `("-coqlib" ,(expand-file-name "..")
+                    "-R" ,(expand-file-name ".")
+                    "Coq"))
+      (setq-local coq-prog-name
+                  (expand-file-name "../bin/coqtop")))
      (eval progn
-           (let
-               ((plzoo-root-directory
-                 (when buffer-file-name
-                   (locate-dominating-file buffer-file-name ".dir-locals.el")))
-                (plzoo-project-find-file
-                 (and
-                  (boundp 'plzoo-project-find-file)
-                  plzoo-project-find-file)))
-             (when plzoo-root-directory
-               (setq tags-file-name
-                     (concat plzoo-root-directory "TAGS"))
-               (add-to-list 'compilation-search-path plzoo-root-directory)
-               (if
-                   (not plzoo-project-find-file)
-                   (setq compile-command
-                         (concat "make -C " plzoo-root-directory))))
-             (setq plzoo-executable
-                   (concat plzoo-root-directory "all"))))
+      (let
+          ((plzoo-root-directory
+            (when buffer-file-name
+              (locate-dominating-file buffer-file-name ".dir-locals.el")))
+           (plzoo-project-find-file
+            (and
+             (boundp 'plzoo-project-find-file)
+             plzoo-project-find-file)))
+        (when plzoo-root-directory
+          (setq tags-file-name
+                (concat plzoo-root-directory "TAGS"))
+          (add-to-list 'compilation-search-path plzoo-root-directory)
+          (if
+              (not plzoo-project-find-file)
+              (setq compile-command
+                    (concat "make -C " plzoo-root-directory))))
+        (setq plzoo-executable
+              (concat plzoo-root-directory "all"))))
      (company-coq-local-symbols
       ("Sigma" . 931)
       ("sigma" . 963)
@@ -103,35 +103,29 @@
        (Br . Bl)
        39))
      (eval progn
-           (let
-               ((coq-root-directory
-                 (when buffer-file-name
-                   (locate-dominating-file buffer-file-name ".dir-locals.el")))
-                (coq-project-find-file
-                 (and
-                  (boundp 'coq-project-find-file)
-                  coq-project-find-file)))
-             (set
-              (make-local-variable 'tags-file-name)
-              (concat coq-root-directory "TAGS"))
-             (setq camldebug-command-name
-                   (concat coq-root-directory "dev/ocamldebug-coq"))
-             (unless coq-project-find-file
-               (set
-                (make-local-variable 'compile-command)
-                (concat "make -C " coq-root-directory))
-               (set
-                (make-local-variable 'compilation-search-path)
-                (cons coq-root-directory nil)))
-             (when coq-project-find-file
-               (setq default-directory coq-root-directory))))
+      (let
+          ((coq-root-directory
+            (when buffer-file-name
+              (locate-dominating-file buffer-file-name ".dir-locals.el")))
+           (coq-project-find-file
+            (and
+             (boundp 'coq-project-find-file)
+             coq-project-find-file)))
+        (set
+         (make-local-variable 'tags-file-name)
+         (concat coq-root-directory "TAGS"))
+        (setq camldebug-command-name
+              (concat coq-root-directory "dev/ocamldebug-coq"))
+        (unless coq-project-find-file
+          (set
+           (make-local-variable 'compile-command)
+           (concat "make -C " coq-root-directory))
+          (set
+           (make-local-variable 'compilation-search-path)
+           (cons coq-root-directory nil)))
+        (when coq-project-find-file
+          (setq default-directory coq-root-directory))))
      (reftex-default-bibliography "n.bib" "p.bib")))
  '(search-invisible t)
  '(sh-basic-offset 2)
  '(tab-width 2))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )

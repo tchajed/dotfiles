@@ -152,6 +152,7 @@ hs.grid.setGrid('6x4', 'U2790B')
 hs.grid.setGrid('8x4', 'Dell U3818DW')
 hs.grid.setGrid('8x4', 'Dell C3422WE')
 hs.grid.setGrid('8x4', 'Dell U2723QE')
+hs.grid.setGrid('8x4', 'Dell U3223QE')
 
 hs.grid.setMargins({w = 0, h = 0})
 hs.hotkey.bind({'shift', 'cmd'}, 'g', function()
