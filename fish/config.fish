@@ -18,15 +18,8 @@ set PATH ~/.cargo/bin $PATH
 set PATH ~/code/sw/latexrun $PATH
 # Commited scripts in dotfiles
 set PATH ~/.dotfiles/bin $PATH
-# Ruby gem binaries
-#set PATH /usr/local/lib/ruby/gems/2.6.3/bin /usr/local/Cellar/ruby/2.6.3/bin $PATH
-set PATH ~/.gem/ruby/3.1.0/bin $PATH
-# Racket
-set PATH /usr/local/opt/minimal-racket/bin $PATH
 # MacTeX
-set PATH /usr/local/texlive/2022/bin/universal-darwin $PATH
-# pip3-installed binaries
-set PATH ~/Library/Python/3.9/bin $PATH
+set PATH /usr/local/texlive/2023/bin/universal-darwin $PATH
 # Alectryon
 set PATH ~/code/sw/alectryon $PATH
 # dotnet (for Boogie)
@@ -35,10 +28,11 @@ set PATH ~/.dotnet/tools $PATH
 # Ruby
 if test -d "/usr/local/opt/ruby/bin"
   set PATH /usr/local/opt/ruby/bin $PATH
-  # ugh this takes 100ms
-  set PATH (gem environment gemdir)/bin $PATH
+  # should be (gem environment gemdir) but that takes 100ms
+  set -l gemdir (echo /usr/local/lib/ruby/gems/* | tail -1)
+  set PATH $gemdir/bin $PATH
 end
-set PATH ~/Library/Python/3.10/bin $PATH
+set PATH (echo ~/Library/Python/* | tail -1)/bin $PATH
 
 alias mypyvy="$HOME/sw/mypyvy/src/mypyvy.py"
 set PATH ~/code/ivy-docker $PATH
@@ -80,21 +74,6 @@ function make_recent
     make -j8 $target
     gtimeout "10s" make -j8 vos
 end
-
-alias s="kitty +kitten ssh"
-
-# Emacs aliases
-alias e="/usr/local/bin/emacsclient -a '' --no-wait"
-alias et="env TERM=xterm-emacs /usr/local/bin/emacsclient --tty"
-alias es="/usr/local/bin/emacsclient -a '' --no-wait --eval '(progn (switch-to-buffer \"*scratch*\") (delete-other-windows))'"
-
-# switch to eza
-alias ls="eza"
-alias ll="eza -l"
-alias la="eza -a"
-
-# use neovim by default
-alias vim="nvim"
 
 ## changing java version
 function jhome
