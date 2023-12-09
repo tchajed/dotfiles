@@ -1,0 +1,10 @@
+#!/bin/bash
+
+for file in "$@"; do
+  # remove trailing whitespace at ends of lines
+  gsed -i 's/[ \t]\+$//' "$file"
+  # remove empty lines at EOF
+  # https://unix.stackexchange.com/questions/552188/how-to-remove-empty-lines-from-beginning-and-end-of-file
+  # shellcheck disable=SC2016
+  gsed -i -e :a -e '/^\n*$/{$d;N;ba' -e '}' "$file"
+done
