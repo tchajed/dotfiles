@@ -47,12 +47,6 @@ lvim.plugins = {
 		"folke/trouble.nvim",
 		cmd = "TroubleToggle",
 	},
-	{
-		"tzachar/cmp-tabnine",
-		build = "./install.sh",
-		dependencies = "hrsh7th/nvim-cmp",
-		event = "InsertEnter",
-	},
 }
 
 require("lspconfig").dafny.setup({})
