@@ -18,8 +18,8 @@ alias ls="eza"
 alias ll="eza -l"
 alias la="eza -a"
 
-# use neovim by default
-alias vim="nvim"
+# use lvim by default
+alias vim="lvim"
 
 alias s="kitty +kitten ssh"
 
