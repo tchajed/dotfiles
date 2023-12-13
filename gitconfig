@@ -70,6 +70,7 @@
 [user]
 	name = Tej Chajed
 	email = tchajed@gmail.com
+	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOHExFWb/R6LjAKUJ3LEBJUKOyAJuqLosa8xULTuTZbp
 [github]
   user = tchajed
 
@@ -78,6 +79,7 @@
   gpgsign = true
 [gpg]
   program = /usr/local/bin/gpg
+	format = ssh
 [credential]
   helper = osxkeychain
 
@@ -101,3 +103,5 @@
 	required = true
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
+[gpg "ssh"]
+	program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign
