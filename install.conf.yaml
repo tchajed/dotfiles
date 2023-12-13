@@ -5,9 +5,6 @@
     ~/.git_template/hooks:
       create: true
       path: git-hooks
-    # ~/.spacemacs: emacs/spacemacs
-    # ~/.spacemacs.env: emacs/spacemacs.env
-    # ~/custom.el: emacs/spacemacs/custom.el
     ~/.doom.d: emacs/doom
     ~/.config/fish/config.fish:
       create: true
