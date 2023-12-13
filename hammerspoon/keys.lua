@@ -7,7 +7,7 @@ end
 
 local newTerminal = function()
   local home = os.getenv("HOME")
-  hs.execute([[ "/usr/local/bin/kitty" "--single-instance" "--working-directory" ]] .. home)
+  hs.execute([[ "/opt/homebrew/bin/kitty" "--single-instance" "--working-directory" ]] .. home)
 end
 
 -- hyper+t
