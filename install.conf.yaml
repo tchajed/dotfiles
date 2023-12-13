@@ -61,6 +61,7 @@
       path: gnupg/gpg-agent.conf
     ~/.config/kitty: kitty
     ~/.SpaceVim.d: vim/.SpaceVim.d
+    ~/.hushlogin: hushlogin
 
 - shell:
     - ~/.dotfiles/set-macos-options.sh
