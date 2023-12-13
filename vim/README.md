@@ -1,1 +1,1 @@
-Install [SpaceVim](https://spacevim.org/).
+Install [LunarVim](https://www.lunarvim.org/docs/installation).

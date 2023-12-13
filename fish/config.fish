@@ -15,7 +15,7 @@ set PATH ~/go/bin $PATH
 # Rust
 set PATH ~/.cargo/bin $PATH
 # latexrun
-set PATH ~/code/sw/latexrun $PATH
+set PATH ~/sw/latexrun $PATH
 # Commited scripts in dotfiles
 set PATH ~/.dotfiles/bin $PATH
 # MacTeX

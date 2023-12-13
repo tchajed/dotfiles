@@ -6,6 +6,9 @@
       create: true
       path: git-hooks
     ~/.doom.d: emacs/doom
+    ~/.config/lvim/config.lua:
+      create: true
+      path: vim/config.lua
     ~/.config/fish/config.fish:
       create: true
       path: fish/config.fish
