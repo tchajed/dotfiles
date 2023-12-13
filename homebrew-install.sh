@@ -27,6 +27,8 @@ starship
 jump
 nvim
 coreutils
+1password-cli
+gh
 
 ripgrep
 fd
@@ -39,6 +41,8 @@ parallel
 
 black
 "
+
+brew tap Homebrew/homebrew-cask-fonts
 
 brew install --cask $casks
 brew install $pkgs
