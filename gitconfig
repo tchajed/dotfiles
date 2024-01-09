@@ -61,10 +61,10 @@
   root = rev-parse --show-toplevel
 
 # fix some logins to use ssh authentication
-[url "ssh://git@github.com/"]
-  insteadOf = https://github.com/
-[url "ssh://git@github.mit.edu/"]
-  insteadOf = https://github.mit.edu/
+#[url "ssh://git@github.com/"]
+#  insteadOf = https://github.com/
+#[url "ssh://git@github.mit.edu/"]
+#  insteadOf = https://github.mit.edu/
 
 # User configuration
 [user]

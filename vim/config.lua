@@ -10,6 +10,7 @@ lvim.plugins = {
 	{ "preservim/vim-markdown" },
 	{ "vim-latex/vim-latex" },
 	{ "mlr-msft/vim-loves-dafny" },
+  { "whonore/Coqtail" },
 	{
 		"simrat39/symbols-outline.nvim",
 		config = function()
@@ -46,6 +47,27 @@ lvim.plugins = {
 	{
 		"folke/trouble.nvim",
 		cmd = "TroubleToggle",
+	},
+	{
+		"folke/zen-mode.nvim",
+		opts = {
+			window = {
+				width = 120,
+				height = 1,
+				options = {
+					number = false,
+					relativenumber = false,
+				},
+			},
+      plugins = {
+        twilight = { enabled = true },
+        gitsigns = { enabled = false },
+        kitty = {
+          enabled = true,
+          font = "+3",
+        }
+      }
+		},
 	},
 }
 

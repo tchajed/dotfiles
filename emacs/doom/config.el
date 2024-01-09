@@ -58,12 +58,17 @@
 
 ;;(setq doom-font (font-spec :family "Inconsolata Nerd Font Mono" :size 18))
 ;;(setq doom-big-font (font-spec :family "Inconsolata Nerd Font Mono" :size 24))
-(setq doom-font (font-spec :family "Victor Mono" :size 16
+(setq font-name "Victor Mono")
+;;(setq font-name "Fira Code")
+(setq doom-font (font-spec :family font-name :size 16
                            :slant 'normal :weight 'normal))
-(setq doom-big-font (font-spec :family "Victor Mono" :size 20
+(setq doom-big-font (font-spec :family font-name :size 20
                                :slant 'normal :weight 'normal))
+
+;; TODO: replace ● and ◯ in Victor Mono with Fira Code *)
+
 ;; replaces Apple Color Emoji with a font that has black-and-white symbols
-(setq doom-unicode-font (font-spec :family "Symbola"))
+(setq doom-symbol-font (font-spec :family "Symbola"))
 ;; increase font by small increments
 (setq doom-font-increment 1)
 
