@@ -7,57 +7,46 @@ if [ -f /opt/homebrew/bin/brew ]
 	eval (/opt/homebrew/bin/brew shellenv)
 end
 # Override system binaries with Homebrew
-set PATH /usr/local/bin /usr/local/sbin $PATH
-# other local executables
-set PATH ~/.local/bin $PATH
-# Go
-set PATH ~/go/bin $PATH
-# Rust
-set PATH ~/.cargo/bin $PATH
-# latexrun
-set PATH ~/sw/latexrun $PATH
-# Commited scripts in dotfiles
-set PATH ~/.dotfiles/bin $PATH
-# MacTeX
-set PATH /usr/local/texlive/2023/bin/universal-darwin $PATH
-# Alectryon
-set PATH ~/code/sw/alectryon $PATH
-# dotnet (for Boogie)
-set PATH ~/.dotnet/tools $PATH
-#set PATH (brew --prefix dafny)/libexec/z3/bin $PATH
+fish_add_path /usr/local/bin /usr/local/sbin
+fish_add_path ~/go/bin ~/.cargo/bin ~/.dotnet/tools ~/.local/bin
+fish_add_path ~/code/dotfiles/bin
+fish_add_path ~/sw/latexrun ~/sw/alectryon
+# override with Dafny z3
+fish_add_path (brew --prefix dafny)/libexec/z3/bin
 # Ruby
 if test -d "/usr/local/opt/ruby/bin"
-  set PATH /usr/local/opt/ruby/bin $PATH
+  fish_add_path /usr/local/opt/ruby/bin
   # should be (gem environment gemdir) but that takes 100ms
   set -l gemdir (echo /usr/local/lib/ruby/gems/* | tail -1)
-  set PATH $gemdir/bin $PATH
+  fish_add_path $gemdir/bin
 end
-set PATH (echo ~/Library/Python/* | tail -1)/bin $PATH
+fish_add_path (echo ~/Library/Python/* | tail -1)/bin
 
 alias mypyvy="$HOME/sw/mypyvy/src/mypyvy.py"
-set PATH ~/code/ivy-docker $PATH
+fish_add_path ~/code/ivy-docker
 
 # Doom Emacs
-set PATH ~/.emacs.d/bin $PATH
+fish_add_path ~/.emacs.d/bin
 
 ## opam setup
 source ~/.opam/opam-init/init.fish
 eval (opam config env --shell=fish)
 
 # Coq
+# if already in opam, use that
 if ! which coqc >/dev/null
   # use local build
-  set -l COQ_REPO /Users/tchajed/code/sw/coq
+  set -l COQ_REPO ~/sw/coq
   if test -d $COQ_REPO/_build/install/default/bin
     set -x COQBIN $COQ_REPO/_build/install/default/bin/
   else
     set -x COQBIN $COQ_REPO/bin/
   end
-  set PATH $COQBIN $PATH
+  fish_add_path $COQBIN
 end
 
 # Maelstrom
-set PATH ~/code/sw/maelstrom/target/maelstrom $PATH
+fish_add_path ~/sw/maelstrom/target/maelstrom
 
 alias verus=$HOME/code/sw/verus/source/target-verus/release/verus
 
@@ -90,7 +79,10 @@ status --is-interactive; and starship init fish | source
 ## iTerm 2 shell integration
 # https://iterm2.com/shell_integration.html
 # must be loaded after starship since it modifies the prompt
-source ~/.iterm2_shell_integration.fish
+if test -f ~/.iterm2_shell_integration.fish
+  # not sure if this even affects kitty
+  source ~/.iterm2_shell_integration.fish
+end
 
 ## jump integration
 status --is-interactive; and source (jump shell fish --bind=z | psub)
