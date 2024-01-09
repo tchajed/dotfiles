@@ -8,19 +8,24 @@
 # written by GPT-4
 # (also asked it to use named capture groups)
 
+import re
+import sys
+
+
 def transform_url(url):
     # Use a regular expression with named capture groups to check if it's a GitHub URL
     pattern = r"https://github\.com/(?P<user>.+)/(?P<repo>.+)"
     match = re.match(pattern, url)
     if match:
         # Extract the username and repository name using the named groups
-        user = match.group('user')
-        repo = match.group('repo')
+        user = match.group("user")
+        repo = match.group("repo")
         # Transform the URL into the required format
         return f"git@github.com:{user}/{repo}.git"
     else:
         # Return the original URL if it's not a GitHub URL
         return url
+
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:
