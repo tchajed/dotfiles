@@ -1,6 +1,6 @@
 -- Window hints (quick window selection)
 
-function reversed(l)
+local function reversed(l)
 	local reversedList = {}
 	for i = 1, #l do
 		reversedList[i] = l[#l + 1 - i]
@@ -8,7 +8,7 @@ function reversed(l)
 	return reversedList
 end
 
-function updateTitleThresh()
+local function updateTitleThresh()
 	local numScreens = #hs.screen.allScreens()
 	if numScreens > 1 then
 		-- above this many windows, titles are shown
@@ -44,14 +44,14 @@ hs.hints.hintChars = {
 	"N",
 }
 hs.hotkey.bind("cmd", "escape", function()
-	windows = hs.window.allWindows()
+	local windows = hs.window.allWindows()
 	hs.hints.windowHints(reversed(windows))
 end)
 
 -- Throwing windows between screens (monitors)
 hs.window.animationDuration = 0 -- default is 0.2
 -- workaround for window:moveOneScreenEast() not working
-function moveWindow(where)
+local function moveWindow(where)
 	if hs.window.focusedWindow() then
 		local w = hs.window.frontmostWindow()
 		local s = hs.screen.mainScreen()
@@ -85,7 +85,7 @@ end)
 -- Looks at the space layout to identify what the "right" and "left" spaces are,
 -- on the current screen.
 
-function indexOf(needle, a)
+local function indexOf(needle, a)
 	for i = 1, #a do
 		if a[i] == needle then
 			return i
@@ -94,7 +94,7 @@ function indexOf(needle, a)
 	return nil
 end
 
-function moveWindowToSpace(where)
+local function moveWindowToSpace(where)
 	local win = hs.window.focusedWindow()
 	local space = hs.spaces.focusedSpace()
 	-- local spaces = hs.spaces.windowSpaces(win)
@@ -109,6 +109,10 @@ function moveWindowToSpace(where)
 	local currentIndex = indexOf(space, spaces)
 	if currentIndex == nil then
 		-- this is an error, something is unusual about focused space/screen
+		return nil
+	end
+	if spaces == nil then
+		-- can't proceed without this
 		return nil
 	end
 	local destIndex = currentIndex + where
@@ -133,7 +137,7 @@ end)
 -- Resizing windows
 -- adapted from Anish Athalye
 
-function moveTo(rect)
+local function moveTo(rect)
 	-- move the current window to th unit rect
 	-- a unit is an on-screen rectangle specified in relative coordinates:
 	--   {x,y,w,h} where all components are between 0 and 1
@@ -164,12 +168,14 @@ hs.hotkey.bind({ "alt", "cmd" }, "f", function()
 end)
 
 -- center screen
-hs.hotkey.bind({ "alt", "cmd" }, "c", function()
+local function centerCurrentWindow()
 	hs.window.focusedWindow():centerOnScreen()
-	leftBorder = 0.25
-	topBorder = 0.18
+	local leftBorder = 0.25
+	local topBorder = 0.18
 	moveTo({ leftBorder, topBorder, (1 - 2 * leftBorder), (1 - 2 * topBorder) })
-end)
+end
+
+hs.hotkey.bind({ "alt", "cmd" }, "c", centerCurrentWindow)
 
 -- grid gui
 --
