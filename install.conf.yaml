@@ -18,7 +18,7 @@
       path: fish/functions
     # installed fisher packages
     ~/.config/fish/fishfile: fish/fishfile
-    ~/.config/fish/completions/skim.fish: fish/skim.fish
+    ~/.config/fish/functions/skim.fish: fish/skim.fish
     ~/.hammerspoon: hammerspoon
     ~/.config/pianobar/config:
       create: true
