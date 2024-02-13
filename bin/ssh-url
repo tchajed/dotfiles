@@ -14,12 +14,14 @@ import sys
 
 def transform_url(url):
     # Use a regular expression with named capture groups to check if it's a GitHub URL
-    pattern = r"https://github\.com/(?P<user>.+)/(?P<repo>.+)"
+    pattern = r"https://github\.com/(?P<user>.+)/(?P<repo>.+)?"
     match = re.match(pattern, url)
     if match:
         # Extract the username and repository name using the named groups
         user = match.group("user")
         repo = match.group("repo")
+        # added manually (and not in original spec)
+        repo = repo.removesuffix(".git")
         # Transform the URL into the required format
         return f"git@github.com:{user}/{repo}.git"
     else:
