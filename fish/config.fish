@@ -84,8 +84,8 @@ if test -f ~/.iterm2_shell_integration.fish
   source ~/.iterm2_shell_integration.fish
 end
 
-## jump integration
-status --is-interactive; and source (jump shell fish --bind=z | psub)
+## zoxide integration
+status --is-interactive; and zoxide init fish | source
 
 ## direnv (.envrc files)
 direnv hook fish | source
