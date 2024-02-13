@@ -1,0 +1,6 @@
+#!/bin/bash
+
+set -eu
+
+kitten @ resize-os-window --match id:$KITTY_WINDOW_ID --width 88 --height 26
+btop --preset 1
