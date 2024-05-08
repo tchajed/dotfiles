@@ -1,51 +1,31 @@
--- Window hints (quick window selection)
+-- grid gui
+--
+-- per-monitor configuration
+-- to identify monitors, look at hs.screen.allScreens()[1] (and possibly [2])
 
-local function reversed(l)
-	local reversedList = {}
-	for i = 1, #l do
-		reversedList[i] = l[#l + 1 - i]
-	end
-	return reversedList
-end
+-- home
+hs.grid.setGrid("8x4", "Dell U2723QE")
+-- work
+hs.grid.setGrid("8x4", "Dell U3223QE")
 
-local function updateTitleThresh()
-	local numScreens = #hs.screen.allScreens()
-	if numScreens > 1 then
-		-- above this many windows, titles are shown
-		hs.hints.showTitleThresh = 20
-	else
-		hs.hints.showTitleThresh = 5
-	end
-end
-updateTitleThresh()
-hs.hints.hintChars = {
-	"A",
-	"S",
-	"D",
-	"F",
-	"G",
-	"H",
-	"J",
-	"K",
-	"L",
-	"Q",
-	"W",
-	"E",
-	"R",
-	"T",
-	"Y",
-	"U",
-	"I",
-	"O",
-	"P",
-	"C",
-	"V",
-	"B",
-	"N",
-}
-hs.hotkey.bind("cmd", "escape", function()
-	local windows = hs.window.allWindows()
-	hs.hints.windowHints(reversed(windows))
+-- to all the monitors i've loved before
+hs.grid.setGrid("4x3", "HP ZR2740w")
+hs.grid.setGrid("3x3", "Color LCD")
+hs.grid.setGrid("8x4", "BenQ PD3200U")
+hs.grid.setGrid("8x4", "LG HDR 4K")
+hs.grid.setGrid("6x4", "U2790B")
+-- monitor has column of broken pixels on left side; avoid using that strip by
+-- starting at x=220 (y=25 is there in the default frame, see
+-- hs.screen.find("Dell U3818DW"):frame())
+-- hs.grid.setGrid('8x4', 'Dell U3818DW', hs.geometry(220, 25, 3200, 1308))
+
+-- now using different monitor that isn't broken
+hs.grid.setGrid("8x4", "Dell U3818DW")
+hs.grid.setGrid("8x4", "Dell C3422WE")
+
+hs.grid.setMargins({ w = 0, h = 0 })
+hs.hotkey.bind({ "shift", "cmd" }, "g", function()
+	hs.grid.show()
 end)
 
 -- Throwing windows between screens (monitors)
@@ -176,29 +156,3 @@ local function centerCurrentWindow()
 end
 
 hs.hotkey.bind({ "alt", "cmd" }, "c", centerCurrentWindow)
-
--- grid gui
---
--- per-monitor configuration
--- to identify monitors, look at hs.screen.allScreens()[1] (and possibly [2])
-hs.grid.setGrid("4x3", "HP ZR2740w")
-hs.grid.setGrid("3x3", "Color LCD")
-hs.grid.setGrid("8x4", "BenQ PD3200U")
-hs.grid.setGrid("8x4", "LG HDR 4K")
-hs.grid.setGrid("6x4", "U2790B")
--- monitor has column of broken pixels on left side; avoid using that strip by
--- starting at x=220 (y=25 is there in the default frame, see
--- hs.screen.find("Dell U3818DW"):frame())
--- hs.grid.setGrid('8x4', 'Dell U3818DW', hs.geometry(220, 25, 3200, 1308))
-
--- now using different monitor that isn't broken
-hs.grid.setGrid("8x4", "Dell U3818DW")
-hs.grid.setGrid("8x4", "Dell C3422WE")
-hs.grid.setGrid("8x4", "Dell U2723QE")
-hs.grid.setGrid("8x4", "Dell U3223QE")
-
-hs.grid.setMargins({ w = 0, h = 0 })
-hs.hotkey.bind({ "shift", "cmd" }, "g", function()
-	updateTitleThresh()
-	hs.grid.show()
-end)

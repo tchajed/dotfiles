@@ -1,3 +1,7 @@
+-- restore a particular configured window layout
+-- currently the config is broken (it doesn't correspond to my current use), but
+-- there's a bunch of generic infrastructure here
+
 -- r should have rows, cols, x1, width, y1, height fields
 function gridUnitRec(r)
 	local x1 = (r.x1 - 1) / r.cols
@@ -5,7 +9,7 @@ function gridUnitRec(r)
 	return hs.geometry.rect(x1, y1, r.width / r.cols, r.height / r.rows)
 end
 
-benQKeys = { "123456", "qwerty", "asdfgh", "zxcvbn" }
+dellKeys = { "123456", "qwerty", "asdfgh", "zxcvbn" }
 dellwideKeys = { "12345678", "qwertyui", "asdfghjk", "zxcvbnm," }
 macKeys = { "qwe", "asd", "zxc" }
 
@@ -19,7 +23,7 @@ function cornerToCoords(keyRows, corner)
 	end
 end
 
--- translate a corner specification (eg, "1x") using a key mapping (eg, benQKeys
+-- translate a corner specification (eg, "1x") using a key mapping (eg, dellKeys
 -- above) to a gridUnitRec rectangle specification
 function translateCornerSpec(keyRows, corners)
 	local rows = #keyRows
@@ -44,9 +48,10 @@ function layoutSpec(application, monitor, corners)
 	elseif monitor == "benq" then
 		keyRows = benQKeys
 		monitor = "BenQ PD3200U"
-	elseif monitor == "dellwide" then
+	elseif monitor == "dell" then
 		keyRows = dellwideKeys
-		monitor = "Dell U3818DW"
+		-- TODO: make this recognize the external monitor and not be hard coded
+		monitor = "Dell U2723QE"
 	end
 	local rec = gridUnitRec(translateCornerSpec(keyRows, corners))
 	return { application, nil, monitor, rec, nil, nil }
@@ -54,9 +59,7 @@ end
 
 workLayout = {
 	layoutSpec("com.spotify.client", "mac", "wc"),
-	--layoutSpec("WorkFlowy Beta", "benq", "hn"),
-	layoutSpec("com.culturedcode.ThingsMac", "mac", "qa"),
-	layoutSpec("Firefox", "mac", "wc"),
+	-- layoutSpec("Chrome", "mac", "wc"),
 
 	-- temporary config for working on presentation
 	-- layoutSpec("com.spotify.client", "mac", "qx"),
@@ -66,7 +69,7 @@ workLayout = {
 	-- layoutSpec("org.gnu.Emacs", "benq", "1v"),
 	-- layoutSpec("GoLand", "benq", "1v"),
 	-- layoutSpec("PyCharm", "benq", "1v"),
-	layoutSpec("org.gnu.Emacs", "dellwide", "2b"),
+	layoutSpec("org.gnu.Emacs", "dell", "2b"),
 	layoutSpec("GoLand", "dellwide", "2b"),
 
 	-- layoutSpec("com.apple.Preview", "benq", "2v"),
@@ -90,7 +93,8 @@ end
 function setWorkLayout()
 	openSpotify()
 	hs.layout.apply(workLayout)
-	focusApp("Firefox")
+	-- bring these forward
+	focusApp("Chrome")
 	focusApp("org.gnu.Emacs")
 end
 
