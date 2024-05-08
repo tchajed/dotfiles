@@ -48,7 +48,7 @@ end
 # Maelstrom
 fish_add_path ~/sw/maelstrom/target/maelstrom
 
-alias verus=$HOME/code/sw/verus/source/target-verus/release/verus
+alias verus=$HOME/sw/verus/source/target-verus/release/verus
 
 # takes non-trivial time at startup; replaced with universal variable
 # set -Ux RUST_SRC_PATH (rustc --print sysroot)/lib/rustlib/src/rust/library
@@ -89,3 +89,6 @@ status --is-interactive; and zoxide init fish | source
 
 ## direnv (.envrc files)
 direnv hook fish | source
+
+# Set up fzf key bindings
+fzf --fish | source

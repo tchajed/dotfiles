@@ -8,6 +8,9 @@
   # some things were just meant to be ignored
   excludesfile = ~/.gitignore_global
   attributesfile = /Users/tchajed/.gitattributes
+	pager = git-split-diffs --color | less -RFX
+[includeIf "gitdir:~/code/**"]
+    path = ~/code/.gitconfig
 [color]
   # colors, like we discovered in the 90s
   ui = true
@@ -84,7 +87,7 @@
   helper = osxkeychain
 
 [diff "coq"]
-  xfuncname = ".*(Lemma|Theorem|Definition).*\\.$"
+  xfuncname = ".*(Lemma|Theorem|Definition|Fixpoint).*\\.$"
 [diff "lean"]
   xfuncname = "\b(lemma|def|theorem)\b.*"
 [maintenance]
@@ -105,3 +108,5 @@
 	smudge = git-lfs smudge -- %f
 [gpg "ssh"]
 	program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign
+[split-diffs]
+	theme-name = light

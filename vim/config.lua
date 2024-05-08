@@ -6,7 +6,7 @@
 
 lvim.plugins = {
 	{ "tjdevries/colorbuddy.vim" },
-	{ "Th3Whit3Wolf/onebuddy" },
+  { "Th3Whit3Wolf/one-nvim" },
 	{ "preservim/vim-markdown" },
 	{ "vim-latex/vim-latex" },
 	{ "mlr-msft/vim-loves-dafny" },
@@ -75,4 +75,4 @@ require("lspconfig").dafny.setup({})
 
 vim.cmd("set bg=light")
 
-lvim.colorscheme = "onebuddy"
+lvim.colorscheme = "one-nvim"

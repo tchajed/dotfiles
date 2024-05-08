@@ -1,0 +1,11 @@
+#!/bin/bash
+
+tvcontrol() {
+  ~/sw/lgtv-ip-control/lgtv-ip-control-cli-macos --host 192.168.0.229 --mac '7C:64:6C:96:D3:CC' --keycode "$(cat ~/sw/lgtv-ip-control/code.txt)" "$@"
+}
+
+tvcontrol power on
+# wake up the PC
+wakeonlan --quiet 'D8:43:AE:63:92:34' --ip '192.168.0.200'
+gsleep 0.5
+tvcontrol input hdmi3

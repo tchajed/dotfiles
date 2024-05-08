@@ -2,7 +2,7 @@
 
 # Don't print a new line at the start of the prompt
 add_newline = false
-command_timeout = 550
+command_timeout = 550 # ms
 
 [directory]
 # number of parent folders to show
