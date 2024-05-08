@@ -183,3 +183,8 @@
                     :major-modes '(c-mode c++-mode objc-mode)
                     :remote? t
                     :server-id 'clangd)))
+
+(use-package! verus-mode
+  :init
+  ;; Path to where you've cloned https://github.com/verus-lang/verus
+  (setq verus-home (expand-file-name "~/sw/verus")))

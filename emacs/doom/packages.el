@@ -16,3 +16,5 @@
 (package! bats-mode)
 (package! sed-mode)
 (package! hotcrp-mode :recipe (:host github :repo "adamdoupe/hotcrp-mode-el"))
+(package! verus-mode
+  :recipe (:host github :repo "verus-lang/verus-mode.el"))
