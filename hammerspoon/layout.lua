@@ -45,9 +45,6 @@ function layoutSpec(application, monitor, corners)
 	if monitor == "mac" then
 		keyRows = macKeys
 		monitor = "Color LCD"
-	elseif monitor == "benq" then
-		keyRows = benQKeys
-		monitor = "BenQ PD3200U"
 	elseif monitor == "dell" then
 		keyRows = dellwideKeys
 		-- TODO: make this recognize the external monitor and not be hard coded
@@ -70,12 +67,12 @@ workLayout = {
 	-- layoutSpec("GoLand", "benq", "1v"),
 	-- layoutSpec("PyCharm", "benq", "1v"),
 	layoutSpec("org.gnu.Emacs", "dell", "2b"),
-	layoutSpec("GoLand", "dellwide", "2b"),
+	layoutSpec("GoLand", "dell", "2b"),
 
 	-- layoutSpec("com.apple.Preview", "benq", "2v"),
 	-- layoutSpec("net.sourceforge.skim-app.skim", "benq", "3v"),
 	-- layoutSpec("iTerm2", "benq", "5n"),
-	layoutSpec("iTerm2", "dellwide", "6k"),
+	layoutSpec("Kitty", "dell", "6k"),
 }
 
 function openSpotify()
