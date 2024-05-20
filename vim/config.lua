@@ -6,11 +6,19 @@
 
 lvim.plugins = {
 	{ "tjdevries/colorbuddy.vim" },
-  { "Th3Whit3Wolf/one-nvim" },
+  { "navarasu/onedark.nvim",
+    config = function()
+      require('onedark').setup({
+          style = 'warmer'
+      })
+      require('onedark').load()
+    end,
+  },
 	{ "preservim/vim-markdown" },
 	{ "vim-latex/vim-latex" },
 	{ "mlr-msft/vim-loves-dafny" },
   { "whonore/Coqtail" },
+  { "junegunn/vim-easy-align" },
 	{
 		"simrat39/symbols-outline.nvim",
 		config = function()
@@ -73,6 +81,10 @@ lvim.plugins = {
 
 require("lspconfig").dafny.setup({})
 
-vim.cmd("set bg=light")
+-- vim.cmd("set bg=light")
 
-lvim.colorscheme = "one-nvim"
+vim.opt.shell = "/bin/sh"
+vim.g.onedark_config = {
+  style = "light"
+}
+lvim.colorscheme = "onedark"
