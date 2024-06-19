@@ -102,6 +102,21 @@ Based on https://gitlab.mpi-sws.org/iris/iris/blob/master/docs/editor.md"
   (add-hook 'minibuffer-setup-hook #'my-inherit-input-method)
   ;; Define the actual input method
   (quail-define-package "math" "UTF-8" "Ω" t)
+
+  ;; https://emacs.stackexchange.com/questions/76725/how-to-implement-a-function-in-quail-define-rules-for-set-input-method
+  (defun quail-action-f (key idx)    ; key=keyword, idx=length
+    (quail-delete-region)                 ; these lines apparently needed
+    (setq quail-current-str nil           ; to remove key.
+          quail-converting nil            ; (not sure why all 4 is needed)
+          quail-conversion-str "")        ;
+
+
+    (insert "⟨⟩")
+    (forward-char -1)
+
+    (throw 'quail-tag nil)                ; this is need for finishing up?
+    )
+
   (quail-define-rules ; add whatever extra rules you want to define here...
    ;; LaTeX math rules
    ("\\forall"         "∀")
@@ -147,6 +162,10 @@ Based on https://gitlab.mpi-sws.org/iris/iris/blob/master/docs/editor.md"
 
    ;; Perennial
    ("\\named"           "∷")
+
+   ;; Diaframe
+   ("\\Hint"           ?✱)
+   ("\\Entails"        ?⊫)
 
    ("\\mult"   ?⋅)
    ("\\ent"    ?⊢)
@@ -239,7 +258,8 @@ Based on https://gitlab.mpi-sws.org/iris/iris/blob/master/docs/editor.md"
 
    ("\\always"      ?□)
    ("\\eventually"  ?◇)
-   ("\\action"      ["⟨⟩"])
+   ;;("\\action"      ["⟨⟩"])
+   ("\\action"      quail-action-f)
    ("\\next"      ["□⟨next⟩"])
    )
   ;; use the newly-created math input method

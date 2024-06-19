@@ -6,7 +6,7 @@ alias sed="gsed"
 alias tar="gtar"
 alias timeout="gtimeout"
 
-alias make="make -j8"
+alias make="make -j12"
 
 # Emacs aliases
 alias e="emacsclient -a '' --no-wait"
