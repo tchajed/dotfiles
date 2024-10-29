@@ -8,7 +8,7 @@ hs.grid.setGrid("8x4", "Dell U2723QE")
 -- work
 hs.grid.setGrid("8x4", "Dell U3223QE")
 
--- to all the monitors i've loved before
+-- to all the monitors I've loved before
 hs.grid.setGrid("4x3", "HP ZR2740w")
 hs.grid.setGrid("3x3", "Color LCD")
 hs.grid.setGrid("8x4", "BenQ PD3200U")
@@ -125,22 +125,32 @@ local function moveTo(rect)
 end
 
 -- half of screen
--- hs.hotkey.bind({'ctrl', 'cmd'}, 'h', function() moveTo(hs.layout.left50) end)
--- hs.hotkey.bind({'ctrl', 'cmd'}, 'l', function() moveTo(hs.layout.right50) end )
+local function halfScreenBinds()
+  hs.hotkey.bind({'ctrl', 'cmd'}, 'h', function() moveTo(hs.layout.left50) end)
+  hs.hotkey.bind({'ctrl', 'cmd'}, 'l', function() moveTo(hs.layout.right50) end )
+end
+-- halfScreenBinds()
 
 -- quarter of screen
-hs.hotkey.bind({ "shift", "alt", "cmd" }, "left", function()
-	moveTo({ 0, 0, 0.5, 0.5 })
-end)
-hs.hotkey.bind({ "shift", "alt", "cmd" }, "right", function()
-	moveTo({ 0.5, 0.5, 0.5, 0.5 })
-end)
-hs.hotkey.bind({ "shift", "alt", "cmd" }, "up", function()
-	moveTo({ 0.5, 0, 0.5, 0.5 })
-end)
-hs.hotkey.bind({ "shift", "alt", "cmd" }, "down", function()
-	moveTo({ 0, 0.5, 0.5, 0.5 })
-end)
+local function quarterScreenBinds()
+  hs.hotkey.bind({ "shift", "alt", "cmd" }, "left", function()
+    -- top left
+  	moveTo({ 0, 0, 0.5, 0.5 })
+  end)
+  hs.hotkey.bind({ "shift", "alt", "cmd" }, "right", function()
+    -- bottom right
+  	moveTo({ 0.5, 0.5, 0.5, 0.5 })
+  end)
+  hs.hotkey.bind({ "shift", "alt", "cmd" }, "up", function()
+    -- top right
+  	moveTo({ 0.5, 0, 0.5, 0.5 })
+  end)
+  hs.hotkey.bind({ "shift", "alt", "cmd" }, "down", function()
+    -- bottom left
+  	moveTo({ 0, 0.5, 0.5, 0.5 })
+  end)
+end
+-- quarterScreenBinds()
 
 -- full screen
 hs.hotkey.bind({ "alt", "cmd" }, "f", function()
