@@ -12,13 +12,14 @@
     ~/.config/fish/config.fish:
       create: true
       path: fish/config.fish
+    # fisher plugin list
+    ~/.config/fish/fish_plugins:
+      create: true
+      path: fish/fish_plugins
     ~/.config/fish/conf.d:
       path: fish/conf.d
-    ~/.config/fish/functions:
-      path: fish/functions
-    # installed fisher packages
-    ~/.config/fish/fishfile: fish/fishfile
-    ~/.config/fish/functions/skim.fish: fish/skim.fish
+    ~/.config/fish/user_functions:
+      path: fish/user_functions
     ~/.hammerspoon: hammerspoon
     ~/.config/pianobar/config:
       create: true
@@ -67,6 +68,4 @@
     - ~/.dotfiles/set-macos-options.sh
     - if [ ! -d ~/.tmux/plugins/tpm ]; then git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm; fi
     - if [ ! -d ~/.emacs.d ]; then git clone https://github.com/doomemacs/doomemacs ~/.emacs.d; fi
-    - if [ ! -d ~/.config/nvim ]; then git clone --depth 1 https://github.com/AstroNvim/AstroNvim ~/.config/nvim; fi
-    - if [ -d ~/.config/nvim/lua && ! -d ~/.config/nvim/lua/user ]; then git clone git@github.com:tchajed/astro_nvim_user ~/.config/nvim/lua/user; fi
     - pip3 install pynvim

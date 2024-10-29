@@ -1,1 +1,0 @@
-/Users/tchajed/code/dotfiles/fish/skim.fish

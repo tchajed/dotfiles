@@ -6,13 +6,14 @@ end
 if [ -f /opt/homebrew/bin/brew ]
 	eval (/opt/homebrew/bin/brew shellenv)
 end
+# user_functions comes from dotfiles, standard ~/.config/fish/functions is
+# managed by fisher
+set fish_function_path $__fish_config_dir/user_functions $fish_function_path
 # Override system binaries with Homebrew
 fish_add_path /usr/local/bin /usr/local/sbin
 fish_add_path ~/go/bin ~/.cargo/bin ~/.dotnet/tools ~/.local/bin
 fish_add_path ~/code/dotfiles/bin
 fish_add_path ~/sw/latexrun ~/sw/alectryon
-# override with Dafny z3
-fish_add_path (brew --prefix dafny)/libexec/z3/bin
 # Ruby
 if test -d "/usr/local/opt/ruby/bin"
   fish_add_path /usr/local/opt/ruby/bin
@@ -42,7 +43,7 @@ if ! which coqc >/dev/null
   else
     set -x COQBIN $COQ_REPO/bin/
   end
-  fish_add_path $COQBIN
+  fish_add_path --path $COQBIN
 end
 
 # Maelstrom
@@ -92,3 +93,9 @@ direnv hook fish | source
 
 # Set up fzf key bindings
 fzf --fish | source
+
+# gh is an alias that uses op, the 1password CLI
+source /Users/tchajed/.config/op/plugins.sh
+
+# too slow
+# load_nvm
