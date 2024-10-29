@@ -1,12 +1,14 @@
 ;;; ~/.doom.d/+coq.el -*- lexical-binding: nil; -*-
 ;;;
 
+;; workaround for https://github.com/ProofGeneral/PG/issues/781
+(add-hook 'coq-shell-mode-hook (lambda () (setq proof-shell-strip-crs-from-input t)))
 (add-hook! coq-mode
   (setq proof-splash-enable nil)
   (setq proof-splash-seen t)
 
   (evil-define-text-object evil-a-lift (count &optional beg end type)
-    "Select a lifted proposition."
+    "Select a lifted proposition (delimited by ⌜⌝)."
     :extend-selection nil
     (evil-select-paren ?⌜ ?⌝ beg end type count t))
 
@@ -19,7 +21,7 @@
   (define-key evil-outer-text-objects-map "l" 'evil-a-lift)
 
   (setq company-coq-prettify-symbols-alist '(;; Disabled
-                                             ;; ("*" . ?×)  ; Inconsistent (‘intros H *’, rewrite in *, etc.)
+                                             ("*" . ?×)  ; Inconsistent (‘intros H *’, rewrite in *, etc.)
                                              ;; ("~" . ?¬)  ; Too invasive
                                              ;; ("+-" . ?±) ; Too uncommon
                                              ;; ("++" . ?⧺) ; Not present in TeX fonts
@@ -30,15 +32,19 @@
                                              ("|-" . ?⊢) ("||" . ?‖) ("/\\" . ?∧) ("\\/" . ?∨)
                                              ("->" . ?→) ("<-" . ?←) ("<->" . ?↔) ("=>" . ?⇒)
                                              ("<=" . ?≤) (">=" . ?≥) ("<>" . ?≠)
-                                             ("True" . ?⊤) ("False" . ?⊥)
-                                             ("fun" . ?λ) ("forall" . ?∀) ("exists" . ?∃)
-                                             ("Prop" . ?ℙ)
+                                             ;; ("True" . ?⊤) ("False" . ?⊥)
+                                             ;; ("fun" . ?λ) ("forall" . ?∀) ("exists" . ?∃)
+                                             ;; ("Prop" . ?ℙ)
                                              ;; ("nat" . ?ℕ) ("Prop" . ?ℙ) ("Real" . ?ℝ) ("bool" . ?𝔹)
 
                                              ;; Extra symbols
                                              (">->" . ?↣)
                                              ("-->" . ?⟶) ("<--" . ?⟵) ("<-->" . ?⟷)
-                                             ("==>" . ?⟹) ("<==" . ?⟸) ("~~>" . ?⟿) ("<~~" . ?⬳)))
+                                             ("==>" . ?⟹) ("<==" . ?⟸) ("~~>" . ?⟿) ("<~~" . ?⬳)
+
+                                             ;; Iris
+                                             ("◯" . ?○)
+                                             ))
 
   ;; auto-indentation in Coq isn't good enough to use electric indentation
   (electric-indent-mode -1))
@@ -46,12 +52,10 @@
 (when (modulep! :config default +smartparens)
   (after! smartparens
     (sp-with-modes '(coq-mode)
-      ;; Disable ` because it is used in implicit generalization
-      (sp-local-pair "`" nil :actions nil)
-      (sp-local-pair "(*" "*)" :actions nil)
+      (sp-local-pair "(*" "*)")
       (sp-local-pair "(*" "*"
-                     :actions '(insert)
-                     :post-handlers '(("| " "SPC") ("|\n[i]*)[d-2]" "RET")))
+                                        ;:actions '(insert)
+                     :post-handlers '(("| " "SPC") ("|\n[i]*[d-2]" "RET")))
       )))
 
 (map! :map coq-mode-map
@@ -129,6 +133,7 @@ Based on https://gitlab.mpi-sws.org/iris/iris/blob/master/docs/editor.md"
    ("\\<-"             "←") ;; we add a backslash because the plain <- is used for the rewrite tactic
    ("\\=="             "≡")
    ("\\/=="            "≢")
+   ("\\neq"            "≠")
                                         ;("/="               "≠")
                                         ;("<="               "≤")
    ("\\in"             "∈")
@@ -199,6 +204,7 @@ Based on https://gitlab.mpi-sws.org/iris/iris/blob/master/docs/editor.md"
    ("\\-"      ?∖)
    ("\\aa"     ?●)
    ("\\af"     ?◯)
+   ("\\frag"   ?○)
    ("\\iff"    ?↔)
    ("\\gname"  ?γ)
    ("\\incl"   ?≼)
@@ -252,6 +258,7 @@ Based on https://gitlab.mpi-sws.org/iris/iris/blob/master/docs/editor.md"
    ;; characters that are candidates for translation, while a vector can contain
    ;; strings that are candidates for translation.
    ("\\bient"    ["⊣⊢"])
+   ("\\wand"    ["-∗"])
    ("\\equivP"   ["≡ₚ"])
    ;; common typo due to keyboard config
    ("\\_ep"    ?∗)
@@ -270,10 +277,13 @@ Based on https://gitlab.mpi-sws.org/iris/iris/blob/master/docs/editor.md"
   (setq proof-three-window-mode-policy 'hybrid)
   ;;(setq undo-tree-enable-undo-in-region nil)
 
-  (let ((coqbin (getenv "COQBIN")))
-    (setq coq-compiler (concat coqbin "coqc"))
-    (setq coq-dependency-analyzer (concat coqbin "coqdep"))
-    (setq coq-prog-name (concat coqbin "coqtop")))
+  (setq coq-compiler "coqc")
+  (setq coq-dependency-analyzer "coqdep")
+  (setq coq-prog-name "coqtop")
+  ;;(let ((coqbin (getenv "COQBIN")))
+  ;;  (setq coq-compiler (concat coqbin "coqc"))
+  ;;  (setq coq-dependency-analyzer (concat coqbin "coqdep"))
+  ;;  (setq coq-prog-name (concat coqbin "coqtop")))
   (setq coq-prefer-top-of-conclusion t)
   (setq proof-electric-terminator-enable nil)
   (setq coq-double-hit-enable nil)
@@ -281,11 +291,11 @@ Based on https://gitlab.mpi-sws.org/iris/iris/blob/master/docs/editor.md"
 
   (setq company-coq-disabled-features
         '(hello
-          outline
+          ;; outline
           refactorings
           alerts ;; doesn't work on macOS
           prettify-symbols ;; causes too many problems with Iris
-          spinner ;; minor modes are hidden anyway
+          spinner ;; not useful, causes huge performance problems; hidden anyway
           obsolete-settings))
 
   (setq require-final-newline t)
@@ -297,8 +307,7 @@ Based on https://gitlab.mpi-sws.org/iris/iris/blob/master/docs/editor.md"
   ;;
   ;; see https://gitlab.mpi-sws.org/iris/iris/-/blob/master/docs/editor.md#automated-indentation
   (setq coq-smie-user-tokens
-        '(("∗" . "*")
-          ("-∗" . "->")
+        '(("-∗" . "->")
           ("∗-∗" . "<->")
           ("==∗" . "->")
           ("⊢" . "->")
@@ -340,3 +349,23 @@ Based on https://gitlab.mpi-sws.org/iris/iris/blob/master/docs/editor.md"
     (defun +coq--fix-company-coq-hack-h ()
       (add-hook! 'after-change-major-mode-hook :local #'+coq--record-company-backends-h)
       (add-hook! 'after-change-major-mode-hook :append :local #'+coq--replay-company-backends-h))))
+
+
+(add-hook! coq-mode
+  (load-file "~/code/perennial/etc/mixcode/mixcode.el")
+  (mixcode-mode)
+
+  (map! :map coq-mode-map
+        :localleader
+        :prefix ("m" . "Mixcode")
+        :desc "Load Go file"            "l" #'mixcode-load-file
+        :desc "Insert code"             "m" #'mixcode-insert-code
+        :desc "Insert wp"               "w" #'mixcode-insert-wp
+        )
+  (map! :map coq-mode-map
+        :localleader
+        :prefix ("l" . "Mixcode")
+        :desc "Load Go file"            "l" #'mixcode-load-file
+        :desc "Insert wp"               "w" #'mixcode-insert-wp
+        )
+  )

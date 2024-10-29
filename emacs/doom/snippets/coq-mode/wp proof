@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: Start a WP proof
+# uuid: wp_proof
+# key: wpstart
+# condition: t
+# --
+iIntros (Φ) "Hpre HΦ". iDestruct "Hpre" as "$0".

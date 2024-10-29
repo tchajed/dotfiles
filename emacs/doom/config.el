@@ -81,6 +81,8 @@
      (frame-char-height)))
 (add-to-list 'default-frame-alist '(width . 140))
 (add-to-list 'default-frame-alist (cons 'height (get-default-height)))
+(add-to-list 'default-frame-alist '(left . 0))
+(add-to-list 'default-frame-alist '(top . 0))
 
 (setq frame-title-format
       '(""
@@ -118,9 +120,12 @@
       '(not emacs-lisp-mode  ; elisp's mechanisms are good enough
         sql-mode         ; sqlformat is currently broken
         LaTeX-mode
+        tex-mode
         latex-mode
         bibtex-mode      ; causes too much disruption
         ))
+;; the above is only the format-all supper; lsp-mode takes precedence
+(setq-hook! 'emacs-lisp-mode-hook +format-with-lsp nil)
 
 ;; auto-detecting shell language as in
 ;; https://github.com/hlissner/doom-emacs/issues/2905 doesn't seem to work,
