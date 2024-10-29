@@ -17,9 +17,12 @@ alias es="emacsclient -a '' --no-wait --eval '(progn (switch-to-buffer \"*scratc
 alias ls="eza"
 alias ll="eza -l"
 alias la="eza -a"
+# easy typo, and exa is easier to type than eza
+alias exa="eza"
 
 # use lvim by default
 alias vim="lvim"
 
 alias s="kitty +kitten ssh"
 
+alias weather="wthrr"
