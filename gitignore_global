@@ -13,9 +13,9 @@
 .idea/
 # Python compiled module cache
 __pycache__/
-# VSCode
-.vscode/
 # often add random personal settings
-#!.vscode/settings.json
+.vscode/settings.json
 # writing-tracking database
 .words.sqlite3
+# op is the 1Password cli
+.op/
