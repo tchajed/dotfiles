@@ -1,6 +1,6 @@
 ;;; ../code/dotfiles/emacs/doom/+dafny.el -*- lexical-binding: t; -*-
 
-;(setq dafny-dir (file-name-as-directory "/Users/tchajed/.vscode/extensions/correctnesslab.dafny-vscode-0.19.0/dafny/dafny"))
+                                        ;(setq dafny-dir (file-name-as-directory "/Users/tchajed/.vscode/extensions/correctnesslab.dafny-vscode-0.19.0/dafny/dafny"))
 ;; for Dafny 3.0.0
 ;; (setq dafny-dir (file-name-as-directory "/Users/tchajed/dafny-bin"))
 
@@ -8,8 +8,8 @@
 (setq flycheck-dafny-executable "dafny")
 ;; (setq flycheck-boogie-executable "/Users/tchajed/.dotnet/tools/boogie")
 ;; (setq flycheck-z3-smt2-executable (concat dafny-dir "z3/bin/z3"))
-(setq flycheck-inferior-dafny-executable "/Users/tchajed/.local/bin/dafny-server") ;; Optional
-;(setq boogie-friends-profile-analyzer-executable "PATH-TO-Z3-AXIOM-PROFILER") ;; Optional
+;; (setq flycheck-inferior-dafny-executable "/Users/tchajed/.local/bin/dafny-server") ;; Optional
+                                        ;(setq boogie-friends-profile-analyzer-executable "PATH-TO-Z3-AXIOM-PROFILER") ;; Optional
 (setq dafny-verification-backend 'server)
 
 (add-hook 'dafny-mode-hook
