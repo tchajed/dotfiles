@@ -1,6 +1,10 @@
 local newTerminal = function()
 	local home = os.getenv("HOME")
 	hs.execute([[ "/opt/homebrew/bin/kitty" "--single-instance" "--working-directory" ]] .. home)
+  local app = hs.application.find("kitty")
+  if app then
+    app:activate()
+  end
 end
 
 -- hyper+t

@@ -8,7 +8,15 @@
         "5c7720c63b729140ed88cf35413f36c728ab7c70f8cd8422d9ee1cedeb618de5" 
         default))
 (setq comment-multi-line t)
-(setq font-latex-match-type-command-keywords '(("tej" "{") ("joe" "{") ("todo" "{") ("mfk" "{") ("ralf" "{")))
+(setq font-latex-match-type-command-keywords
+      '(("tej" "{")
+        ("joe" "{")
+        ("todo" "{")
+        ("mfk" "{")
+        ("ralf" "{")
+        ("notetej" "{")
+        ("notepanda" "{")
+        ("fixme" "{")))
 (setq font-latex-user-keyword-classes
       '(("note"
          (("note" "{"))
@@ -35,8 +43,8 @@
 
 ;; use a slightly narrower font for mode line to fit more symbols
 (custom-set-faces!
-  '(mode-line :family "Inconsolata Nerd Font Mono" :height 1.0)
-  '(mode-line-inactive :family "Inconsolata Nerd Font Mono" :height 1.0))
+    '(mode-line :family "Inconsolata Nerd Font Mono" :height 1.0)
+    '(mode-line-inactive :family "Inconsolata Nerd Font Mono" :height 1.0))
 
 (setq current-theme-phase 'light)
 (load-theme 'doom-one-light)
@@ -48,9 +56,9 @@
       (progn
         (setq current-theme-phase 'dark)
         (load-theme 'doom-one))
-    (progn
-      (setq current-theme-phase 'light)
-      (load-theme 'doom-one-light))))
+      (progn
+        (setq current-theme-phase 'light)
+        (load-theme 'doom-one-light))))
 
 (doom-load-envvars-file "/Users/tchajed/.emacs.d/.local/env")
 
@@ -131,10 +139,10 @@
 ;; https://github.com/hlissner/doom-emacs/issues/2905 doesn't seem to work,
 ;; force it to be bash
 (after! sh-script
-  (set-formatter! 'shfmt
-    '("shfmt"
-      ("-i" "%d" (unless indent-tabs-mode tab-width))
-      ("-ln" "%s" "bash"))))
+    (set-formatter! 'shfmt
+        '("shfmt"
+          ("-i" "%d" (unless indent-tabs-mode tab-width))
+          ("-ln" "%s" "bash"))))
 
 (setq flycheck-disabled-checkers
       '(
@@ -183,11 +191,11 @@
 (setq enable-local-variables t)
 
 (after! lsp
-  (lsp-register-client
-   (make-lsp-client :new-connection (lsp-tramp-connection "clangd")
-                    :major-modes '(c-mode c++-mode objc-mode)
-                    :remote? t
-                    :server-id 'clangd)))
+    (lsp-register-client
+     (make-lsp-client :new-connection (lsp-tramp-connection "clangd")
+                      :major-modes '(c-mode c++-mode objc-mode)
+                      :remote? t
+                      :server-id 'clangd)))
 
 (use-package! verus-mode
   :init

@@ -2,6 +2,56 @@
 -- currently the config is broken (it doesn't correspond to my current use), but
 -- there's a bunch of generic infrastructure here
 
+-- trigger hs.application to load
+local _ = hs.application
+local _ = hs.osascript
+
+function quitApp(appName)
+	local app = hs.application.get(appName)
+	if app then
+		app:kill()
+	end
+end
+
+-- Function to close all windows of an app without quitting
+function closeWindows(appName)
+	local app = hs.application.get(appName)
+	if app then
+		local windows = app:allWindows()
+		for _, win in ipairs(windows) do
+			win:close()
+		end
+	end
+end
+
+function openChrome(url)
+	-- written with the help of ChatGPT
+	local chrome = focusApp("com.google.Chrome")
+	if chrome then
+		hs.osascript.applescript([[
+tell application "Google Chrome"
+  make new window
+  set URL of active tab of first window to "]] .. url .. [["
+end tell
+]])
+		local win = chrome:mainWindow()
+		local screens = hs.screen.allScreens()
+		if screens and #screens > 1 then
+			win:moveToScreen(screens[2])
+		end
+	end
+end
+
+function setLectureLayout()
+	-- get these bundle IDs with hs.application.get("name"):bundleID()
+	quitApp("com.spotify.client")
+	closeWindows("keybase.Electron")
+	closeWindows("com.apple.MobileSMS") -- Messages
+	closeWindows("com.culturedcode.ThingsMac")
+	closeWindows("Slack")
+	openChrome("https://tchajed.github.io/sys-verif-fa24/notes/")
+end
+
 -- r should have rows, cols, x1, width, y1, height fields
 function gridUnitRec(r)
 	local x1 = (r.x1 - 1) / r.cols
@@ -85,6 +135,7 @@ function focusApp(name)
 	if app then
 		app:activate()
 	end
+	return app
 end
 
 function setWorkLayout()
