@@ -18,3 +18,9 @@ end)
 -- home and fn2+home on q2 pro
 hs.hotkey.bind("ctrl-alt-shift", "3", newTerminal)
 hs.hotkey.bind("ctrl-cmd-alt-shift", "3", newTerminal)
+
+local insertDate = function()
+  local d = os.date("%Y-%m-%d")
+  hs.eventtap.keyStrokes(d)
+end
+hs.hotkey.bind("cmd-shift", "d", insertDate)
