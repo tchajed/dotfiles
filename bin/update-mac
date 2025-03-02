@@ -1,0 +1,56 @@
+#!/bin/bash
+
+set -eu
+
+blue=$(tput setaf 4 || printf "")
+green=$(tput setaf 2 || printf "")
+red=$(tput setaf 1 || printf "")
+reset=$(tput sgr0 || printf "")
+
+info() {
+  echo -e "${blue}$1${reset}" 
+}
+
+error() {
+  echo -e "${red}$1${reset}" 1>&2 
+}
+
+good() {
+  echo -e "${green}$1${reset}" 1>&2 
+}
+
+good "brew update"
+brew update
+brew upgrade --dry-run
+info "manually run brew upgrade"
+
+# run in fish to get the right environment
+# good "doom sync"
+fish -c "doom sync -j 12 --force"
+info "manually run doom upgrade"
+
+good "lvim update"
+lvim +LvimUpdate +q 1>/dev/null
+
+good "VS Code extensions update"
+code --update-extensions
+
+good "opam update"
+opam update 1>/dev/null
+# environment has coq master which causes opam builds to fail
+# (because opam sucks: not only is the switch global, it doesn't
+# actually sandbox builds to use the current opam switch)
+#
+# re-do opam setup to make sure the env is what opam wants
+# shellcheck disable=SC2046
+eval $(opam env --shell=bash)
+opam upgrade -y
+
+good "rustup update"
+rustup update 1>/dev/null
+good "  cargo sweep"
+cargo sweep -r -i ~/code 1>/dev/null
+cargo sweep -r -i ~/sw 1>/dev/null
+
+good "fish_update_completions"
+fish -c "fish_update_completions" 1>/dev/null
