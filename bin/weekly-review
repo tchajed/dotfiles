@@ -1,0 +1,46 @@
+#!/bin/bash
+# Workspace setup script for review sessions on macOS
+
+echo "Setting up workspace for review..."
+
+# Open Timer PWA and set to weekly review
+echo "Opening Timer app..."
+open -a "Timer.app"
+# Wait for app to load
+sleep 1
+# Send 'e' key to enter URL mode
+osascript -e 'tell application "System Events" to tell process "Timer" to keystroke "e"'
+# Short delay before typing the review text
+sleep 0.5
+# Type "weekly review"
+osascript -e 'tell application "System Events" to tell process "Timer" to keystroke "weekly review"'
+# Press return to confirm
+osascript -e 'tell application "System Events" to tell process "Timer" to key code 36'
+
+# Open Qbserve
+echo "Opening Qbserve..."
+open -a "Qbserve"
+
+# Open Calendar
+echo "Opening Calendar..."
+open -a "Calendar"
+
+# Turn on Do Not Disturb
+echo "Turning on Do Not Disturb..."
+# Using keyboard shortcut (Control+Option+Command+D)
+osascript -e 'tell application "System Events" to keystroke "d" using {control down, option down, command down}'
+
+# Open Chrome to intend.do with dynamic year and week number
+echo "Opening Chrome to intend.do weekly review..."
+# Get current year
+YEAR=$(date +"%Y")
+# Get current ISO week number (1-53)
+WEEK=$(date +"%V")
+# Construct the URL
+REVIEW_URL="https://intend.do/tchajed/reviews/$YEAR/week/$WEEK"
+open -a "Google Chrome" "$REVIEW_URL"
+
+# Open Bear weekly review guide
+open "bear://x-callback-url/open-note?id=69992EE4-8593-4CE2-9946-5038DF2A601B"
+
+echo "Workspace setup complete!"
