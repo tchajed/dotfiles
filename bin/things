@@ -3,15 +3,19 @@
 import urllib.parse
 import subprocess
 
+
 class ThingsUrl:
     def __init__(self, command):
         self.command = command
         self.params = {}
 
     def url(self):
-        base = 'things:///' + self.command
-        return base + '?' + \
-            urllib.parse.urlencode(self.params, quote_via=urllib.parse.quote)
+        base = "things:///" + self.command
+        return (
+            base
+            + "?"
+            + urllib.parse.urlencode(self.params, quote_via=urllib.parse.quote)
+        )
 
     def add(self, key, value):
         if key in self.params:
@@ -19,7 +23,7 @@ class ThingsUrl:
         self.params[key] = value
 
     def run(self):
-        subprocess.run(['open', '-g', self.url()], check=True)
+        subprocess.run(["open", "-g", self.url()], check=True)
 
 
 class Checklist:
@@ -29,10 +33,10 @@ class Checklist:
         self.when = when
 
     def command(self):
-        cmd = ThingsUrl('add')
-        cmd.add('title', self.name)
-        cmd.add('checklist-items', '\n'.join(self.items))
-        cmd.add('when', self.when)
+        cmd = ThingsUrl("add")
+        cmd.add("title", self.name)
+        cmd.add("checklist-items", "\n".join(self.items))
+        cmd.add("when", self.when)
         return cmd
 
 
@@ -41,58 +45,71 @@ if __name__ == "__main__":
     import sys
 
     parser = argparse.ArgumentParser()
-    parser.add_argument("--today", action="store_true",
-                        help="set checklist for today (default is tomorrow)")
-    parser.add_argument("--name",
-                        help="override default checklist name")
-    parser.add_argument("checklist",
-                        help="checklist to add to Things")
+    parser.add_argument(
+        "--today",
+        action="store_true",
+        help="set checklist for today (default is tomorrow)",
+    )
+    parser.add_argument("--name", help="override default checklist name")
+    parser.add_argument("checklist", help="checklist to add to Things")
 
     args = parser.parse_args()
 
-    when = 'tomorrow'
+    when = "tomorrow"
     if args.today:
-        when = 'today'
+        when = "today"
 
     if args.checklist == "gym":
-        c = Checklist(args.name or "Go to gym", [
-            "handkerchief in shorts",
-            "towel card",
-            "take clean socks",
-            "take clean boxers",
-            "earbuds",
-            "iPhone case",
-            "wear old socks",
-            "wear old boxers",
-            "belt",
-            "protein shake",
-            "gym bag",
-        ], when=when)
+        c = Checklist(
+            args.name or "Go to gym",
+            [
+                "handkerchief in shorts",
+                "towel card",
+                "take clean socks",
+                "take clean boxers",
+                "earbuds",
+                "iPhone case",
+                "wear old socks",
+                "wear old boxers",
+                "belt",
+                "protein shake",
+                "gym bag",
+            ],
+            when=when,
+        )
         c.command().run()
         sys.exit(0)
 
     if args.checklist == "run":
-        c = Checklist(args.name or "Long run", [
-            "keys in shoes",
-            "fill water bottle",
-            "take energy gel",
-            "pour milk in Blender bottle",
-            "check weather for gloves",
-        ], when=when)
+        c = Checklist(
+            args.name or "Long run",
+            [
+                "keys in shoes",
+                "fill water bottle",
+                "take energy gel",
+                "pour milk in Blender bottle",
+                "check weather for gloves",
+            ],
+            when=when,
+        )
         c.command().run()
         sys.exit(0)
 
     if args.checklist == "flight":
-        c = Checklist(args.name or "Flight", [
-            "phone charger",
-            "laptop charger",
-            "headphones",
-            "boxers",
-            "socks",
-            "handkerchiefs",
-            "jeans",
-            "shirts",
-        ], when=when)
+        c = Checklist(
+            args.name or "Flight",
+            [
+                "phone charger",
+                "laptop charger",
+                "headphones",
+                "boxers",
+                "socks",
+                "handkerchiefs",
+                "jeans",
+                "shirts",
+            ],
+            when=when,
+        )
         c.command().run()
         sys.exit(0)
     print("unknown checklist", args.checklist)

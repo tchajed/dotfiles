@@ -4,6 +4,7 @@ import subprocess
 import argparse
 from os import path
 
+
 class Command:
     def __init__(self, args, post=lambda x: x):
         self.args = args
@@ -17,6 +18,7 @@ class Command:
         # TODO: fix this naive version by adding quotes where appropriate
         return " ".join(self.args)
 
+
 class CommandGroup:
     def __init__(self, cmds):
         self.cmds = cmds
@@ -28,6 +30,7 @@ class CommandGroup:
     def shell_command(self):
         return "\n".join(cmd.shell_command() for cmd in self.cmds)
 
+
 class PostprocessCommand(Command):
     def __init__(self, args, post):
         super(PostprocessCommand, self).__init__(args)
@@ -37,6 +40,7 @@ class PostprocessCommand(Command):
         out = subprocess.check_output(self.args)
         print(self.post(out))
 
+
 class Cantor:
     @classmethod
     def start(cls, _args):
@@ -44,13 +48,11 @@ class Cantor:
 
     @classmethod
     def stop(cls, _args):
-        return Command(["VBoxManage", "controlvm", "Arch",
-                        "savestate"])
+        return Command(["VBoxManage", "controlvm", "Arch", "savestate"])
 
     @classmethod
     def poweroff(cls, _args):
-        return Command(["VBoxManage", "controlvm", "Arch",
-                        "poweroff"])
+        return Command(["VBoxManage", "controlvm", "Arch", "poweroff"])
 
     @classmethod
     def checkpoint(cls, _args):
@@ -67,23 +69,26 @@ class Cantor:
                 return "hamilton is running"
             else:
                 return "hamilton is stopped"
+
         return PostprocessCommand(["VBoxManage", "list", "runningvms"], find_arch)
 
     @classmethod
     def setup_parser(cls, parser: argparse.ArgumentParser):
         subparsers = parser.add_subparsers()
-        subparsers.add_parser('start').set_defaults(func=cls.start)
-        subparsers.add_parser('stop').set_defaults(func=cls.stop)
-        subparsers.add_parser('poweroff').set_defaults(func=cls.poweroff)
-        subparsers.add_parser('running').set_defaults(func=cls.running)
-        subparsers.add_parser('checkpoint').set_defaults(func=cls.checkpoint)
-        subparsers.add_parser('update').set_defaults(func=cls.update)
+        subparsers.add_parser("start").set_defaults(func=cls.start)
+        subparsers.add_parser("stop").set_defaults(func=cls.stop)
+        subparsers.add_parser("poweroff").set_defaults(func=cls.poweroff)
+        subparsers.add_parser("running").set_defaults(func=cls.running)
+        subparsers.add_parser("checkpoint").set_defaults(func=cls.checkpoint)
+        subparsers.add_parser("update").set_defaults(func=cls.update)
 
 
 class Book:
     @classmethod
     def search(cls, args):
-        url = "https://bpl.bibliocommons.com/search?custom_query=title:({}) formatcode:(EBOOK)&suppress=true&custom_edit=true&search_scope=BPL".format(args.title)
+        url = "https://bpl.bibliocommons.com/search?custom_query=title:({}) formatcode:(EBOOK)&suppress=true&custom_edit=true&search_scope=BPL".format(
+            args.title
+        )
         return Command(["open", url])
 
     @classmethod
@@ -94,7 +99,7 @@ class Book:
 
 def remove_prefix(prefix, text):
     if text.startswith(prefix):
-        return text[len(prefix):]
+        return text[len(prefix) :]
     return text
 
 
@@ -102,9 +107,11 @@ class MitBook:
     @classmethod
     def search(cls, args):
         title = args.title.lower()
-        #title = remove_prefix("the ", title)
-        #title = remove_prefix("a ", title)
-        url = "http://library.mit.edu/F/?func=find-a&find_code=WTI&request={}&local_base=PBOOKS".format(title)
+        # title = remove_prefix("the ", title)
+        # title = remove_prefix("a ", title)
+        url = "http://library.mit.edu/F/?func=find-a&find_code=WTI&request={}&local_base=PBOOKS".format(
+            title
+        )
         return Command(["open", url])
 
     @classmethod
@@ -116,7 +123,9 @@ class MitBook:
 class Audiobook:
     @classmethod
     def search(cls, args):
-        url = "https://bpl.bibliocommons.com/search?custom_query=title:({}) (formatcode:(AB_ONLINE) OR formatcode:(EBOOK) OR formatcode:(AB))&suppress=true&custom_edit=true&search_scope=BPL".format(args.title)
+        url = "https://bpl.bibliocommons.com/search?custom_query=title:({}) (formatcode:(AB_ONLINE) OR formatcode:(EBOOK) OR formatcode:(AB))&suppress=true&custom_edit=true&search_scope=BPL".format(
+            args.title
+        )
         return Command(["open", url])
 
     @classmethod
@@ -149,7 +158,9 @@ class YoutubeDl:
 class Comics:
     @classmethod
     def save_smbc(cls, args):
-        return Command(["/Users/tchajed/dropbox/save/comics/smbc/add-comic.py", args.name])
+        return Command(
+            ["/Users/tchajed/dropbox/save/comics/smbc/add-comic.py", args.name]
+        )
 
     @classmethod
     def setup_parser(cls, parser: argparse.ArgumentParser):
@@ -160,7 +171,7 @@ class Comics:
 class Unmount:
     @classmethod
     def unmount_command(cls, volume):
-        volume_path = path.join("/Volumes",  volume)
+        volume_path = path.join("/Volumes", volume)
         if not path.isdir(volume_path):
             return Command(["echo", f"{volume} is not mounted"])
         else:
@@ -184,83 +195,99 @@ class Fermat:
     @classmethod
     def setup_parser(cls, parser: argparse.ArgumentParser):
         subparsers = parser.add_subparsers()
-        subparsers.add_parser('unmount').set_defaults(func=cls.unmount)
+        subparsers.add_parser("unmount").set_defaults(func=cls.unmount)
 
 
 class Brouwer:
     @classmethod
     def unmount(cls, args):
-        return CommandGroup([
-            Unmount.unmount_command("brouwer"),
-            Unmount.unmount_command("poincare"),
-            Unmount.unmount_command("borel"),
-            ])
+        return CommandGroup(
+            [
+                Unmount.unmount_command("brouwer"),
+                Unmount.unmount_command("poincare"),
+                Unmount.unmount_command("borel"),
+            ]
+        )
 
     @classmethod
     def setup_parser(cls, parser: argparse.ArgumentParser):
         subparsers = parser.add_subparsers()
-        subparsers.add_parser('unmount').set_defaults(func=cls.unmount)
+        subparsers.add_parser("unmount").set_defaults(func=cls.unmount)
 
 
 class Noether:
     @classmethod
     def connect(cls, args):
-        return Command(["osascript", path.expanduser("~/.dotfiles/applescripts/connect-noether.scpt")])
+        return Command(
+            [
+                "osascript",
+                path.expanduser("~/.dotfiles/applescripts/connect-noether.scpt"),
+            ]
+        )
 
     @classmethod
     def disconnect(cls, args):
-        return Command(["osascript", path.expanduser("~/.dotfiles/applescripts/disconnect-noether.scpt")])
+        return Command(
+            [
+                "osascript",
+                path.expanduser("~/.dotfiles/applescripts/disconnect-noether.scpt"),
+            ]
+        )
 
     @classmethod
     def setup_parser(cls, parser: argparse.ArgumentParser):
         subparsers = parser.add_subparsers()
-        subparsers.add_parser('connect').set_defaults(func=cls.connect)
-        subparsers.add_parser('disconnect').set_defaults(func=cls.disconnect)
+        subparsers.add_parser("connect").set_defaults(func=cls.connect)
+        subparsers.add_parser("disconnect").set_defaults(func=cls.disconnect)
 
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
-        formatter_class=argparse.ArgumentDefaultsHelpFormatter)
-    parser.add_argument("-n", "--dry-run",
-                        action='store_true',
-                        help="print commands without executing them")
+        formatter_class=argparse.ArgumentDefaultsHelpFormatter
+    )
+    parser.add_argument(
+        "-n",
+        "--dry-run",
+        action="store_true",
+        help="print commands without executing them",
+    )
     subparsers = parser.add_subparsers(help="sub-commands")
 
-    Cantor.setup_parser(
-        subparsers.add_parser('cantor', help="manage cantor VM"))
+    Cantor.setup_parser(subparsers.add_parser("cantor", help="manage cantor VM"))
 
-    Cantor.setup_parser(
-        subparsers.add_parser('hamilton', help="manage hamilton VM"))
+    Cantor.setup_parser(subparsers.add_parser("hamilton", help="manage hamilton VM"))
 
-    Book.setup_parser(
-        subparsers.add_parser('book', help="search for books at the BPL"))
+    Book.setup_parser(subparsers.add_parser("book", help="search for books at the BPL"))
 
     MitBook.setup_parser(
-        subparsers.add_parser('mitlib', help="search for books in the MIT libraries"))
+        subparsers.add_parser("mitlib", help="search for books in the MIT libraries")
+    )
 
     Audiobook.setup_parser(
-        subparsers.add_parser('audiobook', help="search for streaming audiobooks at the BPL"))
+        subparsers.add_parser(
+            "audiobook", help="search for streaming audiobooks at the BPL"
+        )
+    )
 
-    Timer.setup_parser(
-        subparsers.add_parser('timer', help="open a Safari timer"))
+    Timer.setup_parser(subparsers.add_parser("timer", help="open a Safari timer"))
 
     YoutubeDl.setup_parser(
-        subparsers.add_parser('youtube-dl', help="download YouTube URL song from clipboard"))
+        subparsers.add_parser(
+            "youtube-dl", help="download YouTube URL song from clipboard"
+        )
+    )
 
-    Comics.setup_parser(
-        subparsers.add_parser('smbc', help="save SMBC comic"))
+    Comics.setup_parser(subparsers.add_parser("smbc", help="save SMBC comic"))
 
-    Unmount.setup_parser(
-        subparsers.add_parser('unmount', help="unmount disks"))
+    Unmount.setup_parser(subparsers.add_parser("unmount", help="unmount disks"))
 
-    Fermat.setup_parser(
-        subparsers.add_parser('fermat', help="manage Fermat disk"))
+    Fermat.setup_parser(subparsers.add_parser("fermat", help="manage Fermat disk"))
 
-    Brouwer.setup_parser(
-        subparsers.add_parser('brouwer', help="manage Brouwer disk"))
+    Brouwer.setup_parser(subparsers.add_parser("brouwer", help="manage Brouwer disk"))
 
     Noether.setup_parser(
-        subparsers.add_parser('noether', help="manage noether headphones"))
+        subparsers.add_parser("noether", help="manage noether headphones")
+    )
 
     args = parser.parse_args()
     cmd = args.func(args)

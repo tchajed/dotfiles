@@ -3,6 +3,7 @@
 import argparse
 from urllib.parse import urlparse, urlunparse
 
+
 def transform_url(url):
     """
     Transform a proxied URL to a direct URL.
@@ -11,22 +12,26 @@ def transform_url(url):
     """
     parsed_url = urlparse(url)
     hostname = parsed_url.netloc
-    
-    if 'ezproxy' in hostname:
-        domain_part = hostname.split('.ezproxy')[0]
-        clean_domain = domain_part.replace('-', '.')
+
+    if "ezproxy" in hostname:
+        domain_part = hostname.split(".ezproxy")[0]
+        clean_domain = domain_part.replace("-", ".")
         new_parsed_url = parsed_url._replace(netloc=clean_domain)
         return urlunparse(new_parsed_url)
-    
+
     return url
 
+
 def main():
-    parser = argparse.ArgumentParser(description='Transform a proxied URL to a direct URL.')
-    parser.add_argument('url', help='The proxied URL to transform')
-    
+    parser = argparse.ArgumentParser(
+        description="Transform a proxied URL to a direct URL."
+    )
+    parser.add_argument("url", help="The proxied URL to transform")
+
     args = parser.parse_args()
     direct_url = transform_url(args.url)
     print(direct_url)
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     main()

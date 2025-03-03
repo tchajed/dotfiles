@@ -10,131 +10,140 @@ import tty
 
 URL_RE = re.compile(r"https?://[^\s]+")
 
+
 def _GetchUnix():
-  fd = sys.stdin.fileno()
-  old_settings = termios.tcgetattr(fd)
-  try:
-      tty.setraw(fd)
-      ch = sys.stdin.read(1)
-  finally:
-      termios.tcsetattr(fd, termios.TCSADRAIN, old_settings)
-  return ch
+    fd = sys.stdin.fileno()
+    old_settings = termios.tcgetattr(fd)
+    try:
+        tty.setraw(fd)
+        ch = sys.stdin.read(1)
+    finally:
+        termios.tcsetattr(fd, termios.TCSADRAIN, old_settings)
+    return ch
+
 
 class FoundUrl(object):
-  def __init__(self, url, line):
-    self.url_ = url
-    self.line_ = line
+    def __init__(self, url, line):
+        self.url_ = url
+        self.line_ = line
 
-  def Open(self):
-    subprocess.Popen(["open", self.url_])
+    def Open(self):
+        subprocess.Popen(["open", self.url_])
 
-  def ContextString(self):
-    start_index = self.line_.find(self.url_)
-    end_index = start_index + len(self.url_)
-    context_pre = self.line_[:start_index]
-    context_post = self.line_[end_index:]
-    return context_pre + termcolor.colored(self.url_, "blue") + context_post
+    def ContextString(self):
+        start_index = self.line_.find(self.url_)
+        end_index = start_index + len(self.url_)
+        context_pre = self.line_[:start_index]
+        context_post = self.line_[end_index:]
+        return context_pre + termcolor.colored(self.url_, "blue") + context_post
+
 
 def OpenAll(urls):
-  for url in urls:
-    url.Open()
+    for url in urls:
+        url.Open()
+
 
 def GetUrls(filename):
-  urls = []
-  with open(filename) as f:
-    for line in f:
-      for match in re.findall(URL_RE, line):
-        url = FoundUrl(match.rstrip(")"), line.strip())
-        urls.append(url)
-  return urls
+    urls = []
+    with open(filename) as f:
+        for line in f:
+            for match in re.findall(URL_RE, line):
+                url = FoundUrl(match.rstrip(")"), line.strip())
+                urls.append(url)
+    return urls
+
 
 class OptionsMenu(object):
-  QUICK_LETTERS = list("fjdkghsla;ruei")
+    QUICK_LETTERS = list("fjdkghsla;ruei")
 
-  def __init__(self, options, display_strings):
-    self.options_ = options
-    self.display_strings_ = display_strings
+    def __init__(self, options, display_strings):
+        self.options_ = options
+        self.display_strings_ = display_strings
 
-  def AddOption(self, option, display):
-    self.options_.append(option)
-    self.display_strings_.append(display)
+    def AddOption(self, option, display):
+        self.options_.append(option)
+        self.display_strings_.append(display)
 
-  def NumOptions(self):
-    return len(self.options_)
+    def NumOptions(self):
+        return len(self.options_)
 
-  def _UseQuickMenu(self):
-    if self.NumOptions() <= len(self.QUICK_LETTERS):
-      return True
-    return False
+    def _UseQuickMenu(self):
+        if self.NumOptions() <= len(self.QUICK_LETTERS):
+            return True
+        return False
 
-  def PrintMenu(self):
-    if self._UseQuickMenu():
-      self._PrintQuickMenu()
-    else:
-      self._PrintNumberMenu()
+    def PrintMenu(self):
+        if self._UseQuickMenu():
+            self._PrintQuickMenu()
+        else:
+            self._PrintNumberMenu()
 
-  def GetSelection(self):
-    if self._UseQuickMenu():
-      return self._GetSelectionQuick()
-    return self._GetSelectionByNumber()
+    def GetSelection(self):
+        if self._UseQuickMenu():
+            return self._GetSelectionQuick()
+        return self._GetSelectionByNumber()
 
-  def _PrintQuickMenu(self):
-    for letter, display_string in zip(self.QUICK_LETTERS,
-        self.display_strings_):
-      print(termcolor.colored(letter, "red"), display_string)
+    def _PrintQuickMenu(self):
+        for letter, display_string in zip(self.QUICK_LETTERS, self.display_strings_):
+            print(termcolor.colored(letter, "red"), display_string)
 
-  def _GetSelectionQuick(self):
-    selection = _GetchUnix()
-    if selection not in self.QUICK_LETTERS:
-      return None
-    selected_num = self.QUICK_LETTERS.index(selection)
-    return self._SelectNumber(selected_num)
+    def _GetSelectionQuick(self):
+        selection = _GetchUnix()
+        if selection not in self.QUICK_LETTERS:
+            return None
+        selected_num = self.QUICK_LETTERS.index(selection)
+        return self._SelectNumber(selected_num)
 
-  def _PrintNumberMenu(self):
-    for num, display_string in enumerate(self.display_strings_):
-      print("%2d %s" % (num + 1, display_string))
+    def _PrintNumberMenu(self):
+        for num, display_string in enumerate(self.display_strings_):
+            print("%2d %s" % (num + 1, display_string))
 
-  def _GetSelectionByNumber(self):
-    selection = input("> ")
-    try:
-      selected_num = int(selection)
-    except ValueError:
-      return None
-    return self._SelectNumber(selected_num-1)
+    def _GetSelectionByNumber(self):
+        selection = input("> ")
+        try:
+            selected_num = int(selection)
+        except ValueError:
+            return None
+        return self._SelectNumber(selected_num - 1)
 
-  def _SelectNumber(self, selected_num):
-    if not 0 <= selected_num < self.NumOptions():
-      return None
-    return self.options_[selected_num]
+    def _SelectNumber(self, selected_num):
+        if not 0 <= selected_num < self.NumOptions():
+            return None
+        return self.options_[selected_num]
+
 
 if __name__ == "__main__":
-  import argparse
+    import argparse
 
-  parser = argparse.ArgumentParser(
-          formatter_class=argparse.ArgumentDefaultsHelpFormatter)
-  parser.add_argument("-m", "--multiple",
-      action="store_true",
-      help="open multiple URLs from the same file")
-  parser.add_argument("filename",
-          help="file to search for URLs")
-  args = parser.parse_args()
+    parser = argparse.ArgumentParser(
+        formatter_class=argparse.ArgumentDefaultsHelpFormatter
+    )
+    parser.add_argument(
+        "-m",
+        "--multiple",
+        action="store_true",
+        help="open multiple URLs from the same file",
+    )
+    parser.add_argument("filename", help="file to search for URLs")
+    args = parser.parse_args()
 
-  urls = GetUrls(args.filename)
-  if len(urls) == 1:
-    url = urls[0]
-    print(url.ContextString())
-    urls[0].Open()
-  if len(urls) > 1:
-    menu = OptionsMenu([url.Open for url in urls],
-        [url.ContextString() for url in urls])
-    menu.AddOption(lambda: OpenAll(urls), "all")
-    menu.AddOption(lambda: sys.exit(0), "quit")
-    menu.PrintMenu()
-    action = menu.GetSelection()
-    if action is not None:
-      action()
-    if args.multiple:
-      while True:
+    urls = GetUrls(args.filename)
+    if len(urls) == 1:
+        url = urls[0]
+        print(url.ContextString())
+        urls[0].Open()
+    if len(urls) > 1:
+        menu = OptionsMenu(
+            [url.Open for url in urls], [url.ContextString() for url in urls]
+        )
+        menu.AddOption(lambda: OpenAll(urls), "all")
+        menu.AddOption(lambda: sys.exit(0), "quit")
+        menu.PrintMenu()
         action = menu.GetSelection()
         if action is not None:
-          action()
+            action()
+        if args.multiple:
+            while True:
+                action = menu.GetSelection()
+                if action is not None:
+                    action()
