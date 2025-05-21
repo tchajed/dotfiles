@@ -4,7 +4,7 @@ end
 
 ## Configure PATH
 if [ -f /opt/homebrew/bin/brew ]
-	eval (/opt/homebrew/bin/brew shellenv)
+    eval (/opt/homebrew/bin/brew shellenv)
 end
 # user_functions comes from dotfiles, standard ~/.config/fish/functions is
 # managed by fisher
@@ -15,13 +15,16 @@ fish_add_path ~/go/bin ~/.cargo/bin ~/.dotnet/tools ~/.local/bin
 fish_add_path ~/code/dotfiles/bin
 fish_add_path ~/sw/latexrun ~/sw/alectryon
 # Ruby
-if test -d "/usr/local/opt/ruby/bin"
-  fish_add_path /usr/local/opt/ruby/bin
-  # should be (gem environment gemdir) but that takes 100ms
-  set -l gemdir (echo /usr/local/lib/ruby/gems/* | tail -1)
-  fish_add_path $gemdir/bin
+if test -d /usr/local/opt/ruby/bin
+    fish_add_path /usr/local/opt/ruby/bin
+    # should be (gem environment gemdir) but that takes 100ms
+    set -l gemdir (echo /usr/local/lib/ruby/gems/* | tail -1)
+    fish_add_path $gemdir/bin
 end
 fish_add_path (echo ~/Library/Python/* | tail -1)/bin
+# neovim is installed manually to get 0.10, for LunarVim compatibility (Homebrew
+# has v0.11, which even LunarVim master doesn't support)
+fish_add_path ~/nvim-macos-arm64/bin
 
 alias mypyvy="$HOME/sw/mypyvy/src/mypyvy.py"
 fish_add_path ~/code/ivy-docker
@@ -34,16 +37,19 @@ source ~/.opam/opam-init/init.fish
 eval (opam config env --shell=fish)
 
 # Coq
+function use_coq_dev
+    set -l COQ_REPO ~/sw/coq
+    if test -d $COQ_REPO/_build/install/default/bin
+        set -x COQBIN $COQ_REPO/_build/install/default/bin/
+    else
+        set -x COQBIN $COQ_REPO/bin/
+    end
+    fish_add_path --path $COQBIN
+end
 # if already in opam, use that
 if ! which coqc >/dev/null
-  # use local build
-  set -l COQ_REPO ~/sw/coq
-  if test -d $COQ_REPO/_build/install/default/bin
-    set -x COQBIN $COQ_REPO/_build/install/default/bin/
-  else
-    set -x COQBIN $COQ_REPO/bin/
-  end
-  fish_add_path --path $COQBIN
+    # use local build
+    use_coq_dev
 end
 
 # Maelstrom
@@ -62,7 +68,7 @@ function make_recent
     set -l file (gls -c src/**.v | head -2)
     set -l target (string replace -r '.v$' '.required_vos' $file)
     make -j8 $target
-    gtimeout "10s" make -j8 vos
+    gtimeout 10s make -j8 vos
 end
 
 ## changing java version
@@ -81,8 +87,8 @@ status --is-interactive; and starship init fish | source
 # https://iterm2.com/shell_integration.html
 # must be loaded after starship since it modifies the prompt
 if test -f ~/.iterm2_shell_integration.fish
-  # not sure if this even affects kitty
-  source ~/.iterm2_shell_integration.fish
+    # not sure if this even affects kitty
+    source ~/.iterm2_shell_integration.fish
 end
 
 ## zoxide integration

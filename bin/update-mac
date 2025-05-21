@@ -24,6 +24,15 @@ brew update
 brew upgrade --dry-run
 info "manually run brew upgrade"
 
+good "update repos"
+echo "perennial"
+git -C ~/code/perennial fetch origin  1>/dev/null
+echo "pav, tulip, etcd"
+git -C ~/sw/pav pull 1>/dev/null
+git -C ~/sw/tulip pull 1>/dev/null
+git -C ~/sw/etcd-raft pull 1>/dev/null
+git -C ~/sw/etcd pull 1>/dev/null
+
 # run in fish to get the right environment
 # good "doom sync"
 fish -c "doom sync -j 12 --force"

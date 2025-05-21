@@ -10,6 +10,9 @@ function watch_coqc --argument wait
       rm /tmp/ps-coqc
       break
     end
-    sleep $wait
+    # if user interrupts, stop loop
+    if ! sleep $wait
+      break
+    end
   end
 end

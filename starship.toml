@@ -60,6 +60,7 @@ disabled = true
 [perl]
 disabled = true
 
+# detects Coq .v files incorrectly
 [vlang]
 disabled = true
 

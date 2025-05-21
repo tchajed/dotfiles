@@ -216,6 +216,7 @@ Based on https://gitlab.mpi-sws.org/iris/iris/blob/master/docs/editor.md"
 
    ;; subscripts and superscripts
    ("^^+" ?⁺) ("__+" ?₊) ("^^-" ?⁻)
+   ("^go" ["ᵍᵒ"])
    ("__0" ?₀) ("__1" ?₁) ("__2" ?₂) ("__3" ?₃) ("__4" ?₄)
    ("__5" ?₅) ("__6" ?₆) ("__7" ?₇) ("__8" ?₈) ("__9" ?₉)
 
@@ -259,7 +260,8 @@ Based on https://gitlab.mpi-sws.org/iris/iris/blob/master/docs/editor.md"
    ;; strings that are candidates for translation.
    ("\\bient"    ["⊣⊢"])
    ("\\wand"    ["-∗"])
-   ("\\equivP"   ["≡ₚ"])
+   ("\\equiv"   ["≡"])
+   ;; ("\\equivP"   ["≡ₚ"])
    ;; common typo due to keyboard config
    ("\\_ep"    ?∗)
 

@@ -29,7 +29,7 @@ def main():
     parser.add_argument("url", help="The proxied URL to transform")
 
     args = parser.parse_args()
-    direct_url = transform_url(args.url)
+    direct_url = transform_url(args.url.rstrip())
     print(direct_url)
 
 

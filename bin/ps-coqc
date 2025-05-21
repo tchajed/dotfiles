@@ -2,6 +2,6 @@
 
 # print running coqc processes and their runtime so far
 
-ps -f | grep -E 'coqc .*(\w|/|-)*\.v\b' |\
+ps -f | grep -E '(coqc|rocqworker) .*(\w|/|-)*\.v\b' |\
   grep -E -v '\bgrep\b' |\
   gsed -E 's!.* ([0-9]*:[0-9.]*).* ((\w|/|-)*\.v).*!\1 \2!'
