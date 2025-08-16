@@ -1,0 +1,10 @@
+#!/usr/bin/env gawk -f
+
+{
+  for (i = 1; i <= NF; i++) {
+    if ($i ~ /(https?:\/\/[^[:space:]]+)/) {
+      match($i, /(https?:\/\/[^[:space:]]+)/, m)
+      print m[1]
+    }
+  }
+}

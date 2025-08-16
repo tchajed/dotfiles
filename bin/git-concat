@@ -1,0 +1,152 @@
+#!/bin/bash
+
+# Script to concatenate all files from a specific git commit
+# Usage: ./concat_commit.sh [--verbose] <commit-hash> [directory]
+
+set -e  # Exit on any error
+
+# Function to display usage
+usage() {
+    echo "Usage: $0 [--verbose] <commit-hash> [directory]"
+    echo "  --verbose: Print status messages and file names to stderr"
+    echo "  commit-hash: The git commit hash (full or abbreviated)"
+    echo "  directory: Optional directory path to filter files (default: all files)"
+    echo ""
+    echo "Examples:"
+    echo "  $0 abc123"
+    echo "  $0 --verbose abc123def456 src/"
+    echo "  $0 abc123 docs/api"
+    echo "  $0 --verbose abc123"
+    exit 1
+}
+
+# Function to print concatenated files
+print_files() {
+    local commit_hash="$1"
+    local files="$2"
+    local verbose="$3"
+    
+    # Process each file
+    while IFS= read -r file; do
+        # Skip binary files by checking if git thinks it's binary
+        if git show "${commit_hash}:${file}" | grep -qI .; then
+            if [ "${verbose}" = "true" ]; then
+                echo "Processing: ${file}" >&2
+            
+              # Print file separator and header
+              echo ""
+              echo "=== FILE: ${file} ==="
+              echo "=== COMMIT: ${commit_hash} ==="
+              echo ""
+            fi
+            
+            # Print file content
+            if ! git show "${commit_hash}:${file}" 2>/dev/null; then
+                echo "=== ERROR: Could not read this file ==="
+            fi
+            
+            # Add trailing newlines for separation
+            echo ""
+            echo ""
+        else
+            if [ "${verbose}" = "true" ]; then
+                echo "Skipping binary file: ${file}" >&2
+            fi
+        fi
+    done <<< "${files}"
+}
+
+# Check if we're in a git repository
+if ! git rev-parse --git-dir > /dev/null 2>&1; then
+    echo "Error: Not in a git repository"
+    exit 1
+fi
+
+# Parse arguments
+VERBOSE=false
+COMMIT_HASH=""
+DIRECTORY=""
+
+while [ $# -gt 0 ]; do
+    case $1 in
+        --verbose)
+            VERBOSE=true
+            shift
+            ;;
+        -*)
+            echo "Unknown option: $1" >&2
+            usage
+            ;;
+        *)
+            if [ -z "${COMMIT_HASH}" ]; then
+                COMMIT_HASH="$1"
+            elif [ -z "${DIRECTORY}" ]; then
+                DIRECTORY="$1"
+            else
+                echo "Too many arguments" >&2
+                usage
+            fi
+            shift
+            ;;
+    esac
+done
+
+# Check if commit hash was provided
+if [ -z "${COMMIT_HASH}" ]; then
+    usage
+fi
+
+# Validate commit hash
+if ! git cat-file -e "${COMMIT_HASH}^{commit}" 2>/dev/null; then
+    echo "Error: Invalid commit hash '${COMMIT_HASH}'"
+    exit 1
+fi
+
+# Get the full commit hash for display
+FULL_HASH=$(git rev-parse "${COMMIT_HASH}")
+
+if [ -n "${DIRECTORY}" ]; then
+    if [ "${VERBOSE}" = "true" ]; then
+        echo "Concatenating files from commit: ${FULL_HASH}, directory: ${DIRECTORY}" >&2
+    fi
+    
+    # Check if directory exists in the commit
+    if ! git ls-tree -d "${COMMIT_HASH}" "${DIRECTORY}" >/dev/null 2>&1; then
+        if [ "${VERBOSE}" = "true" ]; then
+            echo "Warning: Directory '${DIRECTORY}' not found in commit ${COMMIT_HASH}" >&2
+        fi
+    fi
+    
+    # Get list of files in the specified directory
+    FILES=$(git ls-tree -r --name-only "${COMMIT_HASH}" "${DIRECTORY}" 2>/dev/null || echo "")
+else
+    if [ "${VERBOSE}" = "true" ]; then
+        echo "Concatenating files from commit: ${FULL_HASH}" >&2
+    fi
+    
+    # Get list of all files in the commit (excluding directories)
+    FILES=$(git ls-tree -r --name-only "${COMMIT_HASH}")
+fi
+
+if [ -z "${FILES}" ]; then
+    if [ "${VERBOSE}" = "true" ]; then
+        if [ -n "${DIRECTORY}" ]; then
+            echo "No files found in directory '${DIRECTORY}' for commit ${COMMIT_HASH}" >&2
+        else
+            echo "No files found in commit ${COMMIT_HASH}" >&2
+        fi
+    fi
+    exit 0
+fi
+
+TOTAL_FILES=$(echo "${FILES}" | wc -l)
+if [ "${VERBOSE}" = "true" ]; then
+    echo "Found ${TOTAL_FILES} files to process..." >&2
+fi
+
+# Call function to print concatenated files
+print_files "${COMMIT_HASH}" "${FILES}" "${VERBOSE}"
+
+if [ "${VERBOSE}" = "true" ]; then
+    echo "Concatenation complete!" >&2
+fi

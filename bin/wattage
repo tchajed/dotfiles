@@ -1,0 +1,18 @@
+#!/bin/bash
+
+set -eu
+
+power_info=$(system_profiler SPPowerDataType)
+
+connected=$(echo "$power_info" | awk -F': ' '/Connected/ { print $2; exit }')
+
+if [ "$connected" = "Yes" ]; then
+  wattage=$(echo "$power_info" | grep "Wattage" | awk '{print $3}')
+  echo "powered at ${wattage}W"
+elif [ "$connected" = "No" ]; then
+  echo "no AC power"
+else
+  echo "unknown" 1>&2
+  exit 1
+fi
+

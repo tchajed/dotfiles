@@ -36,6 +36,9 @@ echo "Opening Chrome to intend.do weekly review..."
 YEAR=$(date +"%Y")
 # Get current ISO week number (1-53)
 WEEK=$(date +"%V")
+case $(date +"%A") in
+Monday | Tuesday) WEEK=$((WEEK - 1)) ;;
+esac
 # Construct the URL
 REVIEW_URL="https://intend.do/tchajed/reviews/$YEAR/week/$WEEK"
 open -a "Google Chrome" "$REVIEW_URL"
