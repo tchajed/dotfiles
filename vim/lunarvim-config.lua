@@ -111,9 +111,7 @@ lvim.plugins = {
 		},
 	},
   -- Go setup
-  "olexsmir/gopher.nvim",
-  "leoluz/nvim-dap-go",
-  "ray-x/guihua.lua",
+  "ray-x/go.nvim",
 
   -- Rust setup
    "simrat39/rust-tools.nvim",
@@ -131,12 +129,6 @@ lvim.plugins = {
           border = "rounded",
         },
       }
-    end,
-  },
-  {
-    "j-hui/fidget.nvim",
-    config = function()
-      require("fidget").setup()
     end,
   },
   { "jceb/vim-orgmode" },

@@ -1,1 +1,1 @@
-Install [LunarVim](https://www.lunarvim.org/docs/installation).
+config.vim is an out-of-date LunarVim config

@@ -8,7 +8,10 @@
     ~/.doom.d: emacs/doom
     ~/.config/lvim/config.lua:
       create: true
-      path: vim/config.lua
+      path: vim/lunarvim-config.lua
+    ~/.config/nvim:
+      create: true
+      path: vim/lazyvim-nvim
     ~/.config/fish/config.fish:
       create: true
       path: fish/config.fish
