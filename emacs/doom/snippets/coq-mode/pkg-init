@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: pkg-init
+# key: IsPkgInit
+# --
+#[global] Instance : IsPkgInit ${1:`(replace-regexp-in-string "_init\\'" "" (file-name-base (or (buffer-file-name) "")))`} := define_is_pkg_init True%I.
+#[global] Instance : GetIsPkgInitWf $1 := build_get_is_pkg_init_wf.
+$0
