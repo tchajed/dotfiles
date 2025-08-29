@@ -8,16 +8,19 @@ red=$(tput setaf 1 || printf "")
 reset=$(tput sgr0 || printf "")
 
 info() {
-  echo -e "${blue}$1${reset}" 
+  echo -e "${blue}$1${reset}"
 }
 
 error() {
-  echo -e "${red}$1${reset}" 1>&2 
+  echo -e "${red}$1${reset}" 1>&2
 }
 
 good() {
-  echo -e "${green}$1${reset}" 1>&2 
+  echo -e "${green}$1${reset}" 1>&2
 }
+
+corepack disable pnpm
+corepack enable pnpm
 
 good "brew update"
 brew update
@@ -26,7 +29,7 @@ info "manually run brew upgrade"
 
 good "update repos"
 echo "perennial"
-git -C ~/code/perennial fetch origin  1>/dev/null
+git -C ~/code/perennial fetch origin 1>/dev/null
 echo "pav, tulip, etcd, etcd-raft"
 git -C ~/sw/pav pull 1>/dev/null
 git -C ~/sw/tulip pull 1>/dev/null
@@ -41,8 +44,8 @@ git -C ~/sw/rocq-stdlib fetch 1>/dev/null
 fish -c "doom sync -j 12 --force"
 info "manually run doom upgrade"
 
-good "lvim update"
-lvim +LvimUpdate +q 1>/dev/null
+good "vim update"
+nvim --headless "+Lazy! sync" +qa
 
 good "VS Code extensions update"
 code --update-extensions

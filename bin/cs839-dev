@@ -1,12 +1,14 @@
 #!/bin/bash
 
-dir="$HOME/code/cs839-fa25"
+semester="fa25"
+
+dir="$HOME/code/cs839-$semester"
 
 win=$(kitten @ launch --type=os-window \
-  --tab-title "server" --cwd "$dir/sys-verif-fa25")
+  --tab-title "server" --cwd "$dir/sys-verif-$semester")
 kitten @ send-text --match "id:$win" "pnpm dev\n"
 # new window has focus
 tab1=$(kitten @ launch --type=tab --title "soln" --cwd "$dir/sys-verif-solutions")
-kitten @ launch --type=tab --title "web" --cwd "$dir/sys-verif-fa25" 1>/dev/null
-kitten @ launch --type=tab --title "exercises" --cwd "$dir/sys-verif-fa25-proofs" 1>/dev/null
+kitten @ launch --type=tab --title "web" --cwd "$dir/sys-verif-$semester" 1>/dev/null
+kitten @ launch --type=tab --title "exercises" --cwd "$dir/sys-verif-$semester-proofs" 1>/dev/null
 kitten @ focus-tab --match "id:$tab1"
