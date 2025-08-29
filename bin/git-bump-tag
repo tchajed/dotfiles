@@ -1,0 +1,57 @@
+#!/bin/bash
+
+## Bump the git tag version using semver-cli
+
+set -eu
+
+# Default to minor if no component specified
+component="minor"
+dry_run=false
+
+usage() {
+    echo "Usage: git-bump-tag [--help] [--dry-run] [component]"
+    echo "Bump git tag version. Component can be major, minor, or patch (default: minor)"
+}
+
+# Parse arguments
+while [[ $# -gt 0 ]]; do
+    case "$1" in
+        --help)
+            usage
+            exit 0
+            ;;
+        --dry-run)
+            dry_run=true
+            shift
+            ;;
+        -*)
+            echo "Error: Unknown option: $1" >&2
+            usage
+            exit 1
+            ;;
+        *)
+            # assuming it's the component
+            component="$1"
+            shift # past argument
+            ;;
+    esac
+done
+
+# Get the latest version tag
+ver=$(git tag --list "v*" | sort -V | tail -1)
+
+# Check if version is empty
+if [[ -z "$ver" ]]; then
+    echo "Error: No existing version tags found." >&2
+    echo "Create an initial version tag (e.g. v0.1.0) before using git-bump-tag." >&2
+    exit 1
+fi
+
+new_ver=$(semver-cli inc "$component" "$ver")
+
+# Create the new tag
+echo "current version: $ver"
+echo "git tag v$new_ver"
+if [ "$dry_run" = false ]; then
+    git tag "v$new_ver"
+fi
