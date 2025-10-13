@@ -25,19 +25,30 @@ corepack enable pnpm
 good "brew update"
 brew update
 brew upgrade --dry-run
+brew upgrade claude-code
 info "manually run brew upgrade"
 
 good "update repos"
 echo "perennial"
 git -C ~/code/perennial fetch origin 1>/dev/null
-echo "pav, tulip, etcd, etcd-raft"
-git -C ~/sw/pav pull 1>/dev/null
-git -C ~/sw/tulip pull 1>/dev/null
-git -C ~/sw/etcd-raft pull 1>/dev/null
-git -C ~/sw/etcd pull 1>/dev/null
+if [ $(git -C ~/code/perennial branch --show-current) != "master" ]; then
+  git -C ~/code/perennial fetch origin master:master 1>/dev/null
+fi
+echo "pav, tulip, etcd, etcd-raft,"
+git -C ~/sw/pav pull 1>/dev/null &
+git -C ~/sw/tulip pull 1>/dev/null &
+git -C ~/sw/etcd-raft pull 1>/dev/null &
+git -C ~/sw/etcd pull 1>/dev/null &
+wait
 echo "coq"
-git -C ~/sw/coq fetch 1>/dev/null
-git -C ~/sw/rocq-stdlib fetch 1>/dev/null
+git -C ~/sw/coq fetch 1>/dev/null &
+git -C ~/sw/rocq-stdlib fetch 1>/dev/null &
+wait
+echo "stdpp, iris, coqutil"
+git -C ~/sw/coqutil fetch 1>/dev/null &
+git -C ~/sw/stdpp fetch 1>/dev/null &
+git -C ~/sw/iris fetch 1>/dev/null &
+wait
 
 # run in fish to get the right environment
 # good "doom sync"
