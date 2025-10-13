@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
-
 import argparse
+import subprocess
+import sys
 from urllib.parse import urlparse, urlunparse
 
 
@@ -12,26 +13,66 @@ def transform_url(url):
     """
     parsed_url = urlparse(url)
     hostname = parsed_url.netloc
-
     if "ezproxy" in hostname:
         domain_part = hostname.split(".ezproxy")[0]
         clean_domain = domain_part.replace("-", ".")
         new_parsed_url = parsed_url._replace(netloc=clean_domain)
         return urlunparse(new_parsed_url)
-
     return url
+
+
+def get_clipboard():
+    """Get the contents of the macOS clipboard."""
+    try:
+        result = subprocess.run(["pbpaste"], capture_output=True, text=True, check=True)
+        return result.stdout.strip()
+    except subprocess.CalledProcessError:
+        print("Error: Could not read from clipboard", file=sys.stderr)
+        sys.exit(1)
+
+
+def set_clipboard(text):
+    """Set the contents of the macOS clipboard."""
+    try:
+        subprocess.run(["pbcopy"], input=text, text=True, check=True)
+    except subprocess.CalledProcessError:
+        print("Error: Could not write to clipboard", file=sys.stderr)
+        sys.exit(1)
+
+
+def is_url(text):
+    """Check if the text appears to be a URL."""
+    parsed = urlparse(text)
+    return bool(parsed.scheme and parsed.netloc)
 
 
 def main():
     parser = argparse.ArgumentParser(
         description="Transform a proxied URL to a direct URL."
     )
-    parser.add_argument("url", help="The proxied URL to transform")
-
+    parser.add_argument(
+        "--clipboard",
+        action="store_true",
+        help="transform the contents of the clipboard",
+    )
+    parser.add_argument("url", nargs="?", help="The proxied URL to transform")
     args = parser.parse_args()
-    direct_url = transform_url(args.url.rstrip())
-    print(direct_url)
+
+    if args.clipboard:
+        clipboard_content = get_clipboard()
+        if is_url(clipboard_content):
+            direct_url = transform_url(clipboard_content)
+            set_clipboard(direct_url)
+            print(f"copied {direct_url}")
+        else:
+            print("Clipboard does not contain a URL, leaving unchanged")
+    else:
+        if args.url is None:
+            parser.error("URL argument is required when --clipboard is not used")
+        direct_url = transform_url(args.url.rstrip())
+        print(direct_url)
 
 
 if __name__ == "__main__":
     main()
+
