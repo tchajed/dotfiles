@@ -3,16 +3,12 @@ return {
     "whonore/Coqtail",
     ft = { "coq" },
     event = "VeryLazy",
-    load = function()
-      vim.cmd([[
-      augroup CoqtailHighlight
-      autocmd!
-      autocmd ColorScheme *
-      \ hi def CoqtailChecked guibg=NvimLightGray1
-      \| hi def CoqtailSent guibg=NvimLightGray3
-      augroup END
-      ]])
-    end,
+    keys = {
+      { "<f4>", "<cmd>RocqToLine<cr>", { desc = "goto line" } },
+      { "<leader>cn", "<cmd>RocqOmitToLine<cr>", { desc = "skip proofs and goto line" } },
+      { "<f3>", "<cmd>RocqNext<cr>", { desc = "forward one" } },
+      { "<f2>", "<cmd>RocqUndo<cr>", { desc = "backward one" } },
+    },
     config = function()
       -- disable mapping leader key in insert mode. it slows down leader keypress.
       vim.g.coqtail_noimap = 1
@@ -31,6 +27,7 @@ return {
       ]])
 
       -- Plugin: latex-unicoder.vim (tex unicode).
+      -- Invoke with C-l
       -- Note: Std Latex symbs already exist in the package.
       local iris = {}
       iris["fun"] = "λ"

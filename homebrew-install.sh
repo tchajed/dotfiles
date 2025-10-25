@@ -38,6 +38,9 @@ gnu-tar
 grep
 tree
 parallel
+ast-grep
+lazygit
+luarocks
 
 black
 "

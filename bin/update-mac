@@ -34,7 +34,7 @@ git -C ~/code/perennial fetch origin 1>/dev/null
 if [ $(git -C ~/code/perennial branch --show-current) != "master" ]; then
   git -C ~/code/perennial fetch origin master:master 1>/dev/null
 fi
-echo "pav, tulip, etcd, etcd-raft,"
+echo "pav, tulip, etcd, etcd-raft"
 git -C ~/sw/pav pull 1>/dev/null &
 git -C ~/sw/tulip pull 1>/dev/null &
 git -C ~/sw/etcd-raft pull 1>/dev/null &
@@ -51,7 +51,7 @@ git -C ~/sw/iris fetch 1>/dev/null &
 wait
 
 # run in fish to get the right environment
-# good "doom sync"
+good "doom sync"
 fish -c "doom sync -j 12 --force"
 info "manually run doom upgrade"
 

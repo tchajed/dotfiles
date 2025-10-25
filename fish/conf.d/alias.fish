@@ -6,7 +6,9 @@ alias sed="gsed"
 alias tar="gtar"
 alias timeout="gtimeout"
 
-alias make="make -j12"
+# replaced with MAKEFLAGS
+#alias make="make -j12"
+alias make="caffeinate make"
 
 # Emacs aliases
 alias e="emacsclient -a '' --no-wait"
@@ -20,8 +22,9 @@ alias la="eza -a"
 # easy typo, and exa is easier to type than eza
 alias exa="eza"
 
-# use lvim by default
-alias vim="lvim"
+alias vim="nvim"
+# switched away from LunarVim, but still have minor muscle memory for this and it might be in shell history.
+alias lvim="nvim"
 
 alias s="kitty +kitten ssh"
 

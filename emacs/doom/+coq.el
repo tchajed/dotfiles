@@ -279,9 +279,9 @@ Based on https://gitlab.mpi-sws.org/iris/iris/blob/master/docs/editor.md"
   (setq proof-three-window-mode-policy 'hybrid)
   ;;(setq undo-tree-enable-undo-in-region nil)
 
-  (setq coq-compiler "coqc")
-  (setq coq-dependency-analyzer "coqdep")
-  (setq coq-prog-name "coqtop")
+  ;;(setq coq-compiler "coqc")
+  ;;(setq coq-dependency-analyzer "coqdep")
+  ;;(setq coq-prog-name "coqtop")
   ;;(let ((coqbin (getenv "COQBIN")))
   ;;  (setq coq-compiler (concat coqbin "coqc"))
   ;;  (setq coq-dependency-analyzer (concat coqbin "coqdep"))

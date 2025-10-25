@@ -62,6 +62,7 @@
   graph = log --author=\"Tej Chajed\" --graph --all --decorate --stat --date=iso
   dayswork = diff --stat 'HEAD@{today.3am}'
   root = rev-parse --show-toplevel
+	branches = for-each-ref --sort=committerdate refs/heads/ --format='%(HEAD) %(align:35)%(color:yellow)%(refname:short)%(color:reset)%(end) - %(color:red)%(objectname:short)%(color:reset) - %(align:40)%(contents:subject)%(end) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))'
 
 # fix some logins to use ssh authentication
 #[url "ssh://git@github.com/"]

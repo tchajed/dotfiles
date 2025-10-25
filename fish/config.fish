@@ -22,9 +22,6 @@ if test -d /usr/local/opt/ruby/bin
     fish_add_path $gemdir/bin
 end
 fish_add_path (echo ~/Library/Python/* | tail -1)/bin
-# neovim is installed manually to get 0.10, for LunarVim compatibility (Homebrew
-# has v0.11, which even LunarVim master doesn't support)
-fish_add_path ~/nvim-macos-arm64/bin
 
 alias mypyvy="$HOME/sw/mypyvy/src/mypyvy.py"
 fish_add_path ~/code/ivy-docker
@@ -44,7 +41,7 @@ function use_coq_dev
     else
         set -x COQBIN $COQ_REPO/bin/
     end
-    fish_add_path --path $COQBIN
+    fish_add_path --prepend --path $COQBIN
 end
 # if already in opam, use that
 if ! which coqc >/dev/null

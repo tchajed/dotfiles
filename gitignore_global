@@ -19,3 +19,4 @@ __pycache__/
 .words.sqlite3
 # op is the 1Password cli
 .op/
+.claude/settings.local.json
