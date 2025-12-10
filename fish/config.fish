@@ -94,8 +94,15 @@ status --is-interactive; and zoxide init fish | source
 ## direnv (.envrc files)
 direnv hook fish | source
 
+## fnm (node version manager)
+fnm env --use-on-cd --shell fish | source
+
 # Set up fzf key bindings
 fzf --fish | source
+# fd will respect gitignore
+# this doesn't affect fzf used directly (e.g., `vim (fzf)`)
+set -g FZF_CTRL_T_COMMAND 'fd --type f --strip-cwd-prefix'
+set -g FZF_DEFAULT_OPTS '--select-1 --exit-0'
 
 # gh is an alias that uses op, the 1password CLI
 source /Users/tchajed/.config/op/plugins.sh
