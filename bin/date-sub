@@ -1,0 +1,80 @@
+#!/usr/bin/env uv run --script
+
+# /// script
+# requires-python = ">=3.9"
+# dependencies = [
+#     "dateparser>=1.2.0",
+# ]
+# ///
+
+"""
+Date Subtraction Script
+
+This script parses two dates using dateparser and calculates the difference between them.
+It supports natural language date inputs like "today", "yesterday", "3 days ago", etc.
+"""
+
+import sys
+from datetime import datetime
+import dateparser
+
+
+def parse_date(date_string: str) -> datetime:
+    """
+    Parse a date string using dateparser.
+    
+    Args:
+        date_string: A date string in various formats
+        
+    Returns:
+        A datetime object
+        
+    Raises:
+        ValueError: If the date string cannot be parsed
+    """
+    parsed = dateparser.parse(date_string)
+    if parsed is None:
+        raise ValueError(f"Could not parse date: '{date_string}'")
+    return parsed
+
+
+def subtract_dates(date1_str: str, date2_str: str) -> None:
+    """
+    Parse two dates and calculate the difference.
+    
+    Args:
+        date1_str: The first date string (will be subtracted from)
+        date2_str: The second date string (will be subtracted)
+    """
+    try:
+        date1 = parse_date(date1_str)
+        date2 = parse_date(date2_str)
+        
+        difference = date1 - date2
+        
+        print(f"{difference}")
+        
+    except ValueError as e:
+        print(f"Error: {e}", file=sys.stderr)
+        sys.exit(1)
+
+
+def main():
+    """Main entry point for the script."""
+    if len(sys.argv) != 3:
+        print("Usage: date_subtract.py <date1> <date2>")
+        print("\nExamples:")
+        print('  date_subtract.py "2024-12-25" "2024-01-01"')
+        print('  date_subtract.py "today" "3 days ago"')
+        print('  date_subtract.py "December 25, 2024" "January 1, 2024"')
+        print('  date_subtract.py "next Monday" "last Friday"')
+        sys.exit(1)
+    
+    date1_str = sys.argv[1]
+    date2_str = sys.argv[2]
+    
+    subtract_dates(date1_str, date2_str)
+
+
+if __name__ == "__main__":
+    main()

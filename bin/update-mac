@@ -19,9 +19,6 @@ good() {
   echo -e "${green}$1${reset}" 1>&2
 }
 
-corepack disable pnpm
-corepack enable pnpm
-
 good "brew update"
 brew update
 brew upgrade --dry-run
