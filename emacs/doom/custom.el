@@ -175,6 +175,8 @@
      (dafny-prover-local-args "/z3opt:smt.arith.nl=false")
      (reftex-default-bibliography "n.bib" "paper.bib")
      (reftex-default-bibliography "n.bib" "p.bib")))
+ '(sh-basic-offset 2)
+ '(standard-indent 2)
  '(vc-annotate-background "#fafafa")
  '(vc-annotate-color-map
    (list (cons 20 "#50a14f") (cons 40 "#688e35") (cons 60 "#807b1b")

@@ -43,8 +43,8 @@
 
 ;; use a slightly narrower font for mode line to fit more symbols
 (custom-set-faces!
-    '(mode-line :family "Inconsolata Nerd Font Mono" :height 1.0)
-    '(mode-line-inactive :family "Inconsolata Nerd Font Mono" :height 1.0))
+  '(mode-line :family "Inconsolata Nerd Font Mono" :height 1.0)
+  '(mode-line-inactive :family "Inconsolata Nerd Font Mono" :height 1.0))
 
 (setq current-theme-phase 'light)
 (load-theme 'doom-one-light)
@@ -56,9 +56,9 @@
       (progn
         (setq current-theme-phase 'dark)
         (load-theme 'doom-one))
-      (progn
-        (setq current-theme-phase 'light)
-        (load-theme 'doom-one-light))))
+    (progn
+      (setq current-theme-phase 'light)
+      (load-theme 'doom-one-light))))
 
 (doom-load-envvars-file "/Users/tchajed/.emacs.d/.local/env")
 
@@ -139,10 +139,10 @@
 ;; https://github.com/hlissner/doom-emacs/issues/2905 doesn't seem to work,
 ;; force it to be bash
 (after! sh-script
-    (set-formatter! 'shfmt
-        '("shfmt"
-          ("-i" "%d" (unless indent-tabs-mode tab-width))
-          ("-ln" "%s" "bash"))))
+  (set-formatter! 'shfmt
+    '("shfmt"
+      ("-i" "%d" (unless indent-tabs-mode tab-width))
+      ("-ln" "%s" "bash"))))
 
 (setq flycheck-disabled-checkers
       '(
@@ -191,13 +191,23 @@
 (setq enable-local-variables t)
 
 (after! lsp
-    (lsp-register-client
-     (make-lsp-client :new-connection (lsp-tramp-connection "clangd")
-                      :major-modes '(c-mode c++-mode objc-mode)
-                      :remote? t
-                      :server-id 'clangd)))
+  (lsp-register-client
+   (make-lsp-client :new-connection (lsp-tramp-connection "clangd")
+                    :major-modes '(c-mode c++-mode objc-mode)
+                    :remote? t
+                    :server-id 'clangd))
+  (setq lsp-disabled-clients '(semgrep-ls))
+  (defun lsp-ignore-semgrep-rulesRefreshed (workspace notification)
+    "Ignore semgrep/rulesRefreshed notification."
+    (when (equal (gethash "method" notification) "semgrep/rulesRefreshed")
+      (lsp--info "Ignored semgrep/rulesRefreshed notification")
+      t)) ;; Return t to indicate the notification is handled
+
+  (advice-add 'lsp--on-notification :before-until #'lsp-ignore-semgrep-rulesRefreshed)
+  )
 
 (use-package! verus-mode
   :init
   ;; Path to where you've cloned https://github.com/verus-lang/verus
   (setq verus-home (expand-file-name "~/sw/verus")))
+(use-package! claudemacs)

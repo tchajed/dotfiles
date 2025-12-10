@@ -19,3 +19,5 @@
 (package! verus-mode
   :recipe (:host github :repo "verus-lang/verus-mode.el"))
 (package! rg :recipe (:host github :repo "emacsmirror/rg"))
+(package! claudemacs
+  :recipe (:host github :repo "cpoile/claudemacs"))

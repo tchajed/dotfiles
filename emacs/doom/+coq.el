@@ -353,10 +353,11 @@ Based on https://gitlab.mpi-sws.org/iris/iris/blob/master/docs/editor.md"
       (add-hook! 'after-change-major-mode-hook :append :local #'+coq--replay-company-backends-h))))
 
 
-(add-hook! coq-mode
-  (load-file "~/code/perennial/etc/mixcode/mixcode.el")
-  (mixcode-mode)
+(after! coq-mode
+  (load-file "~/code/perennial/etc/mixcode/mixcode.el"))
+(add-hook! coq-mode (mixcode-mode))
 
+(add-hook! coq-mode
   (map! :map coq-mode-map
         :localleader
         :prefix ("m" . "Mixcode")
