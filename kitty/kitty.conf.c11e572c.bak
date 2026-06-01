@@ -952,8 +952,9 @@ tab_title_template "{fmt.fg.red}{bell_symbol}{activity_symbol}{fmt.fg.tab}{title
 
 #: Template to use for active tabs. If not specified falls back to
 #: tab_title_template.
-# active_tab_foreground   #ffffff
-# active_tab_background   #0184bc
+
+active_tab_foreground   #ffffff
+active_tab_background   #0184bc
 active_tab_font_style   bold
 # inactive_tab_foreground #444
 # inactive_tab_background #999
@@ -973,8 +974,60 @@ inactive_tab_font_style italic
 
 #: }}}
 
-#: Color scheme: configure with kitty +kitten themes
-#: A light and dark color scheme are configured in ~/.config/kitty
+#: Color scheme {{{
+
+## Material
+color0 #212121
+color1 #b7141e
+color10 #7aba39
+color11 #fee92e
+color12 #53a4f3
+color13 #a94dbb
+color14 #26bad1
+color15 #d8d8d8
+color2 #457b23
+color3 #f5971d
+color4 #134eb2
+color5 #550087
+color6 #0e707c
+color7 #eeeeee
+color8 #424242
+color9 #e83a3f
+background #eaeaea
+cursor #16aec9
+cursor_text_color #2d2d2c
+foreground #222221
+selection_foreground #4e4e4e
+selection_background #c1c1c1
+
+# MaterialDark
+#color0 #212121
+#color1 #b7141e
+#color10 #7aba39
+#color11 #fee92e
+#color12 #53a4f3
+#color13 #a94dbb
+#color14 #26bad1
+#color15 #d8d8d8
+#color2 #457b23
+#color3 #f5971d
+#color4 #134eb2
+#color5 #550087
+#color6 #0e707c
+#color7 #eeeeee
+#color8 #424242
+#color9 #e83a3f
+#background #222221
+#cursor #16aec9
+#cursor_text_color #dedede
+#foreground #e4e4e4
+#selection_foreground #3d3d3d
+#selection_background #dedede
+
+# foreground #2d2d2d
+# background #eeeeee
+
+#: The foreground and background colors.
 
 # background_opacity 1.0
 
@@ -1362,7 +1415,7 @@ update_check_interval 0
 #: background_opacity. If you want to use both, you are probably
 #: better off just hiding the titlebar with hide_window_decorations.
 
-macos_option_as_alt yes
+# macos_option_as_alt no
 
 #: Use the Option key as an Alt key on macOS. With this set to no,
 #: kitty will use the macOS native Option+Key to enter Unicode
@@ -2202,10 +2255,3 @@ map shift+cmd+/ open_url https://sw.kovidgoyal.net/kitty/
 #: }}}
 
 #: }}}
-map shift+enter send_text all \e\r
-
-
-# BEGIN_KITTY_THEME
-# Catppuccin-Latte
-include current-theme.conf
-# END_KITTY_THEME

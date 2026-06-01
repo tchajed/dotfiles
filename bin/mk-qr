@@ -1,0 +1,62 @@
+#!/bin/bash
+
+## Create a QR code for some text.
+## Requires qrcode from pip and convert from ImageMagick. Runs optipng if you have it.
+##
+## pip3 install qrcode
+## brew install imagemagick
+## brew install optipng (optional)
+
+set -eu
+
+usage() {
+  echo "Usage: $0 < --output FILE.png > <text>" 1>&2
+}
+
+mkqr() {
+  text="$1"
+  output="$2"
+  qrencode -t png --dpi=600 --size=20 --margin=0 "$text" -o "$output"
+  #rsvg-convert -d 2400 -p 2400 "$output.svg" | magick - -resize 600x600 -trim "$output"
+  #rm -f "$output.svg"
+  if which optipng 1>/dev/null 2>/dev/null; then
+    optipng --quiet "$output"
+  fi
+}
+
+output=""
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+  -o | --output)
+    shift
+    output="$1"
+    shift
+    ;;
+  -h | -help | --help)
+    usage
+    exit 0
+    ;;
+  -*)
+    usage
+    exit 1
+    ;;
+  *)
+    break
+    ;;
+  esac
+done
+
+if [ -z "$output" ]; then
+  echo "--output (or -o) is required" 2>&1
+  usage
+  exit 1
+fi
+
+if [ $# -eq 0 ]; then
+  echo "no text provided" 2>&1
+  usage
+  exit 1
+fi
+
+text="$1"
+mkqr "$text" "$output"

@@ -15,9 +15,8 @@
 (package! shfmt)
 (package! bats-mode)
 (package! sed-mode)
+(package! flymake-proc)
 (package! hotcrp-mode :recipe (:host github :repo "adamdoupe/hotcrp-mode-el"))
 (package! verus-mode
   :recipe (:host github :repo "verus-lang/verus-mode.el"))
 (package! rg :recipe (:host github :repo "emacsmirror/rg"))
-(package! claudemacs
-  :recipe (:host github :repo "cpoile/claudemacs"))

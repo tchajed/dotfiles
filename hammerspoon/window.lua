@@ -3,10 +3,19 @@
 -- per-monitor configuration
 -- to identify monitors, look at hs.screen.allScreens()[1] (and possibly [2])
 
+-- reasonable modern default
+hs.grid.setGrid("8x4")
+
 -- home
 hs.grid.setGrid("8x4", "Dell U2723QE")
 -- work
 hs.grid.setGrid("8x4", "Dell U3223QE")
+
+-- theorem
+hs.grid.setGrid("10x4", "LG HDR WQHD+")
+hs.grid.setGrid("10x4", "LG ULTRAWIDE")
+-- Ben's monitor
+hs.grid.setGrid("8x4", "LEN T32p")
 
 -- to all the monitors I've loved before
 hs.grid.setGrid("4x3", "HP ZR2740w")
@@ -27,6 +36,13 @@ hs.grid.setMargins({ w = 0, h = 0 })
 hs.hotkey.bind({ "shift", "cmd" }, "g", function()
 	hs.grid.show()
 end)
+
+-- when screens change, grid gets messed up; reconfiguring it recalculates it
+local function reconfigureGrid()
+	hs.grid.setGrid(hs.grid.getGrid())
+end
+local screenWatcher = hs.screen.watcher.new(reconfigureGrid)
+screenWatcher:start()
 
 -- Throwing windows between screens (monitors)
 hs.window.animationDuration = 0 -- default is 0.2
@@ -126,29 +142,33 @@ end
 
 -- half of screen
 local function halfScreenBinds()
-  hs.hotkey.bind({'ctrl', 'cmd'}, 'h', function() moveTo(hs.layout.left50) end)
-  hs.hotkey.bind({'ctrl', 'cmd'}, 'l', function() moveTo(hs.layout.right50) end )
+	hs.hotkey.bind({ "ctrl", "cmd" }, "h", function()
+		moveTo(hs.layout.left50)
+	end)
+	hs.hotkey.bind({ "ctrl", "cmd" }, "l", function()
+		moveTo(hs.layout.right50)
+	end)
 end
 -- halfScreenBinds()
 
 -- quarter of screen
 local function quarterScreenBinds()
-  hs.hotkey.bind({ "shift", "alt", "cmd" }, "left", function()
-    -- top left
-  	moveTo({ 0, 0, 0.5, 0.5 })
-  end)
-  hs.hotkey.bind({ "shift", "alt", "cmd" }, "right", function()
-    -- bottom right
-  	moveTo({ 0.5, 0.5, 0.5, 0.5 })
-  end)
-  hs.hotkey.bind({ "shift", "alt", "cmd" }, "up", function()
-    -- top right
-  	moveTo({ 0.5, 0, 0.5, 0.5 })
-  end)
-  hs.hotkey.bind({ "shift", "alt", "cmd" }, "down", function()
-    -- bottom left
-  	moveTo({ 0, 0.5, 0.5, 0.5 })
-  end)
+	hs.hotkey.bind({ "shift", "alt", "cmd" }, "left", function()
+		-- top left
+		moveTo({ 0, 0, 0.5, 0.5 })
+	end)
+	hs.hotkey.bind({ "shift", "alt", "cmd" }, "right", function()
+		-- bottom right
+		moveTo({ 0.5, 0.5, 0.5, 0.5 })
+	end)
+	hs.hotkey.bind({ "shift", "alt", "cmd" }, "up", function()
+		-- top right
+		moveTo({ 0.5, 0, 0.5, 0.5 })
+	end)
+	hs.hotkey.bind({ "shift", "alt", "cmd" }, "down", function()
+		-- bottom left
+		moveTo({ 0, 0.5, 0.5, 0.5 })
+	end)
 end
 -- quarterScreenBinds()
 
@@ -160,8 +180,9 @@ end)
 -- center screen
 local function centerCurrentWindow()
 	hs.window.focusedWindow():centerOnScreen()
-	local leftBorder = 0.25
-	local topBorder = 0.18
+	-- leftBorder x topBorder is the rectangle that is unused all around the window
+	local leftBorder = 0.15
+	local topBorder = 0.10
 	moveTo({ leftBorder, topBorder, (1 - 2 * leftBorder), (1 - 2 * topBorder) })
 end
 

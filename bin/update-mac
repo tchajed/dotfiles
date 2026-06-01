@@ -19,6 +19,24 @@ good() {
   echo -e "${green}$1${reset}" 1>&2
 }
 
+good "copy papers"
+
+# update_paper <dir> <PDF file>
+update_paper() {
+  dir=$1
+  pdf=$2
+
+  make -C "$dir" "$pdf" 1>/dev/null
+  name=$(basename "$dir")
+  echo "copied $name-draft.pdf"
+  cp "$dir/$pdf" ~/dropbox/reading/papers/"$name-draft.pdf"
+}
+
+#update_paper ~/writing/grants/nsf-std-lib-grant main.pdf
+update_paper ~/writing/go-channels-oopsla2026 full.pdf
+update_paper ~/writing/fixpoint-oopsla2026 main.pdf
+update_paper ~/writing/welder-paper paper.pdf
+
 good "brew update"
 brew update
 brew upgrade --dry-run
@@ -60,7 +78,7 @@ code --update-extensions
 
 good "opam update"
 opam update 1>/dev/null
-# environment has coq master which causes opam builds to fail
+# environment has rocq master which causes opam builds to fail
 # (because opam sucks: not only is the switch global, it doesn't
 # actually sandbox builds to use the current opam switch)
 #

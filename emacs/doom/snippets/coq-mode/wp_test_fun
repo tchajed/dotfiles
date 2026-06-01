@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: wp_test lemma
+# uuid: 
+# key: wp_test_fun
+# condition: t
+# --
+Lemma wp_${1:testFunctionName} :
+  test_fun_ok semantics.$1.
+Proof. semantics_auto. Qed.$0

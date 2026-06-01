@@ -20,6 +20,14 @@ diverged = "⇡$ahead_count ⇣$behind_count"
 modified = ""
 style = "bold red"
 
+[custom.jj]
+command = "prompt"
+format = "$output"
+ignore_timeout = true
+shell = ["starship-jj", "--ignore-working-copy", "starship"]
+use_stdin = false
+when = true
+
 [time]
 disabled = false
 time_format = "%_H:%M"

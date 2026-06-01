@@ -1,0 +1,26 @@
+# Ported from ~/.config/kitty/kitty.conf
+
+# Font
+font-family = "Victor Mono"
+font-style = Medium
+font-style-bold = SemiBold
+font-style-italic = Medium Italic
+font-style-bold-italic = SemiBold Italic
+font-size = 18
+
+# Kitty had: symbol_map U+2010 Fira Code
+font-codepoint-map = U+2010="Fira Code"
+
+# Kitty had: disable_ligatures cursor
+# Ghostty doesn't support disabling ligatures only under the cursor.
+# To disable programming ligatures globally, uncomment:
+# font-feature = -calt
+
+# Theme
+# Custom Ghostty themes ported exactly from your kitty Catppuccin files.
+theme = light:Catppuccin-Kitty-Latte,dark:Catppuccin-Kitty-Macchiato
+
+# Directory behavior
+# New tabs inherit the current working directory; new windows start in $HOME.
+tab-inherit-working-directory = true
+window-inherit-working-directory = false

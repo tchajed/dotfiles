@@ -210,4 +210,6 @@
   :init
   ;; Path to where you've cloned https://github.com/verus-lang/verus
   (setq verus-home (expand-file-name "~/sw/verus")))
-(use-package! claudemacs)
+;(use-package! claudemacs)
+;; tuareg-opam needs this due to a bug: https://github.com/ocaml/tuareg/pull/310
+;(use-package! flymake-proc)

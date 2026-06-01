@@ -9,10 +9,7 @@ set -eu
 pid=$(pgrep -f 'Intend.app' || true)
 if [ -n "$pid" ]; then
   kill "$pid"
-  # wait for pid to exit
-  until kill -s 0 "$pid" 2>/dev/null; do
-    gsleep 0.5
-  done
+  gsleep 1
 fi
 
 open -a "Intend.app"

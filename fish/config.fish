@@ -14,6 +14,8 @@ fish_add_path /usr/local/bin /usr/local/sbin
 fish_add_path ~/go/bin ~/.cargo/bin ~/.dotnet/tools ~/.local/bin
 fish_add_path ~/code/dotfiles/bin
 fish_add_path ~/sw/latexrun ~/sw/alectryon
+# override texlive version; this one is faster
+fish_add_path --prepend ~/code/detex-rs/opendetex-2.8.11
 # Ruby
 if test -d /usr/local/opt/ruby/bin
     fish_add_path /usr/local/opt/ruby/bin
@@ -21,7 +23,6 @@ if test -d /usr/local/opt/ruby/bin
     set -l gemdir (echo /usr/local/lib/ruby/gems/* | tail -1)
     fish_add_path $gemdir/bin
 end
-fish_add_path (echo ~/Library/Python/* | tail -1)/bin
 
 alias mypyvy="$HOME/sw/mypyvy/src/mypyvy.py"
 fish_add_path ~/code/ivy-docker
@@ -44,7 +45,7 @@ function use_coq_dev
     fish_add_path --prepend --path $COQBIN
 end
 # if already in opam, use that
-if ! which coqc >/dev/null
+if ! which rocq >/dev/null
     # use local build
     use_coq_dev
 end
@@ -56,6 +57,7 @@ alias verus=$HOME/sw/verus/source/target-verus/release/verus
 
 # takes non-trivial time at startup; replaced with universal variable
 # set -Ux RUST_SRC_PATH (rustc --print sysroot)/lib/rustlib/src/rust/library
+fish_add_path (brew --prefix rustup)/bin
 
 ## Aliases
 # see conf.d/aliases.fish
@@ -107,5 +109,11 @@ set -g FZF_DEFAULT_OPTS '--select-1 --exit-0'
 # gh is an alias that uses op, the 1password CLI
 source /Users/tchajed/.config/op/plugins.sh
 
-# too slow
-# load_nvm
+# latex minted doesn't work with python 3.14 - use pyenv to get python 3.13
+# This has been fixed in pypi but texlive has the old version of the sty file
+pyenv init - fish | source
+
+# pnpm
+set -gx PNPM_HOME /Users/tchajed/Library/pnpm
+fish_add_path --prepend $PNPM_HOME
+# pnpm end

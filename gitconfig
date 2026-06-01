@@ -7,8 +7,8 @@
 [core]
   # some things were just meant to be ignored
   excludesfile = ~/.gitignore_global
-  attributesfile = /Users/tchajed/.gitattributes
-	pager = git-split-diffs --color | less -RFX
+	attributesfile = /Users/tchajed/.config/git/attributes
+	#pager = git-split-diffs --color | less -RFX
 [includeIf "gitdir:~/code/**"]
     path = ~/code/.gitconfig
 [color]
@@ -29,8 +29,16 @@
   showUntrackedFiles = all
 
 # nice-to-have diff improvements
+[core]
+	pager = delta
+[interactive]
+	diffFilter = delta --color-only
+[delta]
+	light = true
 [merge]
-  conflictstyle = diff3
+  conflictstyle = zdiff3
+[diff]
+	colorMoved = default
 [diff-so-fancy]
   first-run = false
 [diff]
@@ -45,7 +53,7 @@
 
 # global hooks
 [init]
-	templatedir = ~/.git_template
+	#templatedir = ~/.git_template
   defaultBranch = main
 
 # some nice commands
@@ -80,7 +88,8 @@
 
 # GPG-related configuration
 [commit]
-  gpgsign = true
+	# disabled so agents don't run into trouble
+  gpgsign = false
 [gpg]
   program = /usr/local/bin/gpg
 	format = ssh
@@ -88,17 +97,15 @@
   helper = osxkeychain
 
 [diff "coq"]
-  xfuncname = ".*(Lemma|Theorem|Definition|Fixpoint).*\\.$"
+  xfuncname = "\\s*((Lemma|Theorem|Definition|Fixpoint).*)$"
 [diff "lean"]
-  xfuncname = "\b(lemma|def|theorem)\b.*"
+  xfuncname = "\\b(lemma|def|theorem)\\b.*"
 [maintenance]
 	repo = /Users/tchajed/code/pdos/fscq-doc
 	repo = /Users/tchajed/code/perennial
 [advice]
 	detachedHead = false
 
-[diff]
-	colorMoved = default
 [push]
 	# automatically create remote when no upstream tracking exists
 	autoSetupRemote = true

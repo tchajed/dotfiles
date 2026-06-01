@@ -1,0 +1,14 @@
+#!/bin/bash
+
+if [[ "$1" == "--sonnet" ]]; then
+  author() {
+    echo "Co-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>"
+  }
+else
+  author() {
+    echo "Co-Authored-By: Claude Opus 4.7 <noreply@anthropic.com>"
+  }
+fi
+
+author | pbcopy
+author

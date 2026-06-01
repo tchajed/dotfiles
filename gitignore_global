@@ -20,3 +20,5 @@ __pycache__/
 # op is the 1Password cli
 .op/
 .claude/settings.local.json
+.claude/worktrees/
+.gemini/settings.json
